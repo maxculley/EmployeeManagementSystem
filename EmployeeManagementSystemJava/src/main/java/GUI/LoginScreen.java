@@ -8,16 +8,17 @@ import SystemAndGeneral.*;
 import Employee.*;
 import java.util.logging.*;
 
-public class MyGUI extends JFrame {
-
+public class LoginScreen {
+    private JFrame window;
     private JPanel login;
     private JTextField username, password;
     private JButton sendLogin;
     private JLabel data;
 
-    public MyGUI() {
-
+    public LoginScreen() {
+        window = new JFrame();
         login = new JPanel();
+       
         username = new JTextField("Username", 15);
         password = new JTextField("Password", 15);
         sendLogin = new JButton("Login");
@@ -56,16 +57,16 @@ public class MyGUI extends JFrame {
         login.add(username);
         login.add(password);
         login.add(sendLogin);
-        login.add(data);
-        add(login);
+        login.add(data);;
+        window.add(login);
 
-        setLayout(new FlowLayout());
-        setVisible(true);
-        setSize(800, 500);
-        setLocationRelativeTo(null);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Login");
+        window.setLayout(new FlowLayout());
+        window.setVisible(true);
+        window.setSize(800, 500);
+        window.setLocationRelativeTo(null);
+        window.setResizable(false);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setTitle("Login");
     }
 
 }
