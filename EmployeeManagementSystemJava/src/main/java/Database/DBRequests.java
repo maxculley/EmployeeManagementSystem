@@ -3,8 +3,15 @@ package Database;
 import GUI.MyGUI;
 import java.sql.*;
 
-public class DataBaseRequests {
-
+public class DBRequests {
+    
+    /**
+     * This function checks if an employee is valid and in the database
+     * @param ID ID of the user
+     * @return the employee type or an error message
+     * @throws ClassNotFoundException 
+     */
+    
     public static String isEmployee(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_type FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -89,6 +96,5 @@ public class DataBaseRequests {
             return "Input is invalid";
         }
     }
-    
-    
+
 }

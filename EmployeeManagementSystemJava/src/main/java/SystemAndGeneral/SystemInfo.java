@@ -1,14 +1,14 @@
 package SystemAndGeneral;
 
-import Database.DataBaseRequests;
+import Database.DBRequests;
 import Employee.Employee;
 
-public class SystemInformation {
+public class SystemInfo {
 
     private static Employee user;
 
     public static void setUser(Employee user) {
-        SystemInformation.user = user;
+        SystemInfo.user = user;
     }
 
     public static Employee getUser() {

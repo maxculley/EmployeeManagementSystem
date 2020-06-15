@@ -21,11 +21,11 @@ public class Employee {
     public String getLastName() {
         return lastName;
     }
-    
+
     public String getGender() {
         return gender;
     }
-    
+
     public int getID() {
         return ID;
     }

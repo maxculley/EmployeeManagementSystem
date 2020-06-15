@@ -31,13 +31,13 @@ public class MyGUI extends JFrame {
                 userName = username.getText();
                 password = this.password.getText();
                 id = Integer.parseInt(userName);
-                String accountType = DataBaseRequests.isEmployee(id);
+                String accountType = DBRequests.isEmployee(id);
                 try {
-                    if (accountType.equals("1") && password.equals(DataBaseRequests.getPassword(id))) {
-                        SystemInformation.setUser(new HR(id, DataBaseRequests.getFirstName(id), DataBaseRequests.getLastName(id), DataBaseRequests.getGender(id)));
+                    if (accountType.equals("1") && password.equals(DBRequests.getPassword(id))) {
+                        SystemInfo.setUser(new HR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
                         data.setText("Successful Login to HR");
-                    } else if (accountType.equals("0") && password.equals(DataBaseRequests.getPassword(id))) {
-                        SystemInformation.setUser(new NonHR(id, DataBaseRequests.getFirstName(id), DataBaseRequests.getLastName(id), DataBaseRequests.getGender(id)));
+                    } else if (accountType.equals("0") && password.equals(DBRequests.getPassword(id))) {
+                        SystemInfo.setUser(new NonHR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
                         data.setText("Successful Login to NonHR");
                     } else if (accountType.equalsIgnoreCase("User does not exist")) {
                         data.setText(accountType);
