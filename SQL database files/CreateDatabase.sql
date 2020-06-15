@@ -23,6 +23,6 @@ CREATE TABLE `employee_info` (
   `base_salary` varchar(6) NOT NULL,
   `employee_salary` varchar(6) NOT NULL,
   FOREIGN KEY (`employee_id`) REFERENCES `personal_info`(`employee_id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   INSERT INTO `employee_info` VALUES (1001, 250000, 250000);
   INSERT INTO `employee_info` VALUES (1002, 200000, 200000);
