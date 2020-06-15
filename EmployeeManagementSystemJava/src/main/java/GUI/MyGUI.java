@@ -32,14 +32,15 @@ public class MyGUI extends JFrame {
                     String type = DataBaseRequests.isEmployee(id);
                     if (type.equals("1")) {
                         SystemInformation.setUser(new HR(id, DataBaseRequests.getFirstName(id), DataBaseRequests.getLastName(id), DataBaseRequests.getGender(id)));
-                        data.setText(SystemInformation.getUser().getFirstName());
+                        data.setText(SystemInformation.getUser().getLastName());
                     } else {
                         SystemInformation.setUser(new NonHR(id, DataBaseRequests.getFirstName(id), DataBaseRequests.getLastName(id), DataBaseRequests.getGender(id)));
-                        data.setText(SystemInformation.getUser().getFirstName());
+                        data.setText(SystemInformation.getUser().getLastName());
                     }
                 } catch (ClassNotFoundException ex) {
                 }
             } catch (Exception e) {
+                data.setText("A valid ID does not include letters");
             }
 
         });
