@@ -26,3 +26,12 @@ CREATE TABLE `employee_info` (
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   INSERT INTO `employee_info` VALUES (1001, 250000, 250000);
   INSERT INTO `employee_info` VALUES (1002, 200000, 200000);
+  
+CREATE TABLE `employee_passwords` (
+  `employee_id` int(4) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  FOREIGN KEY (`employee_id`) REFERENCES `personal_info`(`employee_id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INSERT INTO `employee_passwords` VALUES (1001, 'Max');
+  INSERT INTO `employee_passwords` VALUES (1002, 'George');
+  
