@@ -1,4 +1,3 @@
-
 package GUI;
 
 import Database.DBRequests;
@@ -14,7 +13,7 @@ public class LoginPage {
     private JTextField username, password;
     private JButton sendLogin;
     private JLabel data;
-    
+
     public static JPanel getLogin() {
         return login;
     }
@@ -22,7 +21,6 @@ public class LoginPage {
     public LoginPage() {
 
         login = new JPanel();
-        
 
         username = new JTextField("Username", 15);
         password = new JTextField("Password", 15);
@@ -58,12 +56,11 @@ public class LoginPage {
             }
 
         });
-        
+
         login.add(username);
         login.add(password);
         login.add(sendLogin);
         login.add(data);
     }
-    
-    
+
 }
