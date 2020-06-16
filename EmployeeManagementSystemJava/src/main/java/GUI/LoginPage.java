@@ -1,24 +1,29 @@
+
 package GUI;
 
-import Database.*;
+import Database.DBRequests;
+import Employee.HR;
+import Employee.NonHR;
+import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import SystemAndGeneral.*;
-import Employee.*;
-import java.util.logging.*;
 
-public class LoginScreen {
-    private JFrame window;
-    private JPanel login;
+public class LoginPage {
+
+    private static JPanel login;
     private JTextField username, password;
     private JButton sendLogin;
     private JLabel data;
+    
+    public static JPanel getLogin() {
+        return login;
+    }
 
-    public LoginScreen() {
-        window = new JFrame();
+    public LoginPage() {
+
         login = new JPanel();
-       
+        
+
         username = new JTextField("Username", 15);
         password = new JTextField("Password", 15);
         sendLogin = new JButton("Login");
@@ -53,20 +58,12 @@ public class LoginScreen {
             }
 
         });
-
+        
         login.add(username);
         login.add(password);
         login.add(sendLogin);
-        login.add(data);;
-        window.add(login);
-
-        window.setLayout(new FlowLayout());
-        window.setVisible(true);
-        window.setSize(800, 500);
-        window.setLocationRelativeTo(null);
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setTitle("Login");
+        login.add(data);
     }
-
+    
+    
 }
