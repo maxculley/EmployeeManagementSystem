@@ -9,15 +9,10 @@ public class WindowInfo {
 
     public WindowInfo() {
         window = new JFrame();
-        container = new JPanel();
         new LoginPage();
         
-        // Add JFrame to container
-        container.add(LoginPage.getLogin());
-        
-        
-        // Add contianer to window
-        window.add(container);
+        // Add scenes to container
+        window.add(LoginPage.getLogin());
         
         
         // JFrame layout

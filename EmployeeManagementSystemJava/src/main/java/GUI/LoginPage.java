@@ -21,6 +21,7 @@ public class LoginPage {
     public LoginPage() {
 
         login = new JPanel();
+        login.setLayout(null);
 
         username = new JTextField("Username", 15);
         password = new JTextField("Password", 15);
@@ -57,9 +58,13 @@ public class LoginPage {
 
         });
 
+        username.setBounds(315, 120, 171, 30);
         login.add(username);
+        password.setBounds(315, 150, 171, 30);
         login.add(password);
+        sendLogin.setBounds(355, 200, 91, 27);
         login.add(sendLogin);
+        data.setBounds(200, 250, 401, 27);
         login.add(data);
     }
 
