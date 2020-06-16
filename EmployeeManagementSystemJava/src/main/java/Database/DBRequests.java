@@ -1,6 +1,6 @@
 package Database;
 
-import GUI.WindowInfo;
+import GUI.GUIInfo;
 import java.sql.*;
 
 public class DBRequests {

@@ -13,9 +13,10 @@ public class LoginPage {
     private JTextField username;
     private JPasswordField password;
     private JButton sendLogin;
-    private JLabel data;
+    private JLabel data, info;
+    private String text;
 
-    public static JPanel getLogin() {
+    public static JPanel getPage() {
         return login;
     }
 
@@ -29,6 +30,15 @@ public class LoginPage {
         password = new JPasswordField("Password", 15);
         sendLogin = new JButton("Login");
         data = new JLabel();
+        info = new JLabel();
+        
+        text = "<html><h3 align = 'center'>Login Info (Username - Password)<br /></h1>";
+        text += "<font style=\"font-family: 'Arial'; font-size 12pt;\">";
+        text += "1001(HR) - Max<br />";
+        text += "1002 - George<br />";
+        text += "1003 - Dani<br />";
+        info.setText(text);
+        
 
         sendLogin.addActionListener(listener -> {
             String userName = "";
@@ -42,32 +52,32 @@ public class LoginPage {
                 try {
                     if (accountType.equals("1") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new HR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
-                        data.setText("Successful Login to HR");
-                        data.setBounds(330, 250, 401, 27);
+                        GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
                     } else if (accountType.equals("0") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new NonHR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
-                        data.setText("Successful Login to NonHR");
-                        data.setBounds(317, 250, 401, 27);
+                        GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
                     } else if (accountType.equalsIgnoreCase("User does not exist")) {
                         data.setText(accountType);
-                        data.setBounds(340, 250, 401, 27);
+                        data.setBounds(340, 310, 401, 27);
                     } else {
                         data.setText("Incorrect password");
-                        data.setBounds(340, 250, 401, 27);
+                        data.setBounds(340, 310, 401, 27);
                     }
                 }catch (Exception e){}
             } catch (Exception e) {
                 data.setText("A valid ID does not include letters");
-                data.setBounds(300, 250, 401, 27);
+                data.setBounds(300, 310, 401, 27);
             }
 
         }); 
-
-        username.setBounds(315, 120, 171, 30);
+        
+        info.setBounds(275, 40, 500, 100);
+        login.add(info);
+        username.setBounds(315, 180, 171, 30);
         login.add(username);
-        password.setBounds(315, 150, 171, 30);
+        password.setBounds(315, 220, 171, 30);
         login.add(password);
-        sendLogin.setBounds(355, 200, 91, 27);
+        sendLogin.setBounds(355, 260, 91, 27);
         login.add(sendLogin);
         login.add(data);
     }
