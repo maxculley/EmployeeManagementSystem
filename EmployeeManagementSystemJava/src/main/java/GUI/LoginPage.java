@@ -61,7 +61,7 @@ public class LoginPage {
                 data.setBounds(300, 250, 401, 27);
             }
 
-        });
+        }); 
 
         username.setBounds(315, 120, 171, 30);
         login.add(username);
