@@ -10,7 +10,8 @@ import javax.swing.*;
 public class LoginPage {
 
     private static JPanel login;
-    private JTextField username, password;
+    private JTextField username;
+    private JPasswordField password;
     private JButton sendLogin;
     private JLabel data;
 
@@ -22,9 +23,10 @@ public class LoginPage {
 
         login = new JPanel();
         login.setLayout(null);
+        //login.setBackground(Color.GRAY);
 
         username = new JTextField("Username", 15);
-        password = new JTextField("Password", 15);
+        password = new JPasswordField("Password", 15);
         sendLogin = new JButton("Login");
         data = new JLabel();
 
@@ -41,19 +43,22 @@ public class LoginPage {
                     if (accountType.equals("1") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new HR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
                         data.setText("Successful Login to HR");
+                        data.setBounds(330, 250, 401, 27);
                     } else if (accountType.equals("0") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new NonHR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getGender(id)));
                         data.setText("Successful Login to NonHR");
+                        data.setBounds(317, 250, 401, 27);
                     } else if (accountType.equalsIgnoreCase("User does not exist")) {
                         data.setText(accountType);
+                        data.setBounds(340, 250, 401, 27);
                     } else {
                         data.setText("Incorrect password");
+                        data.setBounds(340, 250, 401, 27);
                     }
-                } catch (ClassNotFoundException ex) {
-                    data.setText("This account does not exist");
-                }
+                }catch (Exception e){}
             } catch (Exception e) {
                 data.setText("A valid ID does not include letters");
+                data.setBounds(300, 250, 401, 27);
             }
 
         });
@@ -64,7 +69,6 @@ public class LoginPage {
         login.add(password);
         sendLogin.setBounds(355, 200, 91, 27);
         login.add(sendLogin);
-        data.setBounds(200, 250, 401, 27);
         login.add(data);
     }
 
