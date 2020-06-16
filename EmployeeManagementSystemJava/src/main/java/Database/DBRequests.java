@@ -4,14 +4,14 @@ import GUI.WindowInfo;
 import java.sql.*;
 
 public class DBRequests {
-    
+
     /**
      * This function checks if an employee is valid and in the database
+     *
      * @param ID ID of the user
      * @return the employee type or an error message
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException
      */
-    
     public static String isEmployee(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_type FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -28,7 +28,7 @@ public class DBRequests {
             return "User does not exist";
         }
     }
-    
+
     public static String getPassword(int ID) throws ClassNotFoundException {
         String query = "SELECT password FROM employee_passwords WHERE employee_id = '" + ID + "'";
 
