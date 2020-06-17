@@ -12,7 +12,7 @@ public class HRMenu {
     private static JPanel menu;
     private JPanel layover, content;
     private JLabel welcome;
-    private JButton changeInfo, holidays, switchType, logout;
+    private JButton switchType, logout;
     String changeInfoText, changeHolidaysText, switchTypeText;
 
     public static JPanel getPage() {
@@ -21,6 +21,7 @@ public class HRMenu {
 
     public HRMenu() throws ClassNotFoundException {
         
+        // Panels
         menu = new JPanel();
         menu.setLayout(null);
         
@@ -30,17 +31,26 @@ public class HRMenu {
         content = new JPanel();
         content.setLayout(null);
         
-        welcome = new JLabel("HR MENU", SwingConstants.CENTER);
         
         
+        // Buttons
         switchTypeText = "Switch to \npersonal";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
         logout = new JButton("Logout");
         
         
+        
+        // Labels
+        welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        
+        
+        
+        // Action Listeners
         logout.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "Login");
         });
+        
         
         switchType.addActionListener(listener -> {
             try {
@@ -54,6 +64,8 @@ public class HRMenu {
         });
         
         
+        
+        // Component positioning
         logout.setBounds(0, 0, 65, 20);
         layover.add(logout);
         
@@ -65,12 +77,16 @@ public class HRMenu {
         
         
         
+        
+        // Panel positioning & styling and adding
         layover.setBounds(0, 0, 230, 500);
         layover.setBackground(Color.LIGHT_GRAY);
         
         content.setBounds(231, 0, 800, 500);
         
         
+        
+        // Add content
         menu.add(content);
         menu.add(layover);
     }

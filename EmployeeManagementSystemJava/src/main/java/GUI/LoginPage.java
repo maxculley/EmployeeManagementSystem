@@ -20,24 +20,42 @@ public class LoginPage {
     }
 
     public LoginPage() {
-
+        
+        // Panels
         login = new JPanel();
         login.setLayout(null);
-        //login.setBackground(Color.GRAY);
-
+        
+        
+        
+        // Text fields
         username = new JTextField("Username", 15);
+        
+        
+        
+        // Password fields
         password = new JPasswordField("Password", 15);
+        
+        
+        
+        // Buttons
         sendLogin = new JButton("Login");
+        
+        
+        
+        // Labels
         data = new JLabel();
         info = new JLabel();
-
+        
         text = "<html><h3 align = 'center'>Login Info (Username - Password)<br /></h1>";
         text += "<font style=\"font-family: 'Arial'; font-size 12pt;\">";
         text += "1001(HR) - Max<br />";
         text += "1002 - George<br />";
         text += "1003 - Dani<br />";
         info.setText(text);
-
+        
+        
+        
+        // Action Listeners        
         sendLogin.addActionListener(listener -> {
             String userName = "";
             String password = "";
@@ -67,9 +85,11 @@ public class LoginPage {
                 data.setText("A valid ID does not include letters");
                 data.setBounds(300, 310, 401, 27);
             }
-
         });
-
+        
+        
+        
+        // Component positioning and adding
         info.setBounds(275, 40, 500, 100);
         login.add(info);
 
@@ -81,7 +101,7 @@ public class LoginPage {
 
         sendLogin.setBounds(355, 260, 91, 27);
         login.add(sendLogin);
-
+        
         login.add(data);
     }
 
