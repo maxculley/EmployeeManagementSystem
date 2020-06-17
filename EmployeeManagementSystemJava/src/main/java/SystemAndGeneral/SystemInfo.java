@@ -15,9 +15,33 @@ public class SystemInfo {
         return user;
     }
 
+    
     public static String getFirstName() {
         return user.getFirstName();
     }
+    
+    public static void setFirstName(String name) {
+        user.setFirstName(name);
+    }
+    
+    
+    public static String getLastName() {
+        return user.getLastName();
+    }
+    
+    public static void setLastName(String name) {
+        user.setLastName(name);
+    }
+    
+    public static String getGender() {
+        return user.getGender();
+    }
+    
+    public static void setGender(String gender) {
+        user.setGender(gender);
+    }
+    
+    
     
     
     

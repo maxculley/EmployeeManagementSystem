@@ -15,7 +15,7 @@ public class NonHRMenu {
     private JLabel welcome, dropdownLabel, infoInputLabel, title;
     private JButton changeInfo, holidays, switchType, logout, contentSend;
     private JTextField infoInput;
-    String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText;
+    String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText, newData, data;
     Choice selection;
 
     public static JPanel getPage() {
@@ -70,10 +70,12 @@ public class NonHRMenu {
         // Drop down menu
         selection = new Choice();
         
+        selection.add("Please select");
         selection.add("Address");
         selection.add("First Name");
         selection.add("Last Name");
         selection.add("Password");
+        selection.add("Gender");
         
         
         
@@ -97,11 +99,33 @@ public class NonHRMenu {
             try {
                 if ((DBRequests.isEmployee(SystemInfo.getID())).equals("1")) {
                     GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
-                } else {
+                } else {}
+            } catch (ClassNotFoundException ex) {}
+        });
+        
+        
+        contentSend.addActionListener(listener -> {
+            try {
+                if (userSelection.equals("Address")) {
+                    data = infoInput.getText();
+                    DBRequests.changeAddress(data);
+                } else if (userSelection.equals("First Name")) {
+                    data = infoInput.getText();
+                    DBRequests.changeFirstName(data);
+                    SystemInfo.setFirstName(data);
+                } else if (userSelection.equals("Last Name")) {
+                data = infoInput.getText();
+                    DBRequests.changeLastName(data);
+                    SystemInfo.setLastName(data);
+                } else if (userSelection.equals("Gender")) {
+                    data = infoInput.getText();
+                    DBRequests.changeGender(data);
+                    SystemInfo.setGender(data);
+                } else if (userSelection.equals("Password")) {
+                    data = infoInput.getText();
+                    DBRequests.changePassword(data);
                 }
-            } catch (ClassNotFoundException ex) {
-                System.out.println("Not working");
-            }
+            } catch (Exception e) {}
         });
         
         

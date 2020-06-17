@@ -1,6 +1,7 @@
 package Database;
 
 import GUI.GUIInfo;
+import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 
 public class DBRequests {
@@ -95,6 +96,71 @@ public class DBRequests {
         } catch (Exception e) {
             return "Input is invalid";
         }
+    }
+    
+    public static void changeAddress(String newAddress) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET address = '" + newAddress + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changeFirstName(String firstName) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET first_name = '" + firstName + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changeLastName(String lastName) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET last_name = '" + lastName + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changeGender(String gender) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET gender = '" + gender + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changePassword(String newPassword) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_passwords SET password = '" + newPassword + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
     }
 
 }

@@ -17,13 +17,25 @@ public class Employee {
     public String getFirstName() {
         return firstName;
     }
+    
+    public void setFirstName(String name) {
+        firstName = name;
+    }
 
     public String getLastName() {
         return lastName;
     }
+    
+    public void setLastName(String name) {
+        lastName = name;
+    }
 
     public String getGender() {
         return gender;
+    }
+    
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getID() {

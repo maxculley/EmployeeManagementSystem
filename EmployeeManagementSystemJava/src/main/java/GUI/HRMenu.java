@@ -56,11 +56,8 @@ public class HRMenu {
             try {
                 if ((DBRequests.isEmployee(SystemInfo.getID())).equals("1")) {
                     GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
-                } else {
-                }
-            } catch (ClassNotFoundException ex) {
-                System.out.println("Not working");
-            }
+                } else {}
+            } catch (ClassNotFoundException ex) {}
         });
         
         
