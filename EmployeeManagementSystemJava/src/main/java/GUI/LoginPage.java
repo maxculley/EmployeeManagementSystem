@@ -4,7 +4,6 @@ import Database.DBRequests;
 import Employee.HR;
 import Employee.NonHR;
 import SystemAndGeneral.SystemInfo;
-import java.awt.*;
 import javax.swing.*;
 
 public class LoginPage {
@@ -31,14 +30,13 @@ public class LoginPage {
         sendLogin = new JButton("Login");
         data = new JLabel();
         info = new JLabel();
-        
+
         text = "<html><h3 align = 'center'>Login Info (Username - Password)<br /></h1>";
         text += "<font style=\"font-family: 'Arial'; font-size 12pt;\">";
         text += "1001(HR) - Max<br />";
         text += "1002 - George<br />";
         text += "1003 - Dani<br />";
         info.setText(text);
-        
 
         sendLogin.addActionListener(listener -> {
             String userName = "";
@@ -63,22 +61,27 @@ public class LoginPage {
                         data.setText("Incorrect password");
                         data.setBounds(340, 310, 401, 27);
                     }
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             } catch (Exception e) {
                 data.setText("A valid ID does not include letters");
                 data.setBounds(300, 310, 401, 27);
             }
 
-        }); 
-        
+        });
+
         info.setBounds(275, 40, 500, 100);
         login.add(info);
+        
         username.setBounds(315, 180, 171, 30);
         login.add(username);
+        
         password.setBounds(315, 220, 171, 30);
         login.add(password);
+        
         sendLogin.setBounds(355, 260, 91, 27);
         login.add(sendLogin);
+        
         login.add(data);
     }
 

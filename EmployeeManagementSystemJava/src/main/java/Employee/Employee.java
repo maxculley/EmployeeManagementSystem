@@ -2,10 +2,10 @@ package Employee;
 
 public class Employee {
 
-    private int ID;
-    private String firstName;
-    private String lastName;
-    private String gender;
+    private int ID = 0;
+    private String firstName = "";
+    private String lastName = "";
+    private String gender = "";
 
     public Employee(int ID, String firstName, String lastName, String gender) {
         this.ID = ID;
