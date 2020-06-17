@@ -14,9 +14,15 @@ public class SystemInfo {
     public static Employee getUser() {
         return user;
     }
-    
+
     public static String getFirstName() {
         return user.getFirstName();
+    }
+    
+    
+    
+    public static int getID() {
+        return user.getID();
     }
 
 }

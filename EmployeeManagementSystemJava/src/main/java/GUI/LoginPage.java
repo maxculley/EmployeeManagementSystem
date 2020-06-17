@@ -72,16 +72,16 @@ public class LoginPage {
 
         info.setBounds(275, 40, 500, 100);
         login.add(info);
-        
+
         username.setBounds(315, 180, 171, 30);
         login.add(username);
-        
+
         password.setBounds(315, 220, 171, 30);
         login.add(password);
-        
+
         sendLogin.setBounds(355, 260, 91, 27);
         login.add(sendLogin);
-        
+
         login.add(data);
     }
 
