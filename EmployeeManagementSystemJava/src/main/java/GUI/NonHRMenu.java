@@ -190,13 +190,13 @@ public class NonHRMenu {
         title.setBounds(160, 20, 251, 35);
         content.add(title);
         
-        dropdownLabel.setBounds(40, 85, 140, 25);
+        dropdownLabel.setBounds(70, 85, 140, 25);
         content.add(dropdownLabel);
         
         selection.setBounds(350, 85, 140, 25);
         content.add(selection);
         
-        infoInputLabel.setBounds(40, 125, 220, 25);
+        infoInputLabel.setBounds(70, 125, 220, 25);
         content.add(infoInputLabel);
         
         infoInput.setBounds(330, 125, 160, 25);
@@ -207,25 +207,25 @@ public class NonHRMenu {
         
         
         
-        id.setBounds(40, 212, 50, 15);
+        id.setBounds(70, 212, 50, 15);
         content.add(id);
         
-        firstName.setBounds(40, 238, 100, 15);
+        firstName.setBounds(70, 238, 100, 15);
         content.add(firstName);
         
-        lastName.setBounds(40, 264, 100, 15);
+        lastName.setBounds(70, 264, 100, 15);
         content.add(lastName);
         
-        address.setBounds(40, 290, 100, 15);
+        address.setBounds(70, 290, 100, 15);
         content.add(address);
         
-        age.setBounds(40, 316, 50, 15);
+        age.setBounds(70, 316, 50, 15);
         content.add(age);
         
-        gender.setBounds(40, 344, 100, 15);
+        gender.setBounds(70, 344, 100, 15);
         content.add(gender);
         
-        salary.setBounds(40, 370, 100, 15);
+        salary.setBounds(70, 370, 100, 15);
         content.add(salary);
         
         
