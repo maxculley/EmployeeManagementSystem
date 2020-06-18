@@ -3,20 +3,24 @@ package GUI;
 import java.awt.Color;
 import javax.swing.*;
 import Database.DBRequests;
+import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
-import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class NonHRMenu {
 
     private static JPanel menu;
-    private JPanel quickMenu, content;
-    private JLabel welcome, dropdownLabel, infoInputLabel, title;
-    private JButton changeInfo, holidays, switchType, logout, contentSend;
-    private JTextField infoInput;
-    String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText, newData, data;
-    Choice selection;
+    private static JPanel quickMenu, content;
+    private final JLabel welcome, dropdownLabel, infoInputLabel, title, id, firstName, lastName, address, age, gender, salary;
+    private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
+    private final JButton changeInfo, holidays, switchType, logout, contentSend;
+    private final JTextField infoInput;
+    private String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText,data;
+    private Choice selection;
+    private static boolean refresh = false;
 
     public static JPanel getPage() {
         return menu;
@@ -56,6 +60,22 @@ public class NonHRMenu {
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
         dropdownLabel = new JLabel("Select an option:");
         infoInputLabel = new JLabel("Information to be changed to:");
+        
+        id = new JLabel("ID:");
+        firstName = new JLabel("First Name:");
+        lastName = new JLabel("Last Name:");
+        address = new JLabel("Address:");
+        age = new JLabel("Age:");
+        gender = new JLabel("Gender:");
+        salary = new JLabel("Salary:");
+        
+        idInfo = new JLabel();
+        firstNameInfo = new JLabel();
+        lastNameInfo = new JLabel();
+        addressInfo = new JLabel();
+        ageInfo = new JLabel();
+        genderInfo = new JLabel();
+        salaryInfo = new JLabel();
         
         titleText = "<html><h2 align='center'>Change/View Information<h2>";
         title = new JLabel(titleText);
@@ -106,26 +126,44 @@ public class NonHRMenu {
         
         contentSend.addActionListener(listener -> {
             try {
-                if (userSelection.equals("Address")) {
-                    data = infoInput.getText();
-                    DBRequests.changeAddress(data);
-                } else if (userSelection.equals("First Name")) {
-                    data = infoInput.getText();
-                    DBRequests.changeFirstName(data);
-                    SystemInfo.setFirstName(data);
-                } else if (userSelection.equals("Last Name")) {
-                data = infoInput.getText();
-                    DBRequests.changeLastName(data);
-                    SystemInfo.setLastName(data);
-                } else if (userSelection.equals("Gender")) {
-                    data = infoInput.getText();
-                    DBRequests.changeGender(data);
-                    SystemInfo.setGender(data);
-                } else if (userSelection.equals("Password")) {
-                    data = infoInput.getText();
-                    DBRequests.changePassword(data);
+                switch (userSelection) {
+                    case "Address":
+                        data = infoInput.getText();
+                        DBRequests.changeAddress(data);
+                        break;
+                    case "First Name":
+                        data = infoInput.getText();
+                        DBRequests.changeFirstName(data);
+                        SystemInfo.setFirstName(data);
+                        break;
+                    case "Last Name":
+                        data = infoInput.getText();
+                        DBRequests.changeLastName(data);
+                        SystemInfo.setLastName(data);
+                        break;
+                    case "Gender":
+                        data = infoInput.getText();
+                        DBRequests.changeGender(data);
+                        SystemInfo.setGender(data);
+                        break;
+                    case "Password":
+                        data = infoInput.getText();
+                        DBRequests.changePassword(data);
+                        break;
+                    default:
+                        break;
                 }
             } catch (Exception e) {}
+            try {
+                General.DBRefresh();
+                idInfo.setText("" + SystemInfo.getID());
+                firstNameInfo.setText(SystemInfo.getFirstName());
+                lastNameInfo.setText(SystemInfo.getLastName());
+                addressInfo.setText(SystemInfo.getAddress());
+                ageInfo.setText("" + SystemInfo.getAge());
+                genderInfo.setText(SystemInfo.getGender());
+                salaryInfo.setText("" + SystemInfo.getSalary());
+            }catch (Exception e){}
         });
         
         
@@ -158,14 +196,52 @@ public class NonHRMenu {
         selection.setBounds(350, 85, 140, 25);
         content.add(selection);
         
-        infoInputLabel.setBounds(40, 155, 220, 25);
+        infoInputLabel.setBounds(40, 125, 220, 25);
         content.add(infoInputLabel);
         
-        infoInput.setBounds(330, 155, 160, 25);
+        infoInput.setBounds(330, 125, 160, 25);
         content.add(infoInput);
         
-        contentSend.setBounds(230, 206, 100, 25);
+        contentSend.setBounds(230, 170, 100, 25);
         content.add(contentSend);
+        
+        
+        
+        id.setBounds(40, 212, 50, 15);
+        content.add(id);
+        
+        firstName.setBounds(40, 238, 100, 15);
+        content.add(firstName);
+        
+        lastName.setBounds(40, 264, 100, 15);
+        content.add(lastName);
+        
+        address.setBounds(40, 290, 100, 15);
+        content.add(address);
+        
+        age.setBounds(40, 316, 50, 15);
+        content.add(age);
+        
+        gender.setBounds(40, 344, 100, 15);
+        content.add(gender);
+        
+        salary.setBounds(40, 370, 100, 15);
+        content.add(salary);
+        
+        
+        content.add(idInfo);
+        
+        content.add(firstNameInfo);
+        
+        content.add(lastNameInfo);
+        
+        content.add(addressInfo);
+        
+        content.add(ageInfo);
+        
+        content.add(genderInfo);
+        
+        content.add(salaryInfo);
         
         
         
@@ -181,5 +257,52 @@ public class NonHRMenu {
         menu.add(content);
         menu.add(quickMenu);
     }
+    
+    public static void refresh() {
+        if (!refresh) {
+            idInfo.setText("" + SystemInfo.getID());
+            idInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            idInfo.setBounds(250, 212, 235, 15);
+
+            firstNameInfo.setText(SystemInfo.getFirstName());
+            firstNameInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstNameInfo.setBounds(250, 238, 235, 15);
+
+            lastNameInfo.setText(SystemInfo.getLastName());
+            lastNameInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastNameInfo.setBounds(250, 264, 235, 15);
+
+            addressInfo.setText(SystemInfo.getAddress());
+            addressInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            addressInfo.setBounds(250, 290, 235, 15);
+
+            ageInfo.setText("" + SystemInfo.getAge());
+            ageInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            ageInfo.setBounds(250, 316, 235, 15);
+
+            genderInfo.setText(SystemInfo.getGender());
+            genderInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            genderInfo.setBounds(250, 342, 235, 15);
+
+            salaryInfo.setText("" + SystemInfo.getSalary());
+            salaryInfo.setHorizontalAlignment(SwingConstants.RIGHT);
+            salaryInfo.setBounds(250, 368, 235, 15);
+            refresh = true;
+        } else {
+            try {
+                General.DBRefresh();
+
+                idInfo.setText("" + SystemInfo.getID());
+                firstNameInfo.setText(SystemInfo.getFirstName());
+                lastNameInfo.setText(SystemInfo.getLastName());
+                addressInfo.setText(SystemInfo.getAddress());
+                ageInfo.setText("" + SystemInfo.getAge());
+                genderInfo.setText(SystemInfo.getGender());
+                salaryInfo.setText("" + SystemInfo.getSalary());
+            } catch (ClassNotFoundException ex) {
+            }
+        }
+    }
+
 
 }

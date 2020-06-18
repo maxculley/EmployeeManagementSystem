@@ -1,18 +1,16 @@
 package Database;
 
-import GUI.GUIInfo;
+import SystemAndGeneral.FetchUser;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBRequests {
-
-    /**
-     * This function checks if an employee is valid and in the database
-     *
-     * @param ID ID of the user
-     * @return the employee type or an error message
-     * @throws ClassNotFoundException
-     */
+    
+    
+    
+    /******************** REQUEST DATA ********************/
+    
     public static String isEmployee(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_type FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -97,6 +95,61 @@ public class DBRequests {
             return "Input is invalid";
         }
     }
+    
+    public static String getAge(int ID) throws ClassNotFoundException {
+        String query = "SELECT age FROM personal_info WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            return rs.getString("age");
+
+        } catch (Exception e) {
+            return "Input is invalid";
+        }
+    }
+    
+    public static String getAddress(int ID) throws ClassNotFoundException {
+        String query = "SELECT address FROM personal_info WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            return rs.getString("address");
+
+        } catch (Exception e) {
+            return "Input is invalid";
+        }
+    }
+    
+    public static String getSalary(int ID) throws ClassNotFoundException {
+        String query = "SELECT employee_salary FROM employee_info WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            return rs.getString("employee_salary");
+
+        } catch (Exception e) {
+            return "Input is invalid";
+        }
+    }
+    
+    
+    
+    /******************** UPDATE DATA ********************/
     
     public static void changeAddress(String newAddress) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET address = '" + newAddress + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
