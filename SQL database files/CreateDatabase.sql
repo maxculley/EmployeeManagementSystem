@@ -14,9 +14,10 @@ CREATE TABLE `personal_info` (
   `gender` char(1) NOT NULL,
   `employee_type` char(1) NOT NULL,
   PRIMARY KEY (`employee_id`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  ) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   INSERT INTO `personal_info` VALUES (1001, 'Max','Culley','123 Best Street, B35T AV3',20,'M',1);
   INSERT INTO `personal_info` VALUES (1002, 'George','Gao','55 Random Road, R4ND ROD',20,'M',0);
+  INSERT INTO `personal_info` VALUES (1003,'Dani','Gilbride','8 Long Road, L0N6 R0D',21,'F',0);
   
 CREATE TABLE `employee_info` (
   `employee_id` int(4) NOT NULL,
@@ -26,6 +27,7 @@ CREATE TABLE `employee_info` (
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   INSERT INTO `employee_info` VALUES (1001, 250000, 250000);
   INSERT INTO `employee_info` VALUES (1002, 200000, 200000);
+  INSERT INTO `employee_info` VALUES (1003, 220000, 200000);
   
 CREATE TABLE `employee_passwords` (
   `employee_id` int(4) NOT NULL,
@@ -34,4 +36,5 @@ CREATE TABLE `employee_passwords` (
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
   INSERT INTO `employee_passwords` VALUES (1001, 'Max');
   INSERT INTO `employee_passwords` VALUES (1002, 'George');
+  INSERT INTO `employee_passwords` VALUES (1003, 'Dani');
   
