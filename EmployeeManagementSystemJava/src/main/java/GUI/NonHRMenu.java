@@ -6,8 +6,6 @@ import Database.DBRequests;
 import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class NonHRMenu {
@@ -78,7 +76,7 @@ public class NonHRMenu {
         salaryInfo = new JLabel();
         
         titleText = "<html><h2 align='center'>Change/View Information<h2>";
-        title = new JLabel(titleText);
+        title = new JLabel(titleText, SwingConstants.CENTER);
         
         
         
@@ -125,6 +123,7 @@ public class NonHRMenu {
         
         
         contentSend.addActionListener(listener -> {
+            System.out.println("aaa");
             try {
                 switch (userSelection) {
                     case "Address":
@@ -186,8 +185,8 @@ public class NonHRMenu {
         
         
         
-        // Content positioning
-        title.setBounds(160, 20, 251, 35);
+        // Content positioning & adding
+        title.setBounds(0, 20, 570, 35);
         content.add(title);
         
         dropdownLabel.setBounds(70, 85, 140, 25);
@@ -258,7 +257,7 @@ public class NonHRMenu {
         menu.add(quickMenu);
     }
     
-    public static void refresh() {
+    public static void NonHRrefresh() {
         if (!refresh) {
             idInfo.setText("" + SystemInfo.getID());
             idInfo.setHorizontalAlignment(SwingConstants.RIGHT);

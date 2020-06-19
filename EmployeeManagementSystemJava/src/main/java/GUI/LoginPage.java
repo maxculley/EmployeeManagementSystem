@@ -69,11 +69,13 @@ public class LoginPage {
                     if (accountType.equals("1") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new HR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getAddress(id), Integer.parseInt(DBRequests.getAge(id)), DBRequests.getGender(id), Integer.parseInt(DBRequests.getSalary(id))));
                         GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
-                        NonHRMenu.refresh();
+                        NonHRMenu.NonHRrefresh();
+                        HRMenu.HRrefresh();
                     } else if (accountType.equals("0") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new NonHR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getAddress(id), Integer.parseInt(DBRequests.getAge(id)), DBRequests.getGender(id), Integer.parseInt(DBRequests.getSalary(id))));
                         GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
-                        NonHRMenu.refresh();
+                        NonHRMenu.NonHRrefresh();
+                        HRMenu.HRrefresh();
                     } else if (accountType.equalsIgnoreCase("User does not exist")) {
                         data.setText(accountType);
                         data.setBounds(340, 310, 401, 27);
