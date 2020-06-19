@@ -161,6 +161,10 @@ public class HRMenu {
                                     data = infoChangeInput.getText();
                                     DBRequests.changePassword(data, inputResult);
                                     break;
+                                case "Salary":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changeSalary(Integer.parseInt(data), inputResult);
+                                    salaryInfo.setText(DBRequests.getSalary(inputResult));
                                 default:
                                     break;
                             }

@@ -280,5 +280,31 @@ public class DBRequests {
         con.close();
         st.close();
     }
+    
+    public static void changeSalary(int salary) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_info SET employee_salary = '" + salary + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changeSalary(int salary, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_info SET employee_salary = '" + salary + "' WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
 
 }
