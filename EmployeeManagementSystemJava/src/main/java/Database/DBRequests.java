@@ -164,8 +164,34 @@ public class DBRequests {
         st.close();
     }
     
+    public static void changeAddress(String newAddress, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET address = '" + newAddress + "' WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
     public static void changeFirstName(String firstName) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET first_name = '" + firstName + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changeFirstName(String firstName, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET first_name = '" + firstName + "' WHERE employee_id = '" + ID + "'";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -190,6 +216,19 @@ public class DBRequests {
         st.close();
     }
     
+    public static void changeLastName(String lastName, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET last_name = '" + lastName + "' WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
     public static void changeGender(String gender) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET gender = '" + gender + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
 
@@ -203,8 +242,34 @@ public class DBRequests {
         st.close();
     }
     
+    public static void changeGender(String gender, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE personal_info SET gender = '" + gender + "' WHERE employee_id = '" + ID + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
     public static void changePassword(String newPassword) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_passwords SET password = '" + newPassword + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void changePassword(String newPassword, int ID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_passwords SET password = '" + newPassword + "' WHERE employee_id = '" + ID + "'";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 

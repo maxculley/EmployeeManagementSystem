@@ -123,7 +123,6 @@ public class NonHRMenu {
         
         
         contentSend.addActionListener(listener -> {
-            System.out.println("aaa");
             try {
                 switch (userSelection) {
                     case "Address":

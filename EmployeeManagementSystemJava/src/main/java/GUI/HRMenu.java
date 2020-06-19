@@ -13,10 +13,11 @@ public class HRMenu {
     private static JPanel menu;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JPanel layover, content;
-    private final JLabel welcome, title, idEntryText, id, firstName, lastName, address, age, gender, salary;
-    private final JTextField infoInput;
+    private final JLabel welcome, title, idEntryText, infoChangeText, dropdownLabel, id, firstName, lastName, address, age, gender, salary;
+    private final JTextField idInput, infoChangeInput;
     private final JButton switchType, logout, userSearch, contentSend;
-    private String userSearchText, switchTypeText, titleText;
+    private String userSearchText, switchTypeText, titleText, userSelection, data;
+    private Choice selection;
     private int inputResult;
     private static boolean refresh = false;
 
@@ -42,7 +43,7 @@ public class HRMenu {
         switchTypeText = "Switch to \npersonal";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        userSearchText = "Employee\nSearch";
+        userSearchText = "Employee\nSearch/Edit";
         userSearch = new JButton("<html><style>p {text-align: center;}</style> <p>" + userSearchText.replaceAll("\\n", "<br>") + "</p></html>");
         
         contentSend = new JButton("Confirm");
@@ -54,6 +55,8 @@ public class HRMenu {
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
         idEntryText = new JLabel("Enter an ID:");
+        infoChangeText = new JLabel("Information to be changed to:");
+        dropdownLabel = new JLabel("Select an option:");
         
         id = new JLabel("ID:");
         firstName = new JLabel("First Name:");
@@ -76,8 +79,22 @@ public class HRMenu {
         
         
         
+        // Drop down menu
+        selection = new Choice();
+        
+        selection.add("Please select");
+        selection.add("Address");
+        selection.add("First Name");
+        selection.add("Last Name");
+        selection.add("Password");
+        selection.add("Gender");
+        selection.add("Salary");
+        
+        
+        
         // Text fields
-        infoInput = new JTextField();
+        idInput = new JTextField();
+        infoChangeInput = new JTextField();
         
         
         
@@ -96,29 +113,71 @@ public class HRMenu {
         });
         
         
+        selection.addItemListener(listener -> {
+            userSelection = selection.getSelectedItem();
+        });
+        
+        
         userSearch.addItemListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
         });
-        
-        
-        contentSend.addActionListener(listener -> {
-            inputResult = Integer.parseInt(infoInput.getText());
+
+               contentSend.addActionListener(listener -> {
             try {
-                if (DBRequests.isEmployee(inputResult).equals("1") || DBRequests.isEmployee(inputResult).equals("0")) {
-                    idInfo.setText(inputResult + "");
-                    firstNameInfo.setText(DBRequests.getFirstName(inputResult));
-                    lastNameInfo.setText(DBRequests.getLastName(inputResult));
-                    addressInfo.setText(DBRequests.getAddress(inputResult));
-                    ageInfo.setText(DBRequests.getAge(inputResult));
-                    genderInfo.setText(DBRequests.getGender(inputResult));
-                    salaryInfo.setText(DBRequests.getSalary(inputResult));
-                } else {
-                    HRrefresh();
-                    idInfo.setText("Employee does not exist");
+                inputResult = Integer.parseInt(idInput.getText());
+                try {
+                    if (DBRequests.isEmployee(inputResult).equals("1") || DBRequests.isEmployee(inputResult).equals("0")) {
+                        idInfo.setText(inputResult + "");
+                        firstNameInfo.setText(DBRequests.getFirstName(inputResult));
+                        lastNameInfo.setText(DBRequests.getLastName(inputResult));
+                        addressInfo.setText(DBRequests.getAddress(inputResult));
+                        ageInfo.setText(DBRequests.getAge(inputResult));
+                        genderInfo.setText(DBRequests.getGender(inputResult));
+                        salaryInfo.setText(DBRequests.getSalary(inputResult));
+                        try {
+                            switch (userSelection) {
+                                case "Address":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changeAddress(data, inputResult);
+                                    addressInfo.setText(DBRequests.getAddress(inputResult));
+                                    break;
+
+                                case "First Name":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changeFirstName(data, inputResult);
+                                    firstNameInfo.setText(DBRequests.getFirstName(inputResult));
+                                    break;
+                                case "Last Name":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changeLastName(data, inputResult);
+                                    lastNameInfo.setText(DBRequests.getLastName(inputResult));
+                                    break;
+                                case "Gender":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changeGender(data, inputResult);
+                                    genderInfo.setText(DBRequests.getGender(inputResult));
+                                    break;
+                                case "Password":
+                                    data = infoChangeInput.getText();
+                                    DBRequests.changePassword(data, inputResult);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        } catch (Exception e) {
+                        }
+                    } else {
+                        HRrefresh();
+                        idInfo.setText("Employee does not exist");
+                    }
+
+                    }catch (Exception e) {
                 }
-                
-            } catch (Exception e) {}
-        });
+                } catch (Exception e) {
+                    HRrefresh();
+                    idInfo.setText("Invalid input");
+                }
+            });
         
         
         
@@ -141,13 +200,25 @@ public class HRMenu {
         
         
         // Content positioning & adding
-        idEntryText.setBounds(70, 105, 140, 25);
+        idEntryText.setBounds(70, 60, 140, 25);
         content.add(idEntryText);
         
-        infoInput.setBounds(350, 105, 140, 25);
-        content.add(infoInput);
+        idInput.setBounds(350, 60, 140, 25);
+        content.add(idInput);
         
-        contentSend.setBounds(230, 170, 100, 25);
+        dropdownLabel.setBounds(70, 97, 140, 25);
+        content.add(dropdownLabel);
+        
+        selection.setBounds(350, 97, 140, 25);
+        content.add(selection);
+        
+        infoChangeText.setBounds(70, 135, 220, 25);
+        content.add(infoChangeText);
+        
+        infoChangeInput.setBounds(330, 135, 160, 25);
+        content.add(infoChangeInput);
+        
+        contentSend.setBounds(230, 177, 100, 25);
         content.add(contentSend);
         
         
