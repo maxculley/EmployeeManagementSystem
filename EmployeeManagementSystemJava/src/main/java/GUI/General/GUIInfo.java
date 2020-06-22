@@ -1,8 +1,7 @@
 package GUI.General;
 
-import GUI.HR.HRAddRemove;
-import GUI.HR.HREmployeeInfo;
-import GUI.NonHR.NonHREmployeeInfo;
+import GUI.HR.*;
+import GUI.NonHR.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -22,12 +21,16 @@ public class GUIInfo {
         new NonHREmployeeInfo();
         new HREmployeeInfo();
         new HRAddRemove();
+        new HRAdd();
+        new HRRemove();
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
         container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
         container.add(HREmployeeInfo.getPage(), "HRMenu");
         container.add(HRAddRemove.getPage(), "HRAddRemove");
+        container.add(HRAdd.getPage(), "HRAdd");
+        container.add(HRRemove.getPage(), "HRRemove");
         cl.show(container, "Login");
 
         // Add contianer to window

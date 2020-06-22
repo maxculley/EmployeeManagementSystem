@@ -178,7 +178,7 @@ public class NonHREmployeeInfo {
         quickmenu.add(changeInfo);
         
         holidays.setBounds(50, 105, 135, 45);
-        quickmenu.add(holidays);
+        //quickmenu.add(holidays);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

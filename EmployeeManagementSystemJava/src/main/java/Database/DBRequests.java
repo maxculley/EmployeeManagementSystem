@@ -306,5 +306,27 @@ abstract public class DBRequests {
         con.close();
         st.close();
     }
+    
+    
+    
+    /******************** DELETE DATA ********************/
+    
+    public static void deleteEmployee(int ID) throws ClassNotFoundException, SQLException {
+        String query1 = "DELETE FROM employee_info WHERE employee_id = '" + ID + "'";
+        String query2 = "DELETE FROM employee_passwords WHERE employee_id = '" + ID + "'";
+        String query3 = "DELETE FROM personal_info WHERE employee_id = '" + ID + "'";
 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query1);
+        st.executeUpdate(query2);
+        st.executeUpdate(query3);
+        
+        con.close();
+        st.close();
+    }
+    
+    
 }

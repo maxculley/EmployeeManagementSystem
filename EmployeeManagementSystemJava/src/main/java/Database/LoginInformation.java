@@ -4,7 +4,7 @@ abstract class LoginInformation {
 
     private static String URL = "jdbc:mysql://localhost:3306/sql_employees";
     private static String username = "root";
-    private static String password = "Culley1max1";
+    private static String password = "Abacus";
 
     public static String getURL() {
         return URL;
