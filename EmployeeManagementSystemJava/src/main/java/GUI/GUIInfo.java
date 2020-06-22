@@ -9,14 +9,6 @@ public class GUIInfo {
     private static JPanel container;
     private static CardLayout cl = new CardLayout();
 
-    public static CardLayout getCL() {
-        return cl;
-    }
-
-    public static JPanel getCont() {
-        return container;
-    }
-
     public GUIInfo() throws ClassNotFoundException {
         window = new JFrame();
         container = new JPanel();
@@ -26,11 +18,13 @@ public class GUIInfo {
         new LoginPage();
         new NonHREmployeeInfo();
         new HREmployeeInfo();
+        new HRAddRemove();
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
         container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
         container.add(HREmployeeInfo.getPage(), "HRMenu");
+        container.add(HRAddRemove.getPage(), "HRAddRemove");
         cl.show(container, "Login");
 
         // Add contianer to window
@@ -43,6 +37,14 @@ public class GUIInfo {
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("Employee Management System");
+    }
+
+    public static CardLayout getCL() {
+        return cl;
+    }
+
+    public static JPanel getCont() {
+        return container;
     }
 
 }

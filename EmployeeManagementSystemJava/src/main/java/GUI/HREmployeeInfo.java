@@ -12,18 +12,14 @@ public class HREmployeeInfo {
 
     private static JPanel menu;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
-    private final JPanel layover, content;
+    private final JPanel quickmenu, content;
     private final JLabel welcome, title, idEntryText, infoChangeText, dropdownLabel, id, firstName, lastName, address, age, gender, salary;
     private final JTextField idInput, infoChangeInput;
-    private final JButton switchType, logout, userSearch, contentSend;
-    private String userSearchText, switchTypeText, titleText, userSelection, data;
+    private final JButton switchType, logout, userSearch, contentSend, addRemoveEmployee;
+    private String userSearchText, switchTypeText, titleText, userSelection, data, addRemoveEmployeeText;
     private Choice selection;
     private int inputResult;
     private static boolean refresh = false;
-
-    public static JPanel getPage() {
-        return menu;
-    }
 
     public HREmployeeInfo() throws ClassNotFoundException {
         
@@ -31,8 +27,8 @@ public class HREmployeeInfo {
         menu = new JPanel();
         menu.setLayout(null);
         
-        layover = new JPanel();
-        layover.setLayout(null);
+        quickmenu = new JPanel();
+        quickmenu.setLayout(null);
         
         content = new JPanel();
         content.setLayout(null);
@@ -45,6 +41,9 @@ public class HREmployeeInfo {
         
         userSearchText = "Employee\nSearch/Edit";
         userSearch = new JButton("<html><style>p {text-align: center;}</style> <p>" + userSearchText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        addRemoveEmployeeText = "Add/Remove\nEmployee";
+        addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         contentSend = new JButton("Confirm");
         
@@ -118,11 +117,17 @@ public class HREmployeeInfo {
         });
         
         
-        userSearch.addItemListener(listener -> {
+        userSearch.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
         });
+        
+        
+        addRemoveEmployee.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
+        });
 
-               contentSend.addActionListener(listener -> {
+        
+        contentSend.addActionListener(listener -> {
             try {
                 inputResult = Integer.parseInt(idInput.getText());
                 try {
@@ -175,35 +180,38 @@ public class HREmployeeInfo {
                         idInfo.setText("Employee does not exist");
                     }
 
-                    }catch (Exception e) {
-                }
                 } catch (Exception e) {
-                    HRrefresh();
-                    idInfo.setText("Invalid input");
                 }
-            });
+            } catch (Exception e) {
+                HRrefresh();
+                idInfo.setText("Invalid input");
+            }
+        });
         
         
         
         // Quickbar positioning & adding
-        title.setBounds(0, 20, 570, 35);
-        content.add(title);
-        
         logout.setBounds(0, 0, 65, 20);
-        layover.add(logout);
+        quickmenu.add(logout);
         
         welcome.setBounds(0, 15, 230, 15);
-        layover.add(welcome);
+        quickmenu.add(welcome);
         
         switchType.setBounds(60, 415, 110, 45);
-        layover.add(switchType);
+        quickmenu.add(switchType);
         
         userSearch.setBounds(50, 55, 135, 45);
-        layover.add(userSearch);
+        quickmenu.add(userSearch);
+        
+        addRemoveEmployee.setBounds(50, 105, 135, 45);
+        quickmenu.add(addRemoveEmployee);
         
         
         
         // Content positioning & adding
+        title.setBounds(0, 20, 570, 35);
+        content.add(title);
+        
         idEntryText.setBounds(70, 60, 140, 25);
         content.add(idEntryText);
         
@@ -266,8 +274,8 @@ public class HREmployeeInfo {
         
         
         // Panel positioning & styling and adding
-        layover.setBounds(0, 0, 230, 500);
-        layover.setBackground(Color.LIGHT_GRAY);
+        quickmenu.setBounds(0, 0, 230, 500);
+        quickmenu.setBackground(Color.LIGHT_GRAY);
         
         content.setBounds(231, 0, 800, 500);
         
@@ -275,7 +283,13 @@ public class HREmployeeInfo {
         
         // Add content
         menu.add(content);
-        menu.add(layover);
+        menu.add(quickmenu);
+    }
+    
+   
+
+    public static JPanel getPage() {
+        return menu;
     }
     
     public static void HRrefresh() {

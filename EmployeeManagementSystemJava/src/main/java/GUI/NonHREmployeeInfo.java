@@ -11,7 +11,7 @@ import java.awt.Choice;
 public class NonHREmployeeInfo {
 
     private static JPanel menu;
-    private static JPanel quickMenu, content;
+    private static JPanel quickmenu, content;
     private final JLabel welcome, dropdownLabel, infoInputLabel, title, id, firstName, lastName, address, age, gender, salary;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JButton changeInfo, holidays, switchType, logout, contentSend;
@@ -30,8 +30,8 @@ public class NonHREmployeeInfo {
         menu = new JPanel();
         menu.setLayout(null);
         
-        quickMenu = new JPanel();
-        quickMenu.setLayout(null);
+        quickmenu = new JPanel();
+        quickmenu.setLayout(null);
         
         content = new JPanel();
         content.setLayout(null);
@@ -108,7 +108,7 @@ public class NonHREmployeeInfo {
         });
         
         
-        changeInfo.addItemListener(listener -> {
+        changeInfo.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
         });
         
@@ -168,19 +168,19 @@ public class NonHREmployeeInfo {
         
         // Quickbar positioning and adding
         logout.setBounds(0, 0, 65, 20);
-        quickMenu.add(logout);
+        quickmenu.add(logout);
         
         welcome.setBounds(0, 15, 230, 15);
-        quickMenu.add(welcome);
+        quickmenu.add(welcome);
         
         changeInfo.setBounds(50, 55, 135, 45);
-        quickMenu.add(changeInfo);
+        quickmenu.add(changeInfo);
         
         holidays.setBounds(50, 105, 135, 45);
-        quickMenu.add(holidays);
+        quickmenu.add(holidays);
         
         switchType.setBounds(55, 415, 120, 45);
-        quickMenu.add(switchType);
+        quickmenu.add(switchType);
         
         
         
@@ -244,8 +244,8 @@ public class NonHREmployeeInfo {
         
         
         // Panel positioning & styling
-        quickMenu.setBounds(0, 0, 230, 500);
-        quickMenu.setBackground(Color.LIGHT_GRAY);
+        quickmenu.setBounds(0, 0, 230, 500);
+        quickmenu.setBackground(Color.LIGHT_GRAY);
         
         content.setBounds(231, 0, 569, 500);
         
@@ -253,7 +253,7 @@ public class NonHREmployeeInfo {
         
         // Add content
         menu.add(content);
-        menu.add(quickMenu);
+        menu.add(quickmenu);
     }
     
     public static void NonHRrefresh() {
