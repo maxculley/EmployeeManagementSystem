@@ -1,5 +1,6 @@
-package GUI;
+package GUI.HR;
 
+import GUI.General.GUIInfo;
 import java.awt.Color;
 import javax.swing.*;
 import Database.DBRequests;

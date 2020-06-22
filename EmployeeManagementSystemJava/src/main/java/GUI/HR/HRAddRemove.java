@@ -1,5 +1,6 @@
-package GUI;
+package GUI.HR;
 
+import GUI.General.GUIInfo;
 import Database.DBRequests;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
@@ -10,7 +11,7 @@ public class HRAddRemove {
 
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, add, remove;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText;
     private final JLabel welcome, title;
     
@@ -40,6 +41,10 @@ public class HRAddRemove {
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         logout = new JButton("Logout");
+        
+        add = new JButton("Add Employee");
+        
+        remove = new JButton("Remove Employee");
         
         
         
@@ -98,6 +103,12 @@ public class HRAddRemove {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        add.setBounds(90, 170, 140, 100);
+        content.add(add);
+        
+        remove.setBounds(330, 170, 140, 100);
+        content.add(remove);
         
         
         

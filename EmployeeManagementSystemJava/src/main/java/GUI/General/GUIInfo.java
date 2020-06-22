@@ -1,5 +1,8 @@
-package GUI;
+package GUI.General;
 
+import GUI.HR.HRAddRemove;
+import GUI.HR.HREmployeeInfo;
+import GUI.NonHR.NonHREmployeeInfo;
 import java.awt.*;
 import javax.swing.*;
 

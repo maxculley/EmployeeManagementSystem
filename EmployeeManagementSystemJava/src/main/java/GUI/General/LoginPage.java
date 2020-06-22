@@ -1,5 +1,8 @@
-package GUI;
+package GUI.General;
 
+import GUI.NonHR.NonHREmployeeInfo;
+import GUI.HR.HREmployeeInfo;
+import GUI.General.GUIInfo;
 import Database.DBRequests;
 import Employee.HR;
 import Employee.NonHR;
