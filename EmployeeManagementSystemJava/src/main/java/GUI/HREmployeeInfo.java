@@ -8,7 +8,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 
 
-public class HRMenu {
+public class HREmployeeInfo {
 
     private static JPanel menu;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
@@ -25,7 +25,7 @@ public class HRMenu {
         return menu;
     }
 
-    public HRMenu() throws ClassNotFoundException {
+    public HREmployeeInfo() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();

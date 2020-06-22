@@ -8,7 +8,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
 
 
-public class NonHRMenu {
+public class NonHREmployeeInfo {
 
     private static JPanel menu;
     private static JPanel quickMenu, content;
@@ -24,7 +24,7 @@ public class NonHRMenu {
         return menu;
     }
 
-    public NonHRMenu() throws ClassNotFoundException {
+    public NonHREmployeeInfo() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();

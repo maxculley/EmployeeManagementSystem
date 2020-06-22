@@ -5,7 +5,7 @@ import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBRequests {
+abstract public class DBRequests {
     
     
     

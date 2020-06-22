@@ -24,13 +24,13 @@ public class GUIInfo {
 
         // Initalise pages
         new LoginPage();
-        new NonHRMenu();
-        new HRMenu();
+        new NonHREmployeeInfo();
+        new HREmployeeInfo();
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
-        container.add(NonHRMenu.getPage(), "NonHRMenu");
-        container.add(HRMenu.getPage(), "HRMenu");
+        container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
+        container.add(HREmployeeInfo.getPage(), "HRMenu");
         cl.show(container, "Login");
 
         // Add contianer to window
