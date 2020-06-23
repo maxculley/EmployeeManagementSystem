@@ -11,9 +11,11 @@ public class HRAdd {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, submit;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText;
-    private final JLabel welcome, title;
+    private final JLabel welcome, title, firstNameText, lastNameText, addressText, ageText, baseText, salaryText, passwordText;
+    private static JTextField firstName, lastName, address, age, baseSalary, salary, password;
+    private final JRadioButton male, female, other, hr, nonhr;
    
    
     public HRAdd() {
@@ -41,17 +43,59 @@ public class HRAdd {
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
        
         logout = new JButton("Logout");
+        
+        submit = new JButton("Submit");
+        
+        
+        
+        // Radio Buttons
+        male = new JRadioButton("Male");
+        female = new JRadioButton("Female");
+        other = new JRadioButton("Other");
+        
+        ButtonGroup gender = new ButtonGroup();
+        gender.add(male);
+        gender.add(female);
+        gender.add(other);
+        
+        
+        hr = new JRadioButton("HR");
+        nonhr = new JRadioButton("Not HR");
+        
+        ButtonGroup employeeType = new ButtonGroup();
+        employeeType.add(hr);
+        employeeType.add(nonhr);
        
        
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        firstNameText = new JLabel("First name:");
+        lastNameText = new JLabel("Last name:");
+        addressText = new JLabel("Address:");
+        ageText = new JLabel("Age:");
+        baseText = new JLabel("Base salary:");
+        salaryText = new JLabel("Employee salary:");
+        passwordText = new JLabel("Password:");
+        
+        
        
         titleText = "<html><h2 align='center'>Add Employee<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
-       
-       
-       
+        
+        
+        
+        // Text Fields
+        firstName = new JTextField();
+        lastName = new JTextField();
+        address = new JTextField();
+        age = new JTextField();
+        baseSalary = new JTextField();
+        salary = new JTextField();
+        password = new JTextField();
+        
+        
+        
         // Action Listeners
         logout.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "Login");
@@ -74,6 +118,35 @@ public class HRAdd {
        
         addRemoveEmployee.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
+        });
+        
+        submit.addActionListener(listener -> {
+            String choice;
+            int type;
+            if (male.isSelected()) {
+                choice = "M";
+            } else if (female.isSelected()) {
+                choice = "F";
+            } else if (other.isSelected()) {
+                choice = "O";
+            } else {
+                choice = "-";
+            }
+            
+            if (hr.isSelected()) {
+                type = 1;
+            } else {
+                type = 0;
+            }
+            
+            try {
+                DBRequests.addEmployee(firstName.getText(), lastName.getText(), address.getText(), Integer.parseInt(age.getText()), choice, type, Integer.parseInt(baseSalary.getText()), Integer.parseInt(salary.getText()), password.getText());
+                HRAddRefresh();
+                firstName.setText("Employee id: " + DBRequests.getCount());
+            } catch (Exception e) {
+                HRAddRefresh();
+                firstName.setText("Information incorrect type");
+            }
         });
        
        
@@ -99,6 +172,69 @@ public class HRAdd {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        firstNameText.setBounds(70, 75, 140, 25);
+        content.add(firstNameText);
+        
+        lastNameText.setBounds(70, 110, 140, 25);
+        content.add(lastNameText);
+        
+        addressText.setBounds(70, 145, 140, 25);
+        content.add(addressText);
+        
+        ageText.setBounds(70, 180, 140, 25);
+        content.add(ageText);
+        
+        baseText.setBounds(70, 215, 140, 25);
+        content.add(baseText);
+        
+        salaryText.setBounds(70, 250, 140, 25);
+        content.add(salaryText);
+        
+        passwordText.setBounds(70, 285, 140, 25);
+        content.add(passwordText);
+        
+        male.setBounds(120, 330, 75, 25);
+        content.add(male);
+        
+        female.setBounds(235, 330, 100, 25);
+        content.add(female);
+        
+        other.setBounds(365, 330, 75, 25);
+        content.add(other);
+        
+        hr.setBounds(180, 385, 75, 25);
+        content.add(hr);
+        
+        nonhr.setBounds(305, 385, 100, 25);
+        content.add(nonhr);
+        
+        submit.setBounds(230, 430, 100, 25);
+        content.add(submit);
+        
+        
+        
+        firstName.setBounds(350, 75, 140, 25);
+        content.add(firstName);
+        
+        lastName.setBounds(350, 110, 140, 25);
+        content.add(lastName);
+        
+        address.setBounds(350, 145, 140, 25);
+        content.add(address);
+        
+        age.setBounds(350, 180, 140, 25);
+        content.add(age);
+        
+        baseSalary.setBounds(350, 215, 140, 25);
+        content.add(baseSalary);
+        
+        salary.setBounds(350, 250, 140, 25);
+        content.add(salary);
+        
+        password.setBounds(350, 285, 140, 25);
+        content.add(password);
+        
        
        
        
@@ -116,6 +252,22 @@ public class HRAdd {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void HRAddRefresh() {
+        firstName.setText("");
+
+        lastName.setText("");
+
+        address.setText("");
+
+        age.setText("");
+
+        baseSalary.setText("");
+
+        salary.setText("");
+        
+        password.setText("");
     }
  
     public static JPanel getPage() {

@@ -1,6 +1,6 @@
 package GUI.General;
 
-public class GUIRunner {
+abstract class GUIRunner {
 
     public static void main(String[] args) throws ClassNotFoundException {
         new GUIInfo();

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 abstract public class DBRequests {
     
+    private static int count = 1003;
+    
     
     
     /******************** REQUEST DATA ********************/
@@ -328,5 +330,35 @@ abstract public class DBRequests {
         st.close();
     }
     
+    
+    
+    /******************** INSERT DATA ********************/
+    
+    public static void addEmployee(String firstName, String lastName, String address, int age, String gender, int employeeType, int baseSalary, int employeeSalary, String password) throws ClassNotFoundException, SQLException {
+        String query1 = "INSERT INTO personal_info VALUES (DEFAULT,'" + firstName + "','" + lastName + "','" + address + "'," + age + ",'" + gender + "'," + employeeType + ");";
+        String query2 = "INSERT INTO `employee_info` VALUES (DEFAULT," + baseSalary + "," + employeeSalary + ");";
+        String query3 = "INSERT INTO `employee_passwords` VALUES (DEFAULT,'" + password + "');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query1);
+        st.executeUpdate(query2);
+        st.executeUpdate(query3);
+        count++;
+        
+        
+        con.close();
+        st.close();
+    }
+    
+    
+    
+    /******************** GENERAL ********************/
+    
+    public static int getCount() {
+        return count;
+    }
     
 }

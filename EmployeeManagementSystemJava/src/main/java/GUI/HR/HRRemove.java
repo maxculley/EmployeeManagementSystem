@@ -18,7 +18,7 @@ public class HRRemove {
     private final JLabel welcome, title;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText;
     private int inputValue;
-    private final JTextField infoInput;
+    private static JTextField infoInput;
     private static boolean refresh = false;
    
    
@@ -281,5 +281,9 @@ public class HRRemove {
             genderInfo.setText("");
             salaryInfo.setText("");
         }
+    }
+    
+    public static void clearEntry() {
+        infoInput.setText("");
     }
 }

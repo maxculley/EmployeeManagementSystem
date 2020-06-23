@@ -83,12 +83,14 @@ public class HRAddRemove {
         
         add.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAdd");
+            HRAdd.HRAddRefresh();
         });
         
         
         remove.addActionListener(listener -> {
-            GUIInfo.getCL().show(GUIInfo.getCont(), "HRRemove");
             HRRemove.HRRemoveRefresh();
+            HRRemove.clearEntry();
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRRemove");
         });
         
         
