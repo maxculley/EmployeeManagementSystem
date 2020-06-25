@@ -1,5 +1,4 @@
-
-package GUI.NonHR;
+package GUI.NonHR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
@@ -8,15 +7,15 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class AddHoliday {
+public class HolidayHome {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout;
+    private final JButton changeInfo, holidays, switchType, logout, add, view;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
 
-    public AddHoliday() throws ClassNotFoundException {
+    public HolidayHome() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -42,12 +41,16 @@ public class AddHoliday {
         
         logout = new JButton("Logout");
         
+        add = new JButton("Add holiday");
+        
+        view = new JButton("View holiday");
+        
         
         
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
         
-        titleText = "<html><h2 align='center'>Add Holiday<h2>";
+        titleText = "<html><h2 align='center'>Holiday Portal<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
         
         
@@ -65,6 +68,14 @@ public class AddHoliday {
         
         holidays.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
+        });
+        
+        add.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRAddHoliday");
+        });
+        
+        view.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRViewHoliday");
         });
         
         
@@ -99,6 +110,12 @@ public class AddHoliday {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        add.setBounds(90, 170, 140, 100);
+        content.add(add);
+        
+        view.setBounds(330, 170, 140, 100);
+        content.add(view);
         
         
         

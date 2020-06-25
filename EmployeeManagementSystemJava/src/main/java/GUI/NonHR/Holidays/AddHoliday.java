@@ -1,5 +1,5 @@
 
-package GUI.NonHR;
+package GUI.NonHR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
@@ -8,7 +8,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class ViewHoliday {
+public class AddHoliday {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
@@ -16,7 +16,7 @@ public class ViewHoliday {
     private final JButton changeInfo, holidays, switchType, logout;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
 
-    public ViewHoliday() throws ClassNotFoundException {
+    public AddHoliday() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -47,7 +47,7 @@ public class ViewHoliday {
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
         
-        titleText = "<html><h2 align='center'>View Holiday<h2>";
+        titleText = "<html><h2 align='center'>Add Holiday<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
         
         

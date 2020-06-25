@@ -1,4 +1,4 @@
-package GUI.HR;
+package GUI.HR.AddRemoveEmp;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;

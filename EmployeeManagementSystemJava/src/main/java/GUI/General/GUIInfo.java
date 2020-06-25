@@ -1,5 +1,11 @@
 package GUI.General;
 
+import GUI.NonHR.Holidays.HolidayHome;
+import GUI.NonHR.Holidays.ViewHoliday;
+import GUI.NonHR.Holidays.AddHoliday;
+import GUI.HR.AddRemoveEmp.AddEmployee;
+import GUI.HR.AddRemoveEmp.RemoveEmployee;
+import GUI.HR.AddRemoveEmp.AddRemoveHome;
 import GUI.HR.*;
 import GUI.NonHR.*;
 import java.awt.*;
