@@ -15,7 +15,7 @@ public class LoginPage {
     private JTextField username;
     private JPasswordField password;
     private JButton sendLogin;
-    private JLabel data, info;
+    private JLabel returnMessage, info;
     private String text;
 
     public static JPanel getPage() {
@@ -46,7 +46,7 @@ public class LoginPage {
         
         
         // Labels
-        data = new JLabel();
+        returnMessage = new JLabel("", SwingConstants.CENTER);
         info = new JLabel();
         
         text = "<html><h3 align = 'center'>Login Info (Username - Password)<br /></h1>";
@@ -60,8 +60,8 @@ public class LoginPage {
         
         // Action Listeners        
         sendLogin.addActionListener(listener -> {
-            String userName = "";
-            String password = "";
+            String userName;
+            String password;
             int id;
             try {
                 userName = username.getText();
@@ -80,17 +80,13 @@ public class LoginPage {
                         EmployeeInfo.NonHRrefresh();
                         EmployeeInfoSearch.HRrefresh();
                     } else if (accountType.equals("User does not exist")) {
-                        data.setText(accountType);
-                        data.setBounds(340, 310, 401, 27);
+                        returnMessage.setText(accountType);
                     } else {
-                        data.setText("Incorrect password");
-                        data.setBounds(340, 310, 401, 27);
+                        returnMessage.setText("Incorrect password");
                     }
-                } catch (Exception e) {
-                }
+                } catch (Exception e) {}
             } catch (Exception e) {
-                data.setText("A valid ID does not include letters");
-                data.setBounds(300, 310, 401, 27);
+                returnMessage.setText("A valid ID does not include letters");
             }
         });
         
@@ -109,7 +105,8 @@ public class LoginPage {
         sendLogin.setBounds(355, 260, 91, 27);
         login.add(sendLogin);
         
-        login.add(data);
+        returnMessage.setBounds(275, 310, 250, 27);
+        login.add(returnMessage);
     }
 
 }
