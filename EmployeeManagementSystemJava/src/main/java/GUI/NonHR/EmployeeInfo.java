@@ -9,7 +9,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
 
 
-public class NonHREmployeeInfo {
+public class EmployeeInfo {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
@@ -17,7 +17,7 @@ public class NonHREmployeeInfo {
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JButton changeInfo, holidays, switchType, logout, contentSend;
     private final JTextField infoInput;
-    private String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText,data;
+    private String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText, data;
     private Choice selection;
     private static boolean refresh = false;
 
@@ -25,7 +25,7 @@ public class NonHREmployeeInfo {
         return menu;
     }
 
-    public NonHREmployeeInfo() throws ClassNotFoundException {
+    public EmployeeInfo() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -122,6 +122,10 @@ public class NonHREmployeeInfo {
             } catch (ClassNotFoundException ex) {}
         });
         
+        holidays.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
+        });
+        
         
         contentSend.addActionListener(listener -> {
             try {
@@ -178,7 +182,7 @@ public class NonHREmployeeInfo {
         quickmenu.add(changeInfo);
         
         holidays.setBounds(50, 105, 135, 45);
-        //quickmenu.add(holidays);
+        quickmenu.add(holidays);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

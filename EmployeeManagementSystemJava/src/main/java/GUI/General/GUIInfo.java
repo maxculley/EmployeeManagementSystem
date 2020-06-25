@@ -18,19 +18,25 @@ public class GUIInfo {
 
         // Initalise pages
         new LoginPage();
-        new NonHREmployeeInfo();
-        new HREmployeeInfo();
-        new HRAddRemove();
-        new HRAdd();
-        new HRRemove();
+        new EmployeeInfo();
+        new EmployeeInfoSearch();
+        new AddRemoveHome();
+        new AddEmployee();
+        new RemoveEmployee();
+        new HolidayHome();
+        new AddHoliday();
+        new ViewHoliday();
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
-        container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
-        container.add(HREmployeeInfo.getPage(), "HRMenu");
-        container.add(HRAddRemove.getPage(), "HRAddRemove");
-        container.add(HRAdd.getPage(), "HRAdd");
-        container.add(HRRemove.getPage(), "HRRemove");
+        container.add(EmployeeInfo.getPage(), "NonHRMenu");
+        container.add(EmployeeInfoSearch.getPage(), "HRMenu");
+        container.add(AddRemoveHome.getPage(), "HRAddRemove");
+        container.add(AddEmployee.getPage(), "HRAdd");
+        container.add(RemoveEmployee.getPage(), "HRRemove");
+        container.add(HolidayHome.getPage(), "NonHRHolidayHome");
+        container.add(AddHoliday.getPage(), "NonHRAddHoliday");
+        container.add(ViewHoliday.getPage(), "NonHRViewHoliday");
         cl.show(container, "Login");
 
         // Add contianer to window

@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class HRAdd {
+public class AddEmployee {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
@@ -18,7 +18,7 @@ public class HRAdd {
     private final JRadioButton male, female, other, hr, nonhr;
    
    
-    public HRAdd() {
+    public AddEmployee() {
        
         // Panels
         menu = new JPanel();

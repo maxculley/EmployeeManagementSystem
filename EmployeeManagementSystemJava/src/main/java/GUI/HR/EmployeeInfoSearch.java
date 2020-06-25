@@ -9,7 +9,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 
 
-public class HREmployeeInfo {
+public class EmployeeInfoSearch {
 
     private static JPanel menu;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
@@ -22,7 +22,7 @@ public class HREmployeeInfo {
     private int inputResult;
     private static boolean refresh = false;
 
-    public HREmployeeInfo() throws ClassNotFoundException {
+    public EmployeeInfoSearch() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();

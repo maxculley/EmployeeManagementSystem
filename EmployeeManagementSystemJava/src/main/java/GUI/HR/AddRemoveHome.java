@@ -7,7 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class HRAddRemove {
+public class AddRemoveHome {
 
     private static JPanel menu;
     private final JPanel quickmenu, content;
@@ -16,7 +16,7 @@ public class HRAddRemove {
     private final JLabel welcome, title;
     
     
-    public HRAddRemove() {
+    public AddRemoveHome() {
         
         // Panels
         menu = new JPanel();
@@ -83,13 +83,13 @@ public class HRAddRemove {
         
         add.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAdd");
-            HRAdd.HRAddRefresh();
+            AddEmployee.HRAddRefresh();
         });
         
         
         remove.addActionListener(listener -> {
-            HRRemove.HRRemoveRefresh();
-            HRRemove.clearEntry();
+            RemoveEmployee.HRRemoveRefresh();
+            RemoveEmployee.clearEntry();
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRRemove");
         });
         

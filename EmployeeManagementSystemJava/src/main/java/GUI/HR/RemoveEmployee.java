@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class HRRemove {
+public class RemoveEmployee {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
@@ -22,7 +22,7 @@ public class HRRemove {
     private static boolean refresh = false;
    
    
-    public HRRemove() {
+    public RemoveEmployee() {
        
         // Panels
         menu = new JPanel();
