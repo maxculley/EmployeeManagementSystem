@@ -43,9 +43,10 @@ CREATE TABLE `employee_holidays` (
   `employee_id` int(4) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
+  `status` varchar(8),
   PRIMARY KEY (`holiday_id`)
   ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-  INSERT INTO `employee_holidays` VALUES (1,1001,'2020-12-12','2020-12-19');
-  INSERT INTO `employee_holidays` VALUES (2,1002,'2021-01-26','2021-02-01');
-  INSERT INTO `employee_holidays` VALUES (3,1003,'2020-12-25','2021-01-02');
+  INSERT INTO `employee_holidays` VALUES (1,1001,'2020-12-12','2020-12-19','Pending');
+  INSERT INTO `employee_holidays` VALUES (2,1002,'2021-01-26','2021-02-01','Pending');
+  INSERT INTO `employee_holidays` VALUES (3,1003,'2020-12-25','2021-01-02','Pending');
   

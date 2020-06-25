@@ -6,15 +6,20 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
  
 public class AddHoliday {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
-    private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout;
+    private final JLabel welcome, title, startDateText, endDateText;
+    private JLabel returnMessage;
+    private final JButton changeInfo, holidays, switchType, logout, submit;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private JTextField startDateYear, startDateMonth, startDateDay, endDateYear, endDateMonth, endDateDay;
 
     public AddHoliday() throws ClassNotFoundException {
         
@@ -40,12 +45,27 @@ public class AddHoliday {
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
         
+        submit = new JButton("Submit");
+        
         logout = new JButton("Logout");
+        
+        
+        
+        // Text Fields
+        startDateYear = new JTextField("YYYY");
+        startDateMonth = new JTextField("MM");
+        startDateDay = new JTextField("DD");
+        endDateYear = new JTextField("YYYY");
+        endDateMonth = new JTextField("MM");
+        endDateDay = new JTextField("DD");
         
         
         
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
+        startDateText = new JLabel("Start Date:");
+        endDateText = new JLabel("End Date:");
+        returnMessage = new JLabel("Holiday successfully requested", SwingConstants.CENTER);
         
         titleText = "<html><h2 align='center'>Add Holiday<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -77,6 +97,16 @@ public class AddHoliday {
         });
         
         
+        submit.addActionListener(listener -> {
+            try {
+                DBRequests.addHoliday(startDateYear.getText(), startDateMonth.getText(), startDateDay.getText(), endDateYear.getText(), endDateMonth.getText(), endDateDay.getText());
+                returnMessage.setText("Holiday successfully requested");
+            } catch (Exception e) {
+                returnMessage.setText("Input error, check entries are correct");
+            }
+        });
+        
+        
         
         // Quickbar positioning and adding
         logout.setBounds(0, 0, 65, 20);
@@ -99,6 +129,39 @@ public class AddHoliday {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        startDateText.setBounds(70, 97, 140, 25);
+        content.add(startDateText);
+        
+        startDateYear.setBounds(220, 97, 90, 25);
+        content.add(startDateYear);
+        
+        startDateMonth.setBounds(310, 97, 90, 25);
+        content.add(startDateMonth);
+        
+        startDateDay.setBounds(400, 97, 90, 25);
+        content.add(startDateDay);
+        
+        
+        endDateText.setBounds(70, 157, 140, 25);
+        content.add(endDateText);
+        
+        endDateYear.setBounds(220, 157, 90, 25);
+        content.add(endDateYear);
+        
+        endDateMonth.setBounds(310, 157, 90, 25);
+        content.add(endDateMonth);
+        
+        endDateDay.setBounds(400, 157, 90, 25);
+        content.add(endDateDay);
+        
+        
+        submit.setBounds(230, 215, 100, 25);
+        content.add(submit);
+        
+        returnMessage.setBounds(135, 260, 300, 25);
+        content.add(returnMessage);
         
         
         

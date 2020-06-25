@@ -1,9 +1,7 @@
 package Database;
 
-import SystemAndGeneral.FetchUser;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
-import java.util.ArrayList;
 
 abstract public class DBRequests {
     
@@ -308,6 +306,21 @@ abstract public class DBRequests {
         con.close();
         st.close();
     }
+    
+    public static void addHoliday(String startYear, String startMonth, String startDay, String endYear, String endMonth, String endDay) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO employee_holidays VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + endYear + "-" + endMonth + "-" + endDay + "','Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    
     
     
     
