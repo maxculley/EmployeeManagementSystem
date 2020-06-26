@@ -1,18 +1,25 @@
-package GUI;
+package GUI.HR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
  
 public class HRHolidayActions {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, accept, decline;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
-    private final JLabel welcome, title, employeeID;
+    private final JLabel welcome, title, employeeIDText, startDateText, endDateText, firstNameText, lastNameText;
+    private static JLabel employeeID, startDate, endDate, firstName, lastName;
+    private static boolean refresh = false;
+    private static Holiday currentHoliday;
    
    
     public HRHolidayActions() {
@@ -41,14 +48,31 @@ public class HRHolidayActions {
         
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
-       
+        
+        accept = new JButton("Accept");
+        
+        decline = new JButton("Decline");
+        
         logout = new JButton("Logout");
        
        
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
-        employeeID = new JLabel("ID:");
+        
+        employeeIDText = new JLabel("ID:");
+        startDateText = new JLabel("Start date:");
+        endDateText = new JLabel("End date:");
+        firstNameText = new JLabel("First name:");
+        lastNameText = new JLabel("Last name:");
+        
+        employeeID = new JLabel();
+        startDate = new JLabel();
+        endDate = new JLabel();
+        firstName = new JLabel();
+        lastName = new JLabel();
+        
+        
        
         titleText = "<html><h2 align='center'>Accept/Decline Holiday Requests<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -83,7 +107,26 @@ public class HRHolidayActions {
         addRemoveEmployee.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
         });
-       
+        
+        
+        decline.addActionListener(listener -> {
+            try {
+                DBRequests.declineHoliday(currentHoliday.getHolidayID());
+                holidayRefresh();
+            } catch (Exception e) {
+                employeeID.setText("No holidays requested");
+            }
+        });
+        
+        accept.addActionListener(listener -> {
+            try {
+                DBRequests.acceptHoliday(currentHoliday.getHolidayID());
+                holidayRefresh();
+            } catch (Exception e) {
+                employeeID.setText("No holidays requested");
+            }
+        });
+        
        
        
         // Quickbar positioning & adding
@@ -111,8 +154,37 @@ public class HRHolidayActions {
         title.setBounds(0, 20, 570, 35);
         content.add(title);
         
-        employeeID.setBounds(70, 97, 140, 25);
+        employeeIDText.setBounds(70, 97, 140, 25);
+        content.add(employeeIDText);
+        
+        firstNameText.setBounds(70, 147, 140, 25);
+        content.add(firstNameText);
+        
+        lastNameText.setBounds(70, 197, 140, 25);
+        content.add(lastNameText);
+        
+        startDateText.setBounds(70, 247, 140, 25);
+        content.add(startDateText);
+        
+        endDateText.setBounds(70, 297, 140, 25);
+        content.add(endDateText);
+        
+        decline.setBounds(175, 360, 90, 25);
+        content.add(decline);
+        
+        accept.setBounds(290, 360, 90, 25);
+        content.add(accept);
+        
+        
         content.add(employeeID);
+        
+        content.add(firstName);
+        
+        content.add(lastName);
+        
+        content.add(startDate);
+        
+        content.add(endDate);
        
        
        
@@ -129,6 +201,65 @@ public class HRHolidayActions {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void holidayRefresh() throws ClassNotFoundException {
+        loadData();
+        
+        if (currentHoliday == null) {
+            employeeID.setText("No holidays requested");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 97, 235, 15);
+
+            firstName.setText("");
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 147, 235, 15);
+
+            lastName.setText("");
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 197, 235, 15);
+
+            startDate.setText("");
+            startDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            startDate.setBounds(250, 247, 235, 15);
+
+            endDate.setText("");
+            endDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            endDate.setBounds(250, 297, 235, 15);
+        } else {
+            if (!refresh) {
+                employeeID.setText(currentHoliday.getEmployeeID() + "");
+                employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+                employeeID.setBounds(250, 97, 235, 15);
+
+                firstName.setText(currentHoliday.getFirstName());
+                firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+                firstName.setBounds(250, 147, 235, 15);
+
+                lastName.setText(currentHoliday.getLastName());
+                lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+                lastName.setBounds(250, 197, 235, 15);
+
+                startDate.setText(currentHoliday.getStartDate());
+                startDate.setHorizontalAlignment(SwingConstants.RIGHT);
+                startDate.setBounds(250, 247, 235, 15);
+
+                endDate.setText(currentHoliday.getEndDate());
+                endDate.setHorizontalAlignment(SwingConstants.RIGHT);
+                endDate.setBounds(250, 297, 235, 15);
+                refresh = true;
+            } else {
+                employeeID.setText(currentHoliday.getEmployeeID() + "");
+                firstName.setText(currentHoliday.getFirstName());
+                lastName.setText(currentHoliday.getLastName());
+                startDate.setText(currentHoliday.getStartDate());
+                endDate.setText(currentHoliday.getEndDate());
+            }
+        }
+    }
+    
+    public static void loadData() throws ClassNotFoundException {
+        currentHoliday = DBRequests.getHoliday();
     }
  
     public static JPanel getPage() {

@@ -76,6 +76,7 @@ public class HRHolidayHomeMenu {
         
         accept.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayActions");
+            HRHolidayActions.holidayRefresh();
         });
         
         

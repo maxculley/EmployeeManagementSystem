@@ -20,6 +20,7 @@ public class NonHREmployeeInfo {
     private String changeInfoText, holidaysText, switchTypeText, userSelection, titleText, data;
     private Choice selection;
     private static boolean refresh = false;
+    private int holidayID;
 
     public static JPanel getPage() {
         return menu;

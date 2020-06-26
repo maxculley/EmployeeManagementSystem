@@ -1,11 +1,13 @@
 package Database;
 
+import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 
 abstract public class DBRequests {
     
     private static int count = 1003;
+    private Holiday currentHoliday;
     
     
     
@@ -144,6 +146,25 @@ abstract public class DBRequests {
 
         } catch (Exception e) {
             return "Input is invalid";
+        }
+    }
+    
+    public static Holiday getHoliday() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_holidays WHERE status = 'Pending' ORDER BY start_date ASC";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            int id = rs.getInt("employee_id");
+            
+            return new Holiday(rs.getInt("holiday_id"), id, getFirstName(id), getLastName(id), rs.getString("start_date"), rs.getString("end_date"));
+
+        } catch (Exception e) {
+            return null;
         }
     }
     
@@ -319,6 +340,34 @@ abstract public class DBRequests {
         con.close();
         st.close();
     }
+    
+    public static void acceptHoliday(int holidayID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_holidays SET status = 'Accepted' WHERE holiday_id = " + holidayID + ";";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void declineHoliday(int holidayID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_holidays SET status = 'Declined' WHERE holiday_id = " + holidayID + ";";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    
     
     
     

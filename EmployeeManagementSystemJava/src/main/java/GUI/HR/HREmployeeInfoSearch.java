@@ -70,7 +70,7 @@ public class HREmployeeInfoSearch {
         salary = new JLabel("Salary:");
         
         idInfo = new JLabel();
-        firstNameInfo = new JLabel("a");
+        firstNameInfo = new JLabel();
         lastNameInfo = new JLabel();
         addressInfo = new JLabel();
         ageInfo = new JLabel();
