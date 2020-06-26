@@ -1,7 +1,7 @@
 package GUI.General;
 
-import GUI.NonHR.EmployeeInfo;
-import GUI.HR.EmployeeInfoSearch;
+import GUI.NonHR.NonHREmployeeInfo;
+import GUI.HR.HREmployeeInfoSearch;
 import GUI.General.GUIInfo;
 import Database.DBRequests;
 import Employee.HR;
@@ -72,13 +72,13 @@ public class LoginPage {
                     if (accountType.equals("1") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new HR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getAddress(id), Integer.parseInt(DBRequests.getAge(id)), DBRequests.getGender(id), Integer.parseInt(DBRequests.getSalary(id))));
                         GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
-                        EmployeeInfo.NonHRrefresh();
-                        EmployeeInfoSearch.HRrefresh();
+                        NonHREmployeeInfo.NonHRrefresh();
+                        HREmployeeInfoSearch.HRrefresh();
                     } else if (accountType.equals("0") && password.equals(DBRequests.getPassword(id))) {
                         SystemInfo.setUser(new NonHR(id, DBRequests.getFirstName(id), DBRequests.getLastName(id), DBRequests.getAddress(id), Integer.parseInt(DBRequests.getAge(id)), DBRequests.getGender(id), Integer.parseInt(DBRequests.getSalary(id))));
                         GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
-                        EmployeeInfo.NonHRrefresh();
-                        EmployeeInfoSearch.HRrefresh();
+                        NonHREmployeeInfo.NonHRrefresh();
+                        HREmployeeInfoSearch.HRrefresh();
                     } else if (accountType.equals("User does not exist")) {
                         returnMessage.setText(accountType);
                     } else {

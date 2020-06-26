@@ -7,18 +7,18 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class AddEmployee {
+public class HRAddEmployee {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, submit;
-    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, submit, holidays;
+    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
     private final JLabel welcome, title, firstNameText, lastNameText, addressText, ageText, baseText, salaryText, passwordText;
     private static JTextField firstName, lastName, address, age, baseSalary, salary, password;
     private final JRadioButton male, female, other, hr, nonhr;
    
    
-    public AddEmployee() {
+    public HRAddEmployee() {
        
         // Panels
         menu = new JPanel();
@@ -41,6 +41,9 @@ public class AddEmployee {
        
         addRemoveEmployeeText = "Add/Remove\nEmployee";
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        holidaysText = "View/Change\nHolidays";
+        holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
        
         logout = new JButton("Logout");
         
@@ -120,6 +123,12 @@ public class AddEmployee {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
         });
         
+        
+        holidays.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayHome");
+        });
+        
+        
         submit.addActionListener(listener -> {
             String choice;
             int type;
@@ -166,6 +175,9 @@ public class AddEmployee {
        
         addRemoveEmployee.setBounds(50, 105, 135, 45);
         quickmenu.add(addRemoveEmployee);
+        
+        holidays.setBounds(50, 155, 135, 45);
+        quickmenu.add(holidays);
        
        
        

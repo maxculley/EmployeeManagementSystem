@@ -8,21 +8,21 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class RemoveEmployee {
+public class HRRemoveEmployee {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, searchConfirm, deleteButton;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, searchConfirm, deleteButton, holidays;
     private final JLabel id, firstName, lastName, address, age, gender, salary, infoInputLabel;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JLabel welcome, title;
-    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText;
+    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
     private int inputValue;
     private static JTextField infoInput;
     private static boolean refresh = false;
    
    
-    public RemoveEmployee() {
+    public HRRemoveEmployee() {
        
         // Panels
         menu = new JPanel();
@@ -45,6 +45,9 @@ public class RemoveEmployee {
        
         addRemoveEmployeeText = "Add/Remove\nEmployee";
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        holidaysText = "View/Change\nHolidays";
+        holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
        
         logout = new JButton("Logout");
         
@@ -110,6 +113,11 @@ public class RemoveEmployee {
         });
         
         
+        holidays.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayHome");
+        });
+        
+        
         searchConfirm.addActionListener(listener -> {
             try {
                 inputValue = Integer.parseInt(infoInput.getText());
@@ -163,6 +171,9 @@ public class RemoveEmployee {
        
         addRemoveEmployee.setBounds(50, 105, 135, 45);
         quickmenu.add(addRemoveEmployee);
+        
+        holidays.setBounds(50, 155, 135, 45);
+        quickmenu.add(holidays);
        
        
        

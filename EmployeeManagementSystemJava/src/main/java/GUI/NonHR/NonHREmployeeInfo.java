@@ -9,7 +9,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
 
 
-public class EmployeeInfo {
+public class NonHREmployeeInfo {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
@@ -17,7 +17,7 @@ public class EmployeeInfo {
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JButton changeInfo, holidays, switchType, logout, contentSend;
     private final JTextField infoInput;
-    private String changeInfoText, changeHolidaysText, switchTypeText, userSelection, titleText, data;
+    private String changeInfoText, holidaysText, switchTypeText, userSelection, titleText, data;
     private Choice selection;
     private static boolean refresh = false;
 
@@ -25,7 +25,7 @@ public class EmployeeInfo {
         return menu;
     }
 
-    public EmployeeInfo() throws ClassNotFoundException {
+    public NonHREmployeeInfo() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -43,8 +43,8 @@ public class EmployeeInfo {
         changeInfoText = "View/Change\nInformation";
         changeInfo = new JButton("<html><style>p {text-align: center;}</style> <p>" + changeInfoText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        changeHolidaysText = "View/Change\nHolidays";
-        holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + changeHolidaysText.replaceAll("\\n", "<br>") + "</p></html>");
+        holidaysText = "View/Change\nHolidays";
+        holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
         
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");

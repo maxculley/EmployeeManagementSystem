@@ -6,7 +6,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class HolidayHome {
+public class NonHRHolidayHome {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
@@ -14,7 +14,7 @@ public class HolidayHome {
     private final JButton changeInfo, holidays, switchType, logout, add, view;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
 
-    public HolidayHome() throws ClassNotFoundException {
+    public NonHRHolidayHome() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -69,9 +69,11 @@ public class HolidayHome {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
         });
         
+        
         add.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRAddHoliday");
         });
+        
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRViewHoliday");

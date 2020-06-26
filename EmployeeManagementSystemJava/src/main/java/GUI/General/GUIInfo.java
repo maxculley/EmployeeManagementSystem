@@ -1,12 +1,10 @@
 package GUI.General;
 
-import GUI.NonHR.Holidays.HolidayHome;
-import GUI.NonHR.Holidays.ViewHoliday;
-import GUI.NonHR.Holidays.AddHoliday;
-import GUI.HR.AddRemoveEmp.AddEmployee;
-import GUI.HR.AddRemoveEmp.RemoveEmployee;
-import GUI.HR.AddRemoveEmp.AddRemoveHome;
+import GUI.NonHR.Holidays.*;
+import GUI.HR.AddRemoveEmp.*;
 import GUI.HR.*;
+import GUI.HR.Holidays.*;
+import GUI.*;
 import GUI.NonHR.*;
 import java.awt.*;
 import javax.swing.*;
@@ -24,25 +22,32 @@ public class GUIInfo {
 
         // Initalise pages
         new LoginPage();
-        new EmployeeInfo();
-        new EmployeeInfoSearch();
-        new AddRemoveHome();
-        new AddEmployee();
-        new RemoveEmployee();
-        new HolidayHome();
-        new AddHoliday();
-        new ViewHoliday();
+        new NonHREmployeeInfo();
+        new HREmployeeInfoSearch();
+        new HRAddRemoveHome();
+        new HRAddEmployee();
+        new HRRemoveEmployee();
+        new NonHRHolidayHome();
+        new NonHRAddHoliday();
+        new NonHRViewHoliday();
+        new HRHolidayHomeMenu();
+        new HRHolidayActions();
+        new HRViewHoliday();
+        
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
-        container.add(EmployeeInfo.getPage(), "NonHRMenu");
-        container.add(EmployeeInfoSearch.getPage(), "HRMenu");
-        container.add(AddRemoveHome.getPage(), "HRAddRemove");
-        container.add(AddEmployee.getPage(), "HRAdd");
-        container.add(RemoveEmployee.getPage(), "HRRemove");
-        container.add(HolidayHome.getPage(), "NonHRHolidayHome");
-        container.add(AddHoliday.getPage(), "NonHRAddHoliday");
-        container.add(ViewHoliday.getPage(), "NonHRViewHoliday");
+        container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
+        container.add(HREmployeeInfoSearch.getPage(), "HRMenu");
+        container.add(HRAddRemoveHome.getPage(), "HRAddRemove");
+        container.add(HRAddEmployee.getPage(), "HRAdd");
+        container.add(HRRemoveEmployee.getPage(), "HRRemove");
+        container.add(NonHRHolidayHome.getPage(), "NonHRHolidayHome");
+        container.add(NonHRAddHoliday.getPage(), "NonHRAddHoliday");
+        container.add(NonHRViewHoliday.getPage(), "NonHRViewHoliday");
+        container.add(HRHolidayHomeMenu.getPage(), "HRHolidayHome");
+        container.add(HRViewHoliday.getPage(), "HRViewHoliday");
+        container.add(HRHolidayActions.getPage(), "HRHolidayActions");
         cl.show(container, "Login");
 
         // Add contianer to window

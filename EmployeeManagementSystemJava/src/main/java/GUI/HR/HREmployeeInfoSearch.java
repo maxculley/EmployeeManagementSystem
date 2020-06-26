@@ -9,20 +9,20 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 
 
-public class EmployeeInfoSearch {
+public class HREmployeeInfoSearch {
 
     private static JPanel menu;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
     private final JPanel quickmenu, content;
     private final JLabel welcome, title, idEntryText, infoChangeText, dropdownLabel, id, firstName, lastName, address, age, gender, salary;
     private final JTextField idInput, infoChangeInput;
-    private final JButton switchType, logout, userSearch, contentSend, addRemoveEmployee;
-    private String userSearchText, switchTypeText, titleText, userSelection, data, addRemoveEmployeeText;
+    private final JButton switchType, logout, userSearch, contentSend, addRemoveEmployee, holidays;
+    private String userSearchText, switchTypeText, titleText, userSelection, data, addRemoveEmployeeText, holidaysText;
     private Choice selection;
     private int inputResult;
     private static boolean refresh = false;
 
-    public EmployeeInfoSearch() throws ClassNotFoundException {
+    public HREmployeeInfoSearch() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -45,6 +45,9 @@ public class EmployeeInfoSearch {
         
         addRemoveEmployeeText = "Add/Remove\nEmployee";
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        holidaysText = "View/Change\nHolidays";
+        holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
         
         contentSend = new JButton("Confirm");
         
@@ -126,6 +129,11 @@ public class EmployeeInfoSearch {
         addRemoveEmployee.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
         });
+        
+        
+        holidays.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayHome");
+        });
 
         
         contentSend.addActionListener(listener -> {
@@ -206,6 +214,9 @@ public class EmployeeInfoSearch {
         
         addRemoveEmployee.setBounds(50, 105, 135, 45);
         quickmenu.add(addRemoveEmployee);
+        
+        holidays.setBounds(50, 155, 135, 45);
+        quickmenu.add(holidays);
         
         
         
