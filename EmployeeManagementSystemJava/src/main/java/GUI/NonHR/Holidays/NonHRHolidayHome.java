@@ -80,7 +80,7 @@ public class NonHRHolidayHome {
             try {
                 SystemInfo.setHolidays();
             } catch (Exception e) {}
-            NonHRViewHoliday.NonHRrefresh();
+            NonHRViewHoliday.NonHRViewHolRefresh();
         });
         
         

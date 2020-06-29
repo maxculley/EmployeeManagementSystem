@@ -13,11 +13,12 @@ public class NonHRViewHoliday {
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title, startDateText, endDateText, statusText;
-    private final JButton changeInfo, holidays, switchType, logout, next, previous;
+    private final JButton changeInfo, holidays, switchType, logout;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
     private static JLabel startDate, endDate, status;
+    private static JButton next, previous;
     private static boolean refresh = false;
-    private static int pageCount;
+    private static int pageCount = 0;
     private static Holiday currentHol;
 
     public NonHRViewHoliday() throws ClassNotFoundException {
@@ -82,6 +83,25 @@ public class NonHRViewHoliday {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
         });
         
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            NonHRViewHolRefresh();
+            if (pageCount == SystemInfo.getHolidays().size() - 1) {
+                next.setVisible(false);
+            }
+            
+        });
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            NonHRViewHolRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
+
         
         switchType.addActionListener(listener -> {
             try {
@@ -133,9 +153,12 @@ public class NonHRViewHoliday {
         content.add(status);
         
         
-        content.add(next);
-        
+        previous.setBounds(175, 290, 90, 25);
         content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 290, 90, 25);
+        content.add(next);
         
         
         
@@ -152,7 +175,7 @@ public class NonHRViewHoliday {
         menu.add(quickmenu);
     }
     
-    public static void NonHRrefresh() {
+    public static void NonHRViewHolRefresh() {
         currentHol = (Holiday) SystemInfo.getHolidays().get(pageCount);
         if (!refresh) {
             startDate.setText(currentHol.getStartDate());
@@ -171,6 +194,12 @@ public class NonHRViewHoliday {
             startDate.setText(currentHol.getStartDate());
             endDate.setText(currentHol.getEndDate());
             status.setText(currentHol.getStatus());
+        }
+    }
+    
+    public static void setButtons() {
+        if (pageCount <= 1) {
+            previous.setVisible(false);
         }
     }
     
