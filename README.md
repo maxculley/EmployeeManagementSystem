@@ -54,3 +54,10 @@ Whilst doing this project I have learnt a some new skills, these are:
 #### Meetings
 * `Request` a meeting for HR to `accept` or `decline`
 * `View` meetings made by yourself and see their `current status`
+
+## Setup and Installation
+1. Clone repository to download all files
+2. Make sure you have JDBC installed and connected to your SQL server using `port 2206`
+3. Go to the package `Database` then follow to the file `LoginInformation`. Here enter your root password to your database
+4. Run the `GUIRunner` file within the `GUI` package
+5. Enjoy messing around with the project!
