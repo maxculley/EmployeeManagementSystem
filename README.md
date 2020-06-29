@@ -19,8 +19,8 @@ Whilst doing this project I have learnt a some new skills, these are:
 > This project has two sides, an `HR` side and a `Non HR`.
 
 ***
-#### The HR features includes:
-##### Employee Details
+### The HR features includes:
+#### Employee Details
 * Employee detail `search` and `edit`
 
 ##### Employee Actions
@@ -40,7 +40,7 @@ Whilst doing this project I have learnt a some new skills, these are:
 * `Accept/Decline` requests for a meeting
 * `View` meetings made by `all employees` or view a `single employee`
 ***
-#### The Non HR features includes:
+### The Non HR features includes:
 ##### Employee Details
 * `Edit` your own details
 
