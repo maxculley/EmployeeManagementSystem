@@ -54,6 +54,7 @@ Whilst doing this project I have learnt a some new skills, these are:
 #### Meetings
 * `Request` a meeting for HR to `accept` or `decline`
 * `View` meetings made by yourself and see their `current status`
+> When an employee who is not a member of HR makes a request, a meeting for example, the request will be pending, and a member of HR can choose to accept or decline it
 
 ## Setup and Installation
 1. Clone repository to download all files
