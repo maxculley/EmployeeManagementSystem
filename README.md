@@ -18,40 +18,39 @@ Whilst doing this project I have learnt a some new skills, these are:
 ## Features
 > This project has two sides, an `HR` side and a `Non HR`.
 
-***
 ### The HR features includes:
 #### Employee Details
 * Employee detail `search` and `edit`
 
-##### Employee Actions
+#### Employee Actions
 * `Add employee` and `create a login` so they can access the system
 * `Remove employee` so their details are removed and can no longer access the system
 
-##### Holidays
+#### Holidays
 
 * `Accept/Decline` holiday requests made by a `Non HR member`
 * `View all` Accepted, Declined and Pending holidays, or search for a `specific employee`
 
-##### Overtime
+#### Overtime
 * `Accept/Decline` overtime request, reflects automatically in the employees salary
 * `View` overtime requests made by `individuals`, or for the `whole system`
 
-##### Meetings
+#### Meetings
 * `Accept/Decline` requests for a meeting
 * `View` meetings made by `all employees` or view a `single employee`
 ***
 ### The Non HR features includes:
-##### Employee Details
+#### Employee Details
 * `Edit` your own details
 
-##### Holidays
+#### Holidays
 * `Create` a holiday request for HR to accept
 * `View` your `Accepted`, `Declined` and `Pending` holidays
 
-##### Overtime
+#### Overtime
 * `Submit` overtime request, reflects automatically in your salary
 * `View` your submitted overtime requests
 
-##### Meetings
+#### Meetings
 * `Request` a meeting for HR to `accept` or `decline`
 * `View` meetings made by yourself and see their `current status`
