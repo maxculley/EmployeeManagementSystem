@@ -87,6 +87,10 @@ public class HRHolidayHomeMenu {
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRViewHoliday");
+            try {
+                SystemInfo.setHolidays();
+            } catch (Exception ex) {}
+            HRViewHoliday.HRViewHolRefresh();
         });
         
         

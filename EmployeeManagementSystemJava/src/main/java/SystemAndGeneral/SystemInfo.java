@@ -71,8 +71,16 @@ public class SystemInfo {
     }
     
     
-    public static void setHolidays() throws ClassNotFoundException {
+    public static void setHoliday() throws ClassNotFoundException {
         holidays = DBRequests.getHolidayList(getID());
+    }
+    public static ArrayList getHoliday() {
+        return holidays;
+    }
+    
+    
+    public static void setHolidays() throws ClassNotFoundException {
+        holidays = DBRequests.getHolidayList();
     }
     public static ArrayList getHolidays() {
         return holidays;

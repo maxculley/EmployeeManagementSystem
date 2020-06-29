@@ -13,10 +13,9 @@ public class NonHRViewHoliday {
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title, startDateText, endDateText, statusText;
-    private final JButton changeInfo, holidays, switchType, logout;
+    private final JButton changeInfo, holidays, switchType, logout, next, previous;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
     private static JLabel startDate, endDate, status;
-    private static JButton next, previous;
     private static boolean refresh = false;
     private static int pageCount = 0;
     private static Holiday currentHol;
@@ -55,6 +54,7 @@ public class NonHRViewHoliday {
         
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
+        
         startDateText = new JLabel("Start Date:");
         endDateText = new JLabel("End Date:");
         statusText = new JLabel("Status:");
@@ -83,15 +83,17 @@ public class NonHRViewHoliday {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
         });
         
+        
         next.addActionListener(listener -> {
             pageCount++;
             previous.setVisible(true);
             NonHRViewHolRefresh();
-            if (pageCount == SystemInfo.getHolidays().size() - 1) {
+            if (pageCount == SystemInfo.getHoliday().size() - 1) {
                 next.setVisible(false);
             }
             
         });
+        
         
         previous.addActionListener(listener -> {
             pageCount--;
@@ -197,10 +199,8 @@ public class NonHRViewHoliday {
         }
     }
     
-    public static void setButtons() {
-        if (pageCount <= 1) {
-            previous.setVisible(false);
-        }
+    public static void setCount() {
+        pageCount = 0;
     }
     
     public static JPanel getPage() {

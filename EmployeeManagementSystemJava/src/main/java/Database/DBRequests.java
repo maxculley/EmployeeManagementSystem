@@ -169,6 +169,29 @@ abstract public class DBRequests {
         }
     }
     
+    public static ArrayList getHolidayList() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_holidays ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Holiday> holidays = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                holidays.add(new Holiday(rs.getInt("holiday_id"), rs.getInt("employee_id"), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
+            }
+            
+            return holidays;
+
+        } catch (Exception e) {
+            System.out.println("Error 123");
+            return null;
+        }
+    }
+    
     public static ArrayList getHolidayList(int ID) throws ClassNotFoundException {
         String query = "SELECT * FROM employee_holidays WHERE employee_id = '" + ID + "' ORDER BY status";
 

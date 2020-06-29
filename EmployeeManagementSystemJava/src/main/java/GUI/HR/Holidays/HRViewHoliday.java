@@ -1,7 +1,9 @@
-package GUI;
+package GUI.HR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import static GUI.NonHR.Holidays.NonHRViewHoliday.NonHRViewHolRefresh;
+import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -10,9 +12,13 @@ public class HRViewHoliday {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, next, previous;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
-    private final JLabel welcome, title;
+    private final JLabel welcome, title, startDateText, endDateText, statusText;
+    private static JLabel startDate, endDate, status;
+    private static int pageCount;
+    private static boolean refresh = false;
+    private static Holiday currentHol;
    
    
     public HRViewHoliday() {
@@ -41,6 +47,10 @@ public class HRViewHoliday {
         
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
        
         logout = new JButton("Logout");
        
@@ -48,6 +58,14 @@ public class HRViewHoliday {
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        
+        startDateText = new JLabel("Start Date:");
+        endDateText = new JLabel("End Date:");
+        statusText = new JLabel("Status:");
+        
+        startDate = new JLabel();
+        endDate = new JLabel();
+        status = new JLabel();
        
         titleText = "<html><h2 align='center'>View Holidays<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -82,6 +100,27 @@ public class HRViewHoliday {
         addRemoveEmployee.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRAddRemove");
         });
+        
+        
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            HRViewHolRefresh();
+            if (pageCount == SystemInfo.getHoliday().size() - 1) {
+                next.setVisible(false);
+            }
+            
+        });
+        
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            HRViewHolRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
        
        
        
@@ -109,6 +148,31 @@ public class HRViewHoliday {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        startDateText.setBounds(70, 97, 140, 25);
+        content.add(startDateText);
+        
+        endDateText.setBounds(70, 157, 140, 25);
+        content.add(endDateText);
+        
+        statusText.setBounds(70, 217, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(startDate);
+        
+        content.add(endDate);
+        
+        content.add(status);
+        
+        
+        previous.setBounds(175, 290, 90, 25);
+        content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 290, 90, 25);
+        content.add(next);
        
        
        
@@ -126,6 +190,32 @@ public class HRViewHoliday {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void HRViewHolRefresh() {
+        currentHol = (Holiday) SystemInfo.getHoliday().get(pageCount);
+        if (!refresh) {
+            startDate.setText(currentHol.getStartDate());
+            startDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            startDate.setBounds(250, 97, 235, 15);
+
+            endDate.setText(currentHol.getEndDate());
+            endDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            endDate.setBounds(250, 157, 235, 15);
+
+            status.setText(currentHol.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 217, 235, 15);
+            refresh = true;
+        } else {
+            startDate.setText(currentHol.getStartDate());
+            endDate.setText(currentHol.getEndDate());
+            status.setText(currentHol.getStatus());
+        }
+    }
+    
+    public static void setCount() {
+        pageCount = 0;
     }
  
     public static JPanel getPage() {
