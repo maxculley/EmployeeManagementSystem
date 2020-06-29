@@ -1,5 +1,4 @@
 # Employee Management System
-***
 > This Employee Management System is created using Java, with SQL and JDBC for database integration.
 
 ## Video overview
