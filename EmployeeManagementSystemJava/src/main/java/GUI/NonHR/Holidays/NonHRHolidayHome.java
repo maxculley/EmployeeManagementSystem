@@ -77,6 +77,10 @@ public class NonHRHolidayHome {
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRViewHoliday");
+            try {
+                SystemInfo.setHolidays();
+            } catch (Exception e) {}
+            NonHRViewHoliday.NonHRrefresh();
         });
         
         

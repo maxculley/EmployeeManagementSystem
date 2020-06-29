@@ -2,8 +2,11 @@ package GUI.HR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import GUI.NonHR.Holidays.NonHRViewHoliday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
  
 public class HRHolidayHomeMenu {
@@ -76,7 +79,9 @@ public class HRHolidayHomeMenu {
         
         accept.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayActions");
-            HRHolidayActions.holidayRefresh();
+            try {
+                HRHolidayActions.holidayRefresh();
+            } catch (ClassNotFoundException ex) {}
         });
         
         
@@ -93,7 +98,7 @@ public class HRHolidayHomeMenu {
         switchType.addActionListener(listener -> {
             try {
                 if ((DBRequests.isEmployee(SystemInfo.getID())).equals("1")) {
-                    GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
+                    GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
                 } else {}
             } catch (ClassNotFoundException ex) {}
         });

@@ -5,16 +5,17 @@ package Holiday;
 public class Holiday {
     
     private int holidayID, employeeID;
-    private String firstName, lastName, startDate, endDate;
+    private String firstName, lastName, startDate, endDate, status;
     
     
-    public Holiday(int holidayID, int employeeID, String firstName, String lastName, String startDate, String endDate) {
+    public Holiday(int holidayID, int employeeID, String firstName, String lastName, String startDate, String endDate, String status) {
         setHolidayID(holidayID);
         setEmployeeID(employeeID);
         setFirstName(firstName);
         setLastName(lastName);
         setStartDate(startDate);
         setEndDate(endDate);
+        setStatus(status);
     }
     
 
@@ -63,5 +64,13 @@ public class Holiday {
     }
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+    
+    
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

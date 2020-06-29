@@ -1,10 +1,14 @@
 package SystemAndGeneral;
 
+import Database.DBRequests;
 import Employee.Employee;
+import Holiday.Holiday;
+import java.util.ArrayList;
 
 public class SystemInfo {
 
     private static Employee user;
+    private static ArrayList<Holiday> holidays;
 
     public static void setUser(Employee user) {
         SystemInfo.user = user;
@@ -64,6 +68,14 @@ public class SystemInfo {
     
     public static int getID() {
         return user.getID();
+    }
+    
+    
+    public static void setHolidays() throws ClassNotFoundException {
+        holidays = DBRequests.getHolidayList(getID());
+    }
+    public static ArrayList getHolidays() {
+        return holidays;
     }
 
 }

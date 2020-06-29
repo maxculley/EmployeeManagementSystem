@@ -226,36 +226,35 @@ public class HRHolidayActions {
             endDate.setText("");
             endDate.setHorizontalAlignment(SwingConstants.RIGHT);
             endDate.setBounds(250, 297, 235, 15);
+        } else if (!refresh) {
+            employeeID.setText(currentHoliday.getEmployeeID() + "");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 97, 235, 15);
+
+            firstName.setText(currentHoliday.getFirstName());
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 147, 235, 15);
+
+            lastName.setText(currentHoliday.getLastName());
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 197, 235, 15);
+
+            startDate.setText(currentHoliday.getStartDate());
+            startDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            startDate.setBounds(250, 247, 235, 15);
+
+            endDate.setText(currentHoliday.getEndDate());
+            endDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            endDate.setBounds(250, 297, 235, 15);
+            refresh = true;
         } else {
-            if (!refresh) {
-                employeeID.setText(currentHoliday.getEmployeeID() + "");
-                employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
-                employeeID.setBounds(250, 97, 235, 15);
-
-                firstName.setText(currentHoliday.getFirstName());
-                firstName.setHorizontalAlignment(SwingConstants.RIGHT);
-                firstName.setBounds(250, 147, 235, 15);
-
-                lastName.setText(currentHoliday.getLastName());
-                lastName.setHorizontalAlignment(SwingConstants.RIGHT);
-                lastName.setBounds(250, 197, 235, 15);
-
-                startDate.setText(currentHoliday.getStartDate());
-                startDate.setHorizontalAlignment(SwingConstants.RIGHT);
-                startDate.setBounds(250, 247, 235, 15);
-
-                endDate.setText(currentHoliday.getEndDate());
-                endDate.setHorizontalAlignment(SwingConstants.RIGHT);
-                endDate.setBounds(250, 297, 235, 15);
-                refresh = true;
-            } else {
-                employeeID.setText(currentHoliday.getEmployeeID() + "");
-                firstName.setText(currentHoliday.getFirstName());
-                lastName.setText(currentHoliday.getLastName());
-                startDate.setText(currentHoliday.getStartDate());
-                endDate.setText(currentHoliday.getEndDate());
-            }
+            employeeID.setText(currentHoliday.getEmployeeID() + "");
+            firstName.setText(currentHoliday.getFirstName());
+            lastName.setText(currentHoliday.getLastName());
+            startDate.setText(currentHoliday.getStartDate());
+            endDate.setText(currentHoliday.getEndDate());
         }
+        
     }
     
     public static void loadData() throws ClassNotFoundException {

@@ -2,8 +2,8 @@
 package GUI.NonHR.Holidays;
  
 import Database.DBRequests;
+import Holiday.Holiday;
 import GUI.General.GUIInfo;
-import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -12,9 +12,13 @@ public class NonHRViewHoliday {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
-    private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout;
+    private final JLabel welcome, title, startDateText, endDateText, statusText;
+    private final JButton changeInfo, holidays, switchType, logout, next, previous;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private static JLabel startDate, endDate, status;
+    private static boolean refresh = false;
+    private static int pageCount;
+    private static Holiday currentHol;
 
     public NonHRViewHoliday() throws ClassNotFoundException {
         
@@ -40,12 +44,23 @@ public class NonHRViewHoliday {
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
         
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
+        
         logout = new JButton("Logout");
         
         
         
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
+        startDateText = new JLabel("Start Date:");
+        endDateText = new JLabel("End Date:");
+        statusText = new JLabel("Status:");
+        
+        startDate = new JLabel();
+        endDate = new JLabel();
+        status = new JLabel();
         
         titleText = "<html><h2 align='center'>View Holiday<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -101,6 +116,28 @@ public class NonHRViewHoliday {
         content.add(title);
         
         
+        startDateText.setBounds(70, 97, 140, 25);
+        content.add(startDateText);
+        
+        endDateText.setBounds(70, 157, 140, 25);
+        content.add(endDateText);
+        
+        statusText.setBounds(70, 217, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(startDate);
+        
+        content.add(endDate);
+        
+        content.add(status);
+        
+        
+        content.add(next);
+        
+        content.add(previous);
+        
+        
         
         // Panel positioning & styling
         quickmenu.setBounds(0, 0, 230, 500);
@@ -113,6 +150,28 @@ public class NonHRViewHoliday {
         // Add content
         menu.add(content);
         menu.add(quickmenu);
+    }
+    
+    public static void NonHRrefresh() {
+        currentHol = (Holiday) SystemInfo.getHolidays().get(pageCount);
+        if (!refresh) {
+            startDate.setText(currentHol.getStartDate());
+            startDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            startDate.setBounds(250, 97, 235, 15);
+
+            endDate.setText(currentHol.getEndDate());
+            endDate.setHorizontalAlignment(SwingConstants.RIGHT);
+            endDate.setBounds(250, 157, 235, 15);
+
+            status.setText(currentHol.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 217, 235, 15);
+            refresh = true;
+        } else {
+            startDate.setText(currentHol.getStartDate());
+            endDate.setText(currentHol.getEndDate());
+            status.setText(currentHol.getStatus());
+        }
     }
     
     public static JPanel getPage() {

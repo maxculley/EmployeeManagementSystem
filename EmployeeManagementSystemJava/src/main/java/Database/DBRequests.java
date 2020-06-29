@@ -3,6 +3,7 @@ package Database;
 import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
+import java.util.ArrayList;
 
 abstract public class DBRequests {
     
@@ -161,7 +162,29 @@ abstract public class DBRequests {
             rs.next();
             int id = rs.getInt("employee_id");
             
-            return new Holiday(rs.getInt("holiday_id"), id, getFirstName(id), getLastName(id), rs.getString("start_date"), rs.getString("end_date"));
+            return new Holiday(rs.getInt("holiday_id"), id, getFirstName(id), getLastName(id), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status"));
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ArrayList getHolidayList(int ID) throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_holidays WHERE employee_id = '" + ID + "' ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Holiday> holidays = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                holidays.add(new Holiday(rs.getInt("holiday_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
+            }
+            
+            return holidays;
 
         } catch (Exception e) {
             return null;
