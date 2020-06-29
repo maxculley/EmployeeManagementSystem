@@ -5,11 +5,10 @@
 For a video overview and walkthrough of the system, [click here.](https://www.youtube.com/watch?v=s-lCvcfUfN0&feature=youtu.be)
 
 ## What have I learnt?
-Whilst doing this project I have learnt a some new skills, these are:
-* Knowledge in databases, such as when to use `RDBMS` or `DBMS`
-* Basic `SQL Syntax` along with `SQL Workbench`
-* `Swing`, for creating `GUIs` by using `LayoutManagers`
-* `Git` and how to use it properly
+Whilst doing this project I have taught myself some new skills, these are:
+* Knowledge in databases, such the differences between `RDBMS` and `DBMS`
+* Basic `SQL Syntax` along with how to use `SQL Workbench`
+* `Swing` for Java for creating `GUIs` by using `LayoutManagers` without the help of a design window
 * What `JDBC` does and how it is used
 * Enhanced my `OOP` knowledge
 * Understood the importance of `planning a project`
@@ -59,6 +58,6 @@ Whilst doing this project I have learnt a some new skills, these are:
 ## Setup and Installation
 1. Clone repository to download all files
 2. Make sure you have JDBC installed and connected to your SQL server using `port 2206`
-3. Go to the package `Database` then follow to the file `LoginInformation`. Here enter your root password to your database
-4. Run the `GUIRunner` file within the `GUI` package
+3. Go to the package `Database` then follow to the file `LoginInformation`. Here enter your root SQL password
+4. Run the `CreateDatabase` SQL file, then the `GUIRunner` file within the `GUI` package
 5. Enjoy messing around with the project!
