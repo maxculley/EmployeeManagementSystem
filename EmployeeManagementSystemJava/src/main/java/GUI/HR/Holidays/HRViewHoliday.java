@@ -14,8 +14,8 @@ public class HRViewHoliday {
     private final JPanel quickmenu, content;
     private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, next, previous;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
-    private final JLabel welcome, title, startDateText, endDateText, statusText;
-    private static JLabel startDate, endDate, status;
+    private final JLabel welcome, title, startDateText, endDateText, statusText, idText;
+    private static JLabel startDate, endDate, status, id;
     private static int pageCount;
     private static boolean refresh = false;
     private static Holiday currentHol;
@@ -62,7 +62,9 @@ public class HRViewHoliday {
         startDateText = new JLabel("Start Date:");
         endDateText = new JLabel("End Date:");
         statusText = new JLabel("Status:");
+        idText = new JLabel("Employee ID:");
         
+        id = new JLabel();
         startDate = new JLabel();
         endDate = new JLabel();
         status = new JLabel();
@@ -150,15 +152,20 @@ public class HRViewHoliday {
         content.add(title);
         
         
-        startDateText.setBounds(70, 97, 140, 25);
+        idText.setBounds(70, 97, 140, 25);
+        content.add(idText);
+        
+        startDateText.setBounds(70, 157, 140, 25);
         content.add(startDateText);
         
-        endDateText.setBounds(70, 157, 140, 25);
+        endDateText.setBounds(70, 217, 140, 25);
         content.add(endDateText);
         
-        statusText.setBounds(70, 217, 140, 25);
+        statusText.setBounds(70, 277, 140, 25);
         content.add(statusText);
         
+        
+        content.add(id);
         
         content.add(startDate);
         
@@ -167,11 +174,11 @@ public class HRViewHoliday {
         content.add(status);
         
         
-        previous.setBounds(175, 290, 90, 25);
+        previous.setBounds(175, 350, 90, 25);
         content.add(previous);
         previous.setVisible(false);
         
-        next.setBounds(290, 290, 90, 25);
+        next.setBounds(290, 350, 90, 25);
         content.add(next);
        
        
@@ -195,19 +202,24 @@ public class HRViewHoliday {
     public static void HRViewHolRefresh() {
         currentHol = (Holiday) SystemInfo.getHoliday().get(pageCount);
         if (!refresh) {
+            id.setText(currentHol.getEmployeeID() + "");
+            id.setHorizontalAlignment(SwingConstants.RIGHT);
+            id.setBounds(250, 97, 235, 15);
+            
             startDate.setText(currentHol.getStartDate());
             startDate.setHorizontalAlignment(SwingConstants.RIGHT);
-            startDate.setBounds(250, 97, 235, 15);
+            startDate.setBounds(250, 157, 235, 15);
 
             endDate.setText(currentHol.getEndDate());
             endDate.setHorizontalAlignment(SwingConstants.RIGHT);
-            endDate.setBounds(250, 157, 235, 15);
+            endDate.setBounds(250, 217, 235, 15);
 
             status.setText(currentHol.getStatus());
             status.setHorizontalAlignment(SwingConstants.RIGHT);
-            status.setBounds(250, 217, 235, 15);
+            status.setBounds(250, 277, 235, 15);
             refresh = true;
         } else {
+            id.setText(currentHol.getEmployeeID() + "");
             startDate.setText(currentHol.getStartDate());
             endDate.setText(currentHol.getEndDate());
             status.setText(currentHol.getStatus());
