@@ -5,17 +5,14 @@ import GUI.General.GUIInfo;
 import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
  
 public class HRHolidayActions {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, accept, decline;
-    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, accept, decline, meetings, overtime;
+    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private final JLabel welcome, title, employeeIDText, startDateText, endDateText, firstNameText, lastNameText;
     private static JLabel employeeID, startDate, endDate, firstName, lastName;
     private static boolean refresh = false;
@@ -48,6 +45,12 @@ public class HRHolidayActions {
         
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         accept = new JButton("Accept");
         
@@ -127,6 +130,16 @@ public class HRHolidayActions {
             }
         });
         
+        
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
+        });
+        
        
        
         // Quickbar positioning & adding
@@ -147,6 +160,12 @@ public class HRHolidayActions {
         
         holidays.setBounds(50, 155, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 205, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 255, 135, 45);
+        quickmenu.add(overtime);
        
        
        

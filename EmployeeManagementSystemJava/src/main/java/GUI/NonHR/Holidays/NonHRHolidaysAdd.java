@@ -7,7 +7,7 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class NonHRAddHoliday {
+public class NonHRHolidaysAdd {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
@@ -17,7 +17,7 @@ public class NonHRAddHoliday {
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
     private JTextField startDateYear, startDateMonth, startDateDay, endDateYear, endDateMonth, endDateDay;
 
-    public NonHRAddHoliday() throws ClassNotFoundException {
+    public NonHRHolidaysAdd() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();

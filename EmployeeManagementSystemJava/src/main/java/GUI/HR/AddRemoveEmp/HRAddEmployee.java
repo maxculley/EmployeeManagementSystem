@@ -5,14 +5,13 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
 public class HRAddEmployee {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, submit, holidays;
-    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, submit, holidays, meetings, overtime;
+    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private final JLabel welcome, title, firstNameText, lastNameText, addressText, ageText, baseText, salaryText, passwordText;
     private static JTextField firstName, lastName, address, age, baseSalary, salary, password;
     private final JRadioButton male, female, other, hr, nonhr;
@@ -44,6 +43,12 @@ public class HRAddEmployee {
         
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
        
         logout = new JButton("Logout");
         
@@ -129,6 +134,16 @@ public class HRAddEmployee {
         });
         
         
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
+        });
+        
+        
         submit.addActionListener(listener -> {
             String choice;
             int type;
@@ -178,6 +193,12 @@ public class HRAddEmployee {
         
         holidays.setBounds(50, 155, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 205, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 255, 135, 45);
+        quickmenu.add(overtime);
        
        
        

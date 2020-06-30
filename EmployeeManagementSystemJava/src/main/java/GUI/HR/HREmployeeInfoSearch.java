@@ -4,7 +4,6 @@ import GUI.General.GUIInfo;
 import java.awt.Color;
 import javax.swing.*;
 import Database.DBRequests;
-import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 
@@ -16,8 +15,8 @@ public class HREmployeeInfoSearch {
     private final JPanel quickmenu, content;
     private final JLabel welcome, title, idEntryText, infoChangeText, dropdownLabel, id, firstName, lastName, address, age, gender, salary;
     private final JTextField idInput, infoChangeInput;
-    private final JButton switchType, logout, userSearch, contentSend, addRemoveEmployee, holidays;
-    private String userSearchText, switchTypeText, titleText, userSelection, data, addRemoveEmployeeText, holidaysText;
+    private final JButton switchType, logout, userSearch, contentSend, addRemoveEmployee, holidays, meetings, overtime;
+    private String userSearchText, switchTypeText, titleText, userSelection, data, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private Choice selection;
     private int inputResult;
     private static boolean refresh = false;
@@ -48,6 +47,12 @@ public class HREmployeeInfoSearch {
         
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         contentSend = new JButton("Confirm");
         
@@ -134,6 +139,16 @@ public class HREmployeeInfoSearch {
         holidays.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayHome");
         });
+        
+        
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
+        });
 
         
         contentSend.addActionListener(listener -> {
@@ -217,6 +232,12 @@ public class HREmployeeInfoSearch {
         
         holidays.setBounds(50, 155, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 205, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 255, 135, 45);
+        quickmenu.add(overtime);
         
         
         

@@ -8,19 +8,20 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class NonHRViewHoliday {
+public class NonHRHolidaysView {
 
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title, startDateText, endDateText, statusText;
-    private final JButton changeInfo, holidays, switchType, logout, next, previous;
+    private final JButton changeInfo, holidays, switchType, logout;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private static JButton next, previous;
     private static JLabel startDate, endDate, status;
     private static boolean refresh = false;
     private static int pageCount = 0;
     private static Holiday currentHol;
 
-    public NonHRViewHoliday() throws ClassNotFoundException {
+    public NonHRHolidaysView() throws ClassNotFoundException {
         
         // Panels
         menu = new JPanel();
@@ -199,12 +200,8 @@ public class NonHRViewHoliday {
         }
     }
     
-    public static void setCount() {
-        pageCount = 0;
-    }
-    
     public static JPanel getPage() {
         return menu;
     }
- 
+
 }

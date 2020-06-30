@@ -2,11 +2,8 @@ package GUI.HR.Holidays;
  
 import Database.DBRequests;
 import GUI.General.GUIInfo;
-import GUI.NonHR.Holidays.NonHRViewHoliday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
  
 public class HRHolidayHomeMenu {
@@ -14,8 +11,8 @@ public class HRHolidayHomeMenu {
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title;
-    private final JButton holidays, switchType, logout, accept, view, userSearch, addRemoveEmployee;
-    private final String userSearchText, switchTypeText, titleText, holidaysText, addRemoveEmployeeText, acceptText;
+    private final JButton holidays, switchType, logout, accept, view, userSearch, addRemoveEmployee, meetings, overtime;
+    private final String userSearchText, switchTypeText, titleText, holidaysText, addRemoveEmployeeText, acceptText, meetingsText, overtimeText;
 
     public HRHolidayHomeMenu() throws ClassNotFoundException {
         
@@ -44,9 +41,15 @@ public class HRHolidayHomeMenu {
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
        
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+       
         logout = new JButton("Logout");
         
-        acceptText = "Accept/decline\nrequests";
+        acceptText = "Accept/decline\nHolidays";
         accept = new JButton("<html><style>p {text-align: center;}</style> <p>" + acceptText.replaceAll("\\n", "<br>") + "</p></html>");
         
         view = new JButton("View holidays");
@@ -90,7 +93,7 @@ public class HRHolidayHomeMenu {
             try {
                 SystemInfo.setHolidays();
             } catch (Exception ex) {}
-            HRViewHoliday.HRViewHolRefresh();
+            HRHolidayView.HRViewHolRefresh();
         });
         
         
@@ -105,6 +108,16 @@ public class HRHolidayHomeMenu {
                     GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMenu");
                 } else {}
             } catch (ClassNotFoundException ex) {}
+        });
+        
+        
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
         });
         
         
@@ -127,6 +140,12 @@ public class HRHolidayHomeMenu {
         
         holidays.setBounds(50, 155, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 205, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 255, 135, 45);
+        quickmenu.add(overtime);
         
         
         

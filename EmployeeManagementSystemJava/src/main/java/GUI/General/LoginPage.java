@@ -2,7 +2,6 @@ package GUI.General;
 
 import GUI.NonHR.NonHREmployeeInfo;
 import GUI.HR.HREmployeeInfoSearch;
-import GUI.General.GUIInfo;
 import Database.DBRequests;
 import Employee.HR;
 import Employee.NonHR;

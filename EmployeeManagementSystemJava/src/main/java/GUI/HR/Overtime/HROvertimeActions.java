@@ -1,27 +1,22 @@
-package GUI.HR.Holidays;
- 
+
+package GUI.HR.Overtime;
+
 import Database.DBRequests;
 import GUI.General.GUIInfo;
-import static GUI.NonHR.Holidays.NonHRViewHoliday.NonHRViewHolRefresh;
-import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
  
-public class HRViewHoliday {
+public class HROvertimeActions {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, next, previous;
-    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText;
-    private final JLabel welcome, title, startDateText, endDateText, statusText, idText;
-    private static JLabel startDate, endDate, status, id;
-    private static int pageCount;
-    private static boolean refresh = false;
-    private static Holiday currentHol;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime;
+    private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
+    private final JLabel welcome, title;
    
    
-    public HRViewHoliday() {
+    public HROvertimeActions() {
        
         // Panels
         menu = new JPanel();
@@ -44,13 +39,15 @@ public class HRViewHoliday {
        
         addRemoveEmployeeText = "Add/Remove\nEmployee";
         addRemoveEmployee = new JButton("<html><style>p {text-align: center;}</style> <p>" + addRemoveEmployeeText.replaceAll("\\n", "<br>") + "</p></html>");
-        
+       
         holidaysText = "View/Change\nHolidays";
         holidays = new JButton("<html><style>p {text-align: center;}</style> <p>" + holidaysText.replaceAll("\\n", "<br>") + "</p></html>");
-        
-        next = new JButton("Next");
-        
-        previous = new JButton("Previous");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
        
         logout = new JButton("Logout");
        
@@ -58,18 +55,8 @@ public class HRViewHoliday {
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
-        
-        startDateText = new JLabel("Start Date:");
-        endDateText = new JLabel("End Date:");
-        statusText = new JLabel("Status:");
-        idText = new JLabel("Employee ID:");
-        
-        id = new JLabel();
-        startDate = new JLabel();
-        endDate = new JLabel();
-        status = new JLabel();
        
-        titleText = "<html><h2 align='center'>View Holidays<h2>";
+        titleText = "<html><h2 align='center'>Accept/Decline Overtime Requests<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
        
        
@@ -92,8 +79,8 @@ public class HRViewHoliday {
         userSearch.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMenu");
         });
-        
-        
+       
+       
         holidays.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRHolidayHome");
         });
@@ -104,24 +91,13 @@ public class HRViewHoliday {
         });
         
         
-        next.addActionListener(listener -> {
-            pageCount++;
-            previous.setVisible(true);
-            HRViewHolRefresh();
-            if (pageCount == SystemInfo.getHoliday().size() - 1) {
-                next.setVisible(false);
-            }
-            
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
         });
         
         
-        previous.addActionListener(listener -> {
-            pageCount--;
-            next.setVisible(true);
-            HRViewHolRefresh();
-            if (pageCount == 0) {
-                previous.setVisible(false);
-            }
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
         });
        
        
@@ -141,45 +117,21 @@ public class HRViewHoliday {
        
         addRemoveEmployee.setBounds(50, 105, 135, 45);
         quickmenu.add(addRemoveEmployee);
-        
+       
         holidays.setBounds(50, 155, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 205, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 255, 135, 45);
+        quickmenu.add(overtime);
        
        
        
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
-        
-        
-        idText.setBounds(70, 97, 140, 25);
-        content.add(idText);
-        
-        startDateText.setBounds(70, 157, 140, 25);
-        content.add(startDateText);
-        
-        endDateText.setBounds(70, 217, 140, 25);
-        content.add(endDateText);
-        
-        statusText.setBounds(70, 277, 140, 25);
-        content.add(statusText);
-        
-        
-        content.add(id);
-        
-        content.add(startDate);
-        
-        content.add(endDate);
-        
-        content.add(status);
-        
-        
-        previous.setBounds(175, 350, 90, 25);
-        content.add(previous);
-        previous.setVisible(false);
-        
-        next.setBounds(290, 350, 90, 25);
-        content.add(next);
        
        
        
@@ -197,37 +149,6 @@ public class HRViewHoliday {
         menu.add(quickmenu);
        
  
-    }
-    
-    public static void HRViewHolRefresh() {
-        currentHol = (Holiday) SystemInfo.getHoliday().get(pageCount);
-        if (!refresh) {
-            id.setText(currentHol.getEmployeeID() + "");
-            id.setHorizontalAlignment(SwingConstants.RIGHT);
-            id.setBounds(250, 97, 235, 15);
-            
-            startDate.setText(currentHol.getStartDate());
-            startDate.setHorizontalAlignment(SwingConstants.RIGHT);
-            startDate.setBounds(250, 157, 235, 15);
-
-            endDate.setText(currentHol.getEndDate());
-            endDate.setHorizontalAlignment(SwingConstants.RIGHT);
-            endDate.setBounds(250, 217, 235, 15);
-
-            status.setText(currentHol.getStatus());
-            status.setHorizontalAlignment(SwingConstants.RIGHT);
-            status.setBounds(250, 277, 235, 15);
-            refresh = true;
-        } else {
-            id.setText(currentHol.getEmployeeID() + "");
-            startDate.setText(currentHol.getStartDate());
-            endDate.setText(currentHol.getEndDate());
-            status.setText(currentHol.getStatus());
-        }
-    }
-    
-    public static void setCount() {
-        pageCount = 0;
     }
  
     public static JPanel getPage() {
