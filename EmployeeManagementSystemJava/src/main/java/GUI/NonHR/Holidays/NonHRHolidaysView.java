@@ -13,8 +13,8 @@ public class NonHRHolidaysView {
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title, startDateText, endDateText, statusText;
-    private final JButton changeInfo, holidays, switchType, logout;
-    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime;
+    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
     private static JButton next, previous;
     private static JLabel startDate, endDate, status;
     private static boolean refresh = false;
@@ -44,6 +44,12 @@ public class NonHRHolidaysView {
         
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         next = new JButton("Next");
         
@@ -82,6 +88,16 @@ public class NonHRHolidaysView {
         
         holidays.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRHolidayHome");
+        });
+        
+        
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMeetingsHome");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
         });
         
         
@@ -128,6 +144,12 @@ public class NonHRHolidaysView {
         
         holidays.setBounds(50, 105, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 155, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 205, 135, 45);
+        quickmenu.add(overtime);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

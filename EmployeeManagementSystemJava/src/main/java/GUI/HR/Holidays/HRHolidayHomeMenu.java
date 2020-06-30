@@ -52,7 +52,7 @@ public class HRHolidayHomeMenu {
         acceptText = "Accept/decline\nHolidays";
         accept = new JButton("<html><style>p {text-align: center;}</style> <p>" + acceptText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        view = new JButton("View holidays");
+        view = new JButton("View Holidays");
         
         
         

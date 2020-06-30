@@ -15,9 +15,9 @@ public class NonHREmployeeInfo {
     private static JPanel quickmenu, content;
     private final JLabel welcome, dropdownLabel, infoInputLabel, title, id, firstName, lastName, address, age, gender, salary;
     private static JLabel idInfo, firstNameInfo, lastNameInfo, addressInfo, ageInfo, genderInfo, salaryInfo;
-    private final JButton changeInfo, holidays, switchType, logout, contentSend;
+    private final JButton changeInfo, holidays, switchType, logout, contentSend, meetings, overtime;
     private final JTextField infoInput;
-    private String changeInfoText, holidaysText, switchTypeText, userSelection, titleText, data;
+    private String changeInfoText, holidaysText, switchTypeText, userSelection, titleText, data, meetingsText, overtimeText;
     private Choice selection;
     private static boolean refresh = false;
 
@@ -48,6 +48,12 @@ public class NonHREmployeeInfo {
         
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         contentSend = new JButton("Confirm");
         
@@ -127,6 +133,16 @@ public class NonHREmployeeInfo {
         });
         
         
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMeetingsHome");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
+        });
+        
+        
         contentSend.addActionListener(listener -> {
             try {
                 switch (userSelection) {
@@ -183,6 +199,12 @@ public class NonHREmployeeInfo {
         
         holidays.setBounds(50, 105, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 155, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 205, 135, 45);
+        quickmenu.add(overtime);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

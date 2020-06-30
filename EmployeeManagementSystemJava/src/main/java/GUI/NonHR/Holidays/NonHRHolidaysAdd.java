@@ -13,8 +13,8 @@ public class NonHRHolidaysAdd {
     private static JPanel quickmenu, content;
     private final JLabel welcome, title, startDateText, endDateText;
     private JLabel returnMessage;
-    private final JButton changeInfo, holidays, switchType, logout, submit;
-    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private final JButton changeInfo, holidays, switchType, logout, submit, meetings, overtime;
+    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
     private JTextField startDateYear, startDateMonth, startDateDay, endDateYear, endDateMonth, endDateDay;
 
     public NonHRHolidaysAdd() throws ClassNotFoundException {
@@ -40,6 +40,12 @@ public class NonHRHolidaysAdd {
         
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         submit = new JButton("Submit");
         
@@ -84,6 +90,16 @@ public class NonHRHolidaysAdd {
         });
         
         
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMeetingsHome");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
+        });
+        
+        
         switchType.addActionListener(listener -> {
             try {
                 if ((DBRequests.isEmployee(SystemInfo.getID())).equals("1")) {
@@ -116,6 +132,12 @@ public class NonHRHolidaysAdd {
         
         holidays.setBounds(50, 105, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 155, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 205, 135, 45);
+        quickmenu.add(overtime);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

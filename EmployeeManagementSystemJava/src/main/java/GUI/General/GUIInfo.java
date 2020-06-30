@@ -7,6 +7,8 @@ import GUI.HR.Holidays.*;
 import GUI.HR.Meetings.*;
 import GUI.HR.Overtime.*;
 import GUI.NonHR.*;
+import GUI.NonHR.Meetings.*;
+import GUI.NonHR.Overtime.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -27,6 +29,14 @@ public class GUIInfo {
         new NonHRHolidaysHome();
         new NonHRHolidaysAdd();
         new NonHRHolidaysView();
+        new NonHRMeetingsAdd();
+        new NonHRMeetingsHome();
+        new NonHRMeetingsView();
+        new NonHROvertimeAdd();
+        new NonHROvertimeHome();
+        new NonHROvertimeView();
+        
+        
         new HREmployeeInfoSearch();
         new HRAddRemoveHome();
         new HRAddEmployee();
@@ -44,10 +54,20 @@ public class GUIInfo {
 
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
+        
+        
         container.add(NonHREmployeeInfo.getPage(), "NonHRMenu");
         container.add(NonHRHolidaysHome.getPage(), "NonHRHolidayHome");
         container.add(NonHRHolidaysAdd.getPage(), "NonHRAddHoliday");
         container.add(NonHRHolidaysView.getPage(), "NonHRViewHoliday");
+        container.add(NonHRMeetingsAdd.getPage(), "NonHRMeetingsAdd");
+        container.add(NonHRMeetingsHome.getPage(), "NonHRMeetingsHome");
+        container.add(NonHRMeetingsView.getPage(), "NonHRMeetingsView");
+        container.add(NonHROvertimeAdd.getPage(), "NonHROvertimeAdd");
+        container.add(NonHROvertimeHome.getPage(), "NonHROvertimeHome");
+        container.add(NonHROvertimeView.getPage(), "NonHROvertimeView");
+        
+        
         container.add(HREmployeeInfoSearch.getPage(), "HRMenu");
         container.add(HRAddRemoveHome.getPage(), "HRAddRemove");
         container.add(HRAddEmployee.getPage(), "HRAdd");

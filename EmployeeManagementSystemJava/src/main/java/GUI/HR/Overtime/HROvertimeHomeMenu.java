@@ -54,7 +54,7 @@ public class HROvertimeHomeMenu {
         acceptText = "Accept/decline\nOvertime";
         accept = new JButton("<html><style>p {text-align: center;}</style> <p>" + acceptText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        view = new JButton("View holidays");
+        view = new JButton("View Overtime");
        
        
        

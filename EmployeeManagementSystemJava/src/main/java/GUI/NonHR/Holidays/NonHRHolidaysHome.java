@@ -11,8 +11,8 @@ public class NonHRHolidaysHome {
     private static JPanel menu;
     private static JPanel quickmenu, content;
     private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout, add, view;
-    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText;
+    private final JButton changeInfo, holidays, switchType, logout, add, view, meetings, overtime;
+    private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText, addText;
 
     public NonHRHolidaysHome() throws ClassNotFoundException {
         
@@ -37,12 +37,19 @@ public class NonHRHolidaysHome {
         
         switchTypeText = "Switch to \nManagement";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        meetingsText = "View/Change\nMeetings";
+        meetings = new JButton("<html><style>p {text-align: center;}</style> <p>" + meetingsText.replaceAll("\\n", "<br>") + "</p></html>");
+       
+        overtimeText = "View/Change\nOvertime";
+        overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
         
         logout = new JButton("Logout");
         
-        add = new JButton("Add holiday");
+        addText = "Request a\nHoliday";
+        add = new JButton("<html><style>p {text-align: center;}</style> <p>" + addText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        view = new JButton("View holiday");
+        view = new JButton("View Holidays");
         
         
         
@@ -72,6 +79,16 @@ public class NonHRHolidaysHome {
         
         add.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRAddHoliday");
+        });
+        
+        
+        meetings.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMeetingsHome");
+        });
+        
+        
+        overtime.addActionListener(listener -> {
+            GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
         });
         
         
@@ -106,6 +123,12 @@ public class NonHRHolidaysHome {
         
         holidays.setBounds(50, 105, 135, 45);
         quickmenu.add(holidays);
+       
+        meetings.setBounds(50, 155, 135, 45);
+        quickmenu.add(meetings);
+        
+        overtime.setBounds(50, 205, 135, 45);
+        quickmenu.add(overtime);
         
         switchType.setBounds(55, 415, 120, 45);
         quickmenu.add(switchType);

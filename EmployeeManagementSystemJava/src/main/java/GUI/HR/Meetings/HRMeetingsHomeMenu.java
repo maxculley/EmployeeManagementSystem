@@ -51,10 +51,10 @@ public class HRMeetingsHomeMenu {
        
         logout = new JButton("Logout");
         
-        acceptText = "Accept/decline\nrequests";
+        acceptText = "Accept/decline\nMeetings";
         accept = new JButton("<html><style>p {text-align: center;}</style> <p>" + acceptText.replaceAll("\\n", "<br>") + "</p></html>");
         
-        view = new JButton("View holidays");
+        view = new JButton("View Meetings");
        
        
        
