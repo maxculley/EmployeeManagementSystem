@@ -413,6 +413,19 @@ abstract public class DBRequests {
         st.close();
     }
     
+    public static void addMeeting(String startYear, String startMonth, String startDay, String startHour, String startMin, String endHour, String endMin) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO employee_meetings VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + startHour + ":" + startMin + "','" + endHour + ":" + endMin + "','Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
     
     
     

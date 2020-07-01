@@ -10,9 +10,11 @@ public class NonHRMeetingsAdd {
  
     private static JPanel menu;
     private static JPanel quickmenu, content;
-    private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime;
+    private JLabel returnMessage;
+    private final JLabel welcome, title, startDateText, startTimeText, endTimeText;
+    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime, submit;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
+    private JTextField startDateYear, startDateMonth, startDateDay, startTimeHour, startTimeMin, endTimeHour, endTimeMin;
  
     public NonHRMeetingsAdd() throws ClassNotFoundException {
        
@@ -43,13 +45,30 @@ public class NonHRMeetingsAdd {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        submit = new JButton("Submit");
        
         logout = new JButton("Logout");
-       
-       
-       
+        
+        
+        
+        // Text Fields
+        startDateYear = new JTextField("YYYY");
+        startDateMonth = new JTextField("MM");
+        startDateDay = new JTextField("DD");
+        startTimeHour = new JTextField("HH");
+        startTimeMin = new JTextField("MM");
+        endTimeHour = new JTextField("HH");
+        endTimeMin = new JTextField("MM");
+        
+        
+        
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
+        startDateText = new JLabel("Start Date:");
+        startTimeText = new JLabel("Start Time:");
+        endTimeText = new JLabel("End Time:");
+        returnMessage = new JLabel("", SwingConstants.CENTER);
        
         titleText = "<html><h2 align='center'>Add Meeting<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -89,6 +108,17 @@ public class NonHRMeetingsAdd {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
         });
+        
+        
+        submit.addActionListener(listener -> {
+            try {
+                DBRequests.addMeeting(startDateYear.getText(), startDateMonth.getText(), startDateDay.getText(), startTimeHour.getText(), startTimeMin.getText(), endTimeHour.getText(), endTimeMin.getText());
+                returnMessage.setText("Meeting successfully requested");
+            } catch (Exception e) {
+                returnMessage.setText("Input error, check entries are correct");
+                e.printStackTrace();
+            }
+        });
        
        
        
@@ -119,6 +149,46 @@ public class NonHRMeetingsAdd {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        startDateText.setBounds(70, 97, 140, 25);
+        content.add(startDateText);
+        
+        startDateYear.setBounds(220, 97, 90, 25);
+        content.add(startDateYear);
+        
+        startDateMonth.setBounds(310, 97, 90, 25);
+        content.add(startDateMonth);
+        
+        startDateDay.setBounds(400, 97, 90, 25);
+        content.add(startDateDay);
+        
+        
+        startTimeText.setBounds(70, 157, 140, 25);
+        content.add(startTimeText);
+        
+        startTimeHour.setBounds(265, 157, 90, 25);
+        content.add(startTimeHour);
+        
+        startTimeMin.setBounds(355, 157, 90, 25);
+        content.add(startTimeMin);
+        
+        
+        endTimeText.setBounds(70, 217, 140, 25);
+        content.add(endTimeText);
+        
+        endTimeHour.setBounds(265, 217, 90, 25);
+        content.add(endTimeHour);
+        
+        endTimeMin.setBounds(355, 217, 90, 25);
+        content.add(endTimeMin);
+        
+        
+        submit.setBounds(230, 277, 100, 25);
+        content.add(submit);
+        
+        returnMessage.setBounds(135, 305, 300, 25);
+        content.add(returnMessage);
        
        
        
