@@ -5,22 +5,17 @@ package Meeting;
 public class Meeting {
     
     private int meetingID, employeeID;
-    private String firstName, lastName, date, status;
+    private String firstName, lastName, date, startTime, endTime, status;
     
     
-    public Meeting(int meetingID, int employeeID, String firstName, String lastName, String date, String status) {
+    public Meeting(int meetingID, int employeeID, String firstName, String lastName, String date, String startTime, String endTime, String status) {
         setMeetingID(meetingID);
         setEmployeeID(employeeID);
         setFirstName(firstName);
         setLastName(lastName);
         setDate(date);
-        setStatus(status);
-    }
-    
-    public Meeting(int meetingID, int employeeID, String date, String status) {
-        setMeetingID(meetingID);
-        setEmployeeID(employeeID);
-        setDate(date);
+        setStartTime(startTime);
+        setEndTime(endTime);
         setStatus(status);
     }
     
@@ -57,11 +52,27 @@ public class Meeting {
     }
     
     
-    public String getdate() {
+    public String getDate() {
         return date;
     }
     public void setDate(String date) {
         this.date = date;
+    }
+    
+    
+    public String getStartTime() {
+        return startTime;
+    }
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    
+    
+    public String getEndTime() {
+        return endTime;
+    }
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
     
     

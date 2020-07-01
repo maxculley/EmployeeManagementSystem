@@ -1,6 +1,7 @@
 package Database;
 
 import Holiday.Holiday;
+import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 import java.util.ArrayList;
@@ -214,6 +215,25 @@ abstract public class DBRequests {
         }
     }
     
+    public static Meeting getMeeting() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_meetings WHERE status = 'Pending' ORDER BY date ASC";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            int id = rs.getInt("employee_id");
+            
+            return new Meeting(rs.getInt("meeting_id"), id, getFirstName(id), getLastName(id), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status"));
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     
     
     /******************** UPDATE DATA ********************/
@@ -415,6 +435,32 @@ abstract public class DBRequests {
     
     public static void addMeeting(String startYear, String startMonth, String startDay, String startHour, String startMin, String endHour, String endMin) throws ClassNotFoundException, SQLException {
         String query = "INSERT INTO employee_meetings VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + startHour + ":" + startMin + "','" + endHour + ":" + endMin + "','Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void acceptMeeting(int meetingID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_meetings SET status = 'Accepted' WHERE meeting_id = " + meetingID + ";";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void declineMeeting(int meetingID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_meetings SET status = 'Declined' WHERE meeting_id = " + meetingID + ";";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 

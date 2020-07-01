@@ -3,17 +3,22 @@ package GUI.HR.Meetings;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
+import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
  
 public class HRMeetingsActions {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, accept, decline;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
-    private final JLabel welcome, title;
+    private final JLabel welcome, title, employeeIDText, dateText, startTimeText, endTimeText, firstNameText, lastNameText;
+    private static JLabel employeeID, date, startTime, endTime, firstName, lastName;
+    private static Meeting currentMeeting;
+    private static boolean refresh = false;
    
    
     public HRMeetingsActions() {
@@ -48,6 +53,10 @@ public class HRMeetingsActions {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        accept = new JButton("Accept");
+        
+        decline = new JButton("Decline");
        
         logout = new JButton("Logout");
        
@@ -55,6 +64,22 @@ public class HRMeetingsActions {
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        
+        
+        employeeIDText = new JLabel("ID:");
+        dateText = new JLabel("Meeting date:");
+        startTimeText = new JLabel("Start time:");
+        endTimeText = new JLabel("End time:");
+        firstNameText = new JLabel("First name:");
+        lastNameText = new JLabel("Last name:");
+        
+        employeeID = new JLabel();
+        date = new JLabel();
+        startTime = new JLabel();
+        endTime = new JLabel();
+        firstName = new JLabel();
+        lastName = new JLabel();
+        
        
         titleText = "<html><h2 align='center'>Accept/Decline Meeting Requests<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -99,6 +124,25 @@ public class HRMeetingsActions {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
         });
+        
+        
+        decline.addActionListener(listener -> {
+            try {
+                DBRequests.declineMeeting(currentMeeting.getMeetingID());
+                meetingRefresh();
+            } catch (Exception e) {
+                employeeID.setText("No meetings requested");
+            }
+        });
+        
+        accept.addActionListener(listener -> {
+            try {
+                DBRequests.acceptMeeting(currentMeeting.getMeetingID());
+                meetingRefresh();
+            } catch (Exception e) {
+                employeeID.setText("No meetings requested");
+            }
+        });
        
        
        
@@ -132,6 +176,43 @@ public class HRMeetingsActions {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        employeeIDText.setBounds(70, 97, 140, 25);
+        content.add(employeeIDText);
+        
+        firstNameText.setBounds(70, 147, 140, 25);
+        content.add(firstNameText);
+        
+        lastNameText.setBounds(70, 197, 140, 25);
+        content.add(lastNameText);
+        
+        dateText.setBounds(70, 247, 140, 25);
+        content.add(dateText);
+        
+        startTimeText.setBounds(70, 297, 140, 25);
+        content.add(startTimeText);
+        
+        endTimeText.setBounds(70, 347, 140, 25);
+        content.add(endTimeText);
+        
+        decline.setBounds(175, 410, 90, 25);
+        content.add(decline);
+        
+        accept.setBounds(290, 410, 90, 25);
+        content.add(accept);
+        
+        
+        content.add(employeeID);
+        
+        content.add(firstName);
+        
+        content.add(lastName);
+        
+        content.add(date);
+        
+        content.add(startTime);
+        
+        content.add(endTime);
        
        
        
@@ -149,6 +230,73 @@ public class HRMeetingsActions {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void meetingRefresh() throws ClassNotFoundException {
+        loadData();
+        
+        if (currentMeeting == null) {
+            employeeID.setText("No meetings requested");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 97, 235, 15);
+
+            firstName.setText("");
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 147, 235, 15);
+
+            lastName.setText("");
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 197, 235, 15);
+
+            date.setText("");
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 247, 235, 15);
+
+            startTime.setText("");
+            startTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            startTime.setBounds(250, 297, 235, 15);
+
+            endTime.setText("");
+            endTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            endTime.setBounds(250, 347, 235, 15);
+        } else if (!refresh) {
+            employeeID.setText(currentMeeting.getEmployeeID() + "");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 97, 235, 15);
+
+            firstName.setText(currentMeeting.getFirstName());
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 147, 235, 15);
+
+            lastName.setText(currentMeeting.getLastName());
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 197, 235, 15);
+
+            date.setText(currentMeeting.getDate());
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 247, 235, 15);
+
+            startTime.setText(currentMeeting.getStartTime());
+            startTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            startTime.setBounds(250, 297, 235, 15);
+
+            endTime.setText(currentMeeting.getEndTime());
+            endTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            endTime.setBounds(250, 347, 235, 15);
+            refresh = true;
+        } else {
+            employeeID.setText(currentMeeting.getEmployeeID() + "");
+            firstName.setText(currentMeeting.getFirstName());
+            lastName.setText(currentMeeting.getLastName());
+            date.setText(currentMeeting.getDate());
+            startTime.setText(currentMeeting.getStartTime());
+            endTime.setText(currentMeeting.getEndTime());
+        }
+        
+    }
+    
+    public static void loadData() throws ClassNotFoundException {
+        currentMeeting = DBRequests.getMeeting();
     }
  
     public static JPanel getPage() {

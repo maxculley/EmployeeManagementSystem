@@ -63,6 +63,7 @@ public class HRHolidayActions {
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
         
+        
         employeeIDText = new JLabel("ID:");
         startDateText = new JLabel("Start date:");
         endDateText = new JLabel("End date:");
@@ -74,7 +75,6 @@ public class HRHolidayActions {
         endDate = new JLabel();
         firstName = new JLabel();
         lastName = new JLabel();
-        
         
        
         titleText = "<html><h2 align='center'>Accept/Decline Holiday Requests<h2>";

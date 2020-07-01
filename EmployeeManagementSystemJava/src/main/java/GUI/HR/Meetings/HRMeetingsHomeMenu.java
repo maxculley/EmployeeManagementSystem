@@ -83,6 +83,9 @@ public class HRMeetingsHomeMenu {
         
         accept.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsActions");
+            try {
+                HRMeetingsActions.meetingRefresh();
+            } catch (ClassNotFoundException ex) {}
         });
         
         
