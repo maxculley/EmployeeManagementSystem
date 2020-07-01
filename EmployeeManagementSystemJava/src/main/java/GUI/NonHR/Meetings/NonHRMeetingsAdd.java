@@ -116,7 +116,6 @@ public class NonHRMeetingsAdd {
                 returnMessage.setText("Meeting successfully requested");
             } catch (Exception e) {
                 returnMessage.setText("Input error, check entries are correct");
-                e.printStackTrace();
             }
         });
        
@@ -187,7 +186,7 @@ public class NonHRMeetingsAdd {
         submit.setBounds(230, 277, 100, 25);
         content.add(submit);
         
-        returnMessage.setBounds(135, 305, 300, 25);
+        returnMessage.setBounds(135, 320, 300, 25);
         content.add(returnMessage);
        
        

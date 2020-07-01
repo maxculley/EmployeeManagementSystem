@@ -308,7 +308,7 @@ public class HREmployeeInfoSearch {
         
         // Panel positioning & styling and adding
         quickmenu.setBounds(0, 0, 230, 500);
-        quickmenu.setBackground(Color.LIGHT_GRAY);
+        quickmenu.setBackground(Color.GRAY);
         
         content.setBounds(231, 0, 800, 500);
         
