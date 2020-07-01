@@ -18,14 +18,6 @@ public class Holiday {
         setStatus(status);
     }
     
-    public Holiday(int holidayID, int employeeID, String startDate, String endDate, String status) {
-        setHolidayID(holidayID);
-        setEmployeeID(employeeID);
-        setStartDate(startDate);
-        setEndDate(endDate);
-        setStatus(status);
-    }
-    
 
     public int getHolidayID() {
         return holidayID;

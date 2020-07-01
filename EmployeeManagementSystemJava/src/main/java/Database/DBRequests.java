@@ -182,7 +182,8 @@ abstract public class DBRequests {
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
-                holidays.add(new Holiday(rs.getInt("holiday_id"), rs.getInt("employee_id"), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
+                int ID = rs.getInt("employee_id");
+                holidays.add(new Holiday(rs.getInt("holiday_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
             }
             
             return holidays;
