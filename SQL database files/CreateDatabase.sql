@@ -53,3 +53,19 @@ CREATE TABLE `employee_holidays` (
   INSERT INTO `employee_holidays` VALUES (5,1003,'2020-12-25','2021-01-02','Pending');
   INSERT INTO `employee_holidays` VALUES (6,1003,'2020-07-27','2021-07-31','Pending');
   
+CREATE TABLE `employee_meetings` (
+  `meeting_id` int(6) AUTO_INCREMENT,
+  `employee_id` int(4) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` char(5) NOT NULL,
+  `end_time` char(5) NOT NULL,
+  `status` varchar(8),
+  PRIMARY KEY (`meeting_id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INSERT INTO `employee_meetings` VALUES (1,1001,'2021-01-12','12:45','13:45','Pending');
+  INSERT INTO `employee_meetings` VALUES (2,1001,'2021-02-04','08:15','10:30','Pending');
+  INSERT INTO `employee_meetings` VALUES (3,1002,'2021-01-26','11:00','12:45','Pending');
+  INSERT INTO `employee_meetings` VALUES (4,1002,'2021-04-01','09:30','10:00','Pending');
+  INSERT INTO `employee_meetings` VALUES (5,1003,'2021-07-22','15:45','17:00','Pending');
+  INSERT INTO `employee_meetings` VALUES (6,1003,'2021-03-31','14:15','15:00','Pending');
+  
