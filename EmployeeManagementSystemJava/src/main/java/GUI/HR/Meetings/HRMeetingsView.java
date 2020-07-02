@@ -3,6 +3,7 @@ package GUI.HR.Meetings;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -11,9 +12,13 @@ public class HRMeetingsView {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, next, previous;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
-    private final JLabel welcome, title;
+    private static JLabel employeeID, date, startTime, endTime, firstName, lastName, status;
+    private final JLabel welcome, title, employeeIDText, dateText, startTimeText, endTimeText, firstNameText, lastNameText, statusText;
+    private static Meeting currentMeeting;
+    private static boolean refresh = false;
+    private static int pageCount;
    
    
     public HRMeetingsView() {
@@ -48,6 +53,10 @@ public class HRMeetingsView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
        
         logout = new JButton("Logout");
        
@@ -55,6 +64,24 @@ public class HRMeetingsView {
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        
+        
+        employeeIDText = new JLabel("ID:");
+        dateText = new JLabel("Meeting date:");
+        startTimeText = new JLabel("Start time:");
+        endTimeText = new JLabel("End time:");
+        firstNameText = new JLabel("First name:");
+        lastNameText = new JLabel("Last name:");
+        statusText = new JLabel("Status:");
+        
+        employeeID = new JLabel();
+        date = new JLabel();
+        startTime = new JLabel();
+        endTime = new JLabel();
+        firstName = new JLabel();
+        lastName = new JLabel();
+        status = new JLabel();
+        
        
         titleText = "<html><h2 align='center'>View Meetings<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -99,6 +126,26 @@ public class HRMeetingsView {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
         });
+        
+        
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            HRViewMeetingRefresh();
+            if (pageCount == SystemInfo.getMeeting().size() - 1) {
+                next.setVisible(false);
+            }
+        });
+        
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            HRViewMeetingRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
        
        
        
@@ -132,6 +179,51 @@ public class HRMeetingsView {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        employeeIDText.setBounds(70, 87, 140, 25);
+        content.add(employeeIDText);
+        
+        firstNameText.setBounds(70, 127, 140, 25);
+        content.add(firstNameText);
+        
+        lastNameText.setBounds(70, 167, 140, 25);
+        content.add(lastNameText);
+        
+        dateText.setBounds(70, 207, 140, 25);
+        content.add(dateText);
+        
+        startTimeText.setBounds(70, 247, 140, 25);
+        content.add(startTimeText);
+        
+        endTimeText.setBounds(70, 287, 140, 25);
+        content.add(endTimeText);
+        
+        statusText.setBounds(70, 327, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(employeeID);
+        
+        content.add(firstName);
+        
+        content.add(lastName);
+        
+        content.add(date);
+        
+        content.add(startTime);
+        
+        content.add(endTime);
+        
+        content.add(status);
+        
+        
+        previous.setBounds(175, 380, 90, 25);
+        content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 380, 90, 25);
+        content.add(next);
        
        
        
@@ -149,6 +241,52 @@ public class HRMeetingsView {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void HRViewMeetingRefresh() {
+        currentMeeting = (Meeting) SystemInfo.getMeeting().get(pageCount);
+        if (!refresh) {
+            employeeID.setText(currentMeeting.getEmployeeID() + "");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 87, 235, 15);
+            
+            firstName.setText(currentMeeting.getFirstName());
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 127, 235, 15);
+            
+            lastName.setText(currentMeeting.getLastName());
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 167, 235, 15);
+            
+            date.setText(currentMeeting.getDate());
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 207, 235, 15);
+
+            startTime.setText(currentMeeting.getStartTime());
+            startTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            startTime.setBounds(250, 247, 235, 15);
+
+            endTime.setText(currentMeeting.getEndTime());
+            endTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            endTime.setBounds(250, 287, 235, 15);
+
+            status.setText(currentMeeting.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 327, 235, 15);
+            refresh = true;
+        } else {
+            employeeID.setText(currentMeeting.getEmployeeID() + "");
+            firstName.setText(currentMeeting.getFirstName());
+            lastName.setText(currentMeeting.getLastName());
+            date.setText(currentMeeting.getDate());
+            startTime.setText(currentMeeting.getStartTime());
+            endTime.setText(currentMeeting.getEndTime());
+            status.setText(currentMeeting.getStatus());
+        }
+    }
+    
+    public static void setCount() {
+        pageCount = 0;
     }
  
     public static JPanel getPage() {

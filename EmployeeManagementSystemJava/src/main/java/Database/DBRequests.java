@@ -189,7 +189,6 @@ abstract public class DBRequests {
             return holidays;
 
         } catch (Exception e) {
-            System.out.println("Error 123");
             return null;
         }
     }
@@ -229,6 +228,51 @@ abstract public class DBRequests {
             int id = rs.getInt("employee_id");
             
             return new Meeting(rs.getInt("meeting_id"), id, getFirstName(id), getLastName(id), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status"));
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ArrayList getMeetingList() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_meetings ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Meeting> meetings = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                int ID = rs.getInt("employee_id");
+                meetings.add(new Meeting(rs.getInt("meeting_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status")));
+            }
+            
+            return meetings;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ArrayList getMeetingList(int ID) throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_meetings WHERE employee_id = '" + ID + "' ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Meeting> meetings = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                meetings.add(new Meeting(rs.getInt("meeting_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status")));
+            }
+            
+            return meetings;
 
         } catch (Exception e) {
             return null;

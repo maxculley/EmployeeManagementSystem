@@ -3,12 +3,14 @@ package SystemAndGeneral;
 import Database.DBRequests;
 import Employee.Employee;
 import Holiday.Holiday;
+import Meeting.Meeting;
 import java.util.ArrayList;
 
 public class SystemInfo {
 
     private static Employee user;
     private static ArrayList<Holiday> holidays;
+    private static ArrayList<Meeting> meetings;
 
     public static void setUser(Employee user) {
         SystemInfo.user = user;
@@ -84,6 +86,22 @@ public class SystemInfo {
     }
     public static ArrayList getHolidays() {
         return holidays;
+    }
+    
+    
+    public static void setMeeting() throws ClassNotFoundException {
+        meetings = DBRequests.getMeetingList(getID());
+    }
+    public static ArrayList getMeeting() {
+        return meetings;
+    }
+    
+    
+    public static void setMeetings() throws ClassNotFoundException {
+        meetings = DBRequests.getMeetingList();
+    }
+    public static ArrayList getMeetings() {
+        return meetings;
     }
 
 }

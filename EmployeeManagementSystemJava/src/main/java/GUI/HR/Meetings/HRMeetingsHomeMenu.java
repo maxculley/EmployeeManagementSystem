@@ -91,6 +91,10 @@ public class HRMeetingsHomeMenu {
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsView");
+            try {
+                SystemInfo.setMeetings();
+            } catch (Exception ex) {}
+            HRMeetingsView.HRViewMeetingRefresh();
         });
  
            

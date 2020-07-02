@@ -208,7 +208,7 @@ public class HRHolidayView {
         content.add(status);
         
         
-        previous.setBounds(175, 390, 90, 25); // 73
+        previous.setBounds(175, 390, 90, 25);
         content.add(previous);
         previous.setVisible(false);
         
