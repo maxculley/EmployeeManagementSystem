@@ -62,6 +62,7 @@ public class NonHRHolidaysView {
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
         
+        
         startDateText = new JLabel("Start Date:");
         endDateText = new JLabel("End Date:");
         statusText = new JLabel("Status:");
@@ -69,6 +70,7 @@ public class NonHRHolidaysView {
         startDate = new JLabel();
         endDate = new JLabel();
         status = new JLabel();
+        
         
         titleText = "<html><h2 align='center'>View Holiday<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);

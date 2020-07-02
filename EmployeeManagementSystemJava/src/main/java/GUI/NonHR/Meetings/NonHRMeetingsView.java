@@ -2,6 +2,7 @@ package GUI.NonHR.Meetings;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -10,9 +11,13 @@ public class NonHRMeetingsView {
  
     private static JPanel menu;
     private static JPanel quickmenu, content;
-    private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime;
+    private final JLabel welcome, title, dateText, startTimeText, endTimeText, statusText;
+    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime, next, previous;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
+    private static JLabel date, startTime, endTime, status;
+    private static boolean refresh = false;
+    private static int pageCount = 0;
+    private static Meeting currentMeeting;
  
     public NonHRMeetingsView() throws ClassNotFoundException {
        
@@ -43,6 +48,10 @@ public class NonHRMeetingsView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
        
         logout = new JButton("Logout");
        
@@ -50,7 +59,19 @@ public class NonHRMeetingsView {
        
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
-       
+        
+        
+        dateText = new JLabel("Date:");
+        startTimeText = new JLabel("End Time:");
+        endTimeText = new JLabel("End Time:");
+        statusText = new JLabel("Status:");
+        
+        date = new JLabel();
+        startTime = new JLabel();
+        endTime = new JLabel();
+        status = new JLabel();
+        
+        
         titleText = "<html><h2 align='center'>View Meetings<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
        
@@ -89,6 +110,27 @@ public class NonHRMeetingsView {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
         });
+        
+        
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            NonHRViewMeetingRefresh();
+            if (pageCount == SystemInfo.getMeeting().size() - 1) {
+                next.setVisible(false);
+            }
+            
+        });
+        
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            NonHRViewMeetingRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
        
        
        
@@ -119,6 +161,36 @@ public class NonHRMeetingsView {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        dateText.setBounds(70, 97, 140, 25);
+        content.add(dateText);
+        
+        startTimeText.setBounds(70, 157, 140, 25);
+        content.add(startTimeText);
+        
+        endTimeText.setBounds(70, 217, 140, 25);
+        content.add(endTimeText);
+        
+        statusText.setBounds(70, 277, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(date);
+        
+        content.add(startTime);
+        
+        content.add(endTime);
+        
+        content.add(status);
+        
+        
+        previous.setBounds(175, 350, 90, 25); 
+        content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 350, 90, 25);
+        content.add(next);
        
        
        
@@ -134,7 +206,34 @@ public class NonHRMeetingsView {
         menu.add(content);
         menu.add(quickmenu);
     }
-   
+    
+    public static void NonHRViewMeetingRefresh() {
+        currentMeeting = (Meeting) SystemInfo.getMeetings().get(pageCount);
+        if (!refresh) {
+            date.setText(currentMeeting.getDate());
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 97, 235, 15);
+
+            startTime.setText(currentMeeting.getStartTime());
+            startTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            startTime.setBounds(250, 157, 235, 15);
+
+            endTime.setText(currentMeeting.getEndTime());
+            endTime.setHorizontalAlignment(SwingConstants.RIGHT);
+            endTime.setBounds(250, 217, 235, 15);
+
+            status.setText(currentMeeting.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 277, 235, 15);
+            refresh = true;
+        } else {
+            date.setText(currentMeeting.getDate());
+            startTime.setText(currentMeeting.getStartTime());
+            endTime.setText(currentMeeting.getEndTime());
+            status.setText(currentMeeting.getStatus());
+        }
+    }
+    
     public static JPanel getPage() {
         return menu;
     }
