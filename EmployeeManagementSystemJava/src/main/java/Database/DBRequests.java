@@ -2,6 +2,7 @@ package Database;
 
 import Holiday.Holiday;
 import Meeting.Meeting;
+import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 abstract public class DBRequests {
     
     private static int count = 1003;
-    private Holiday currentHoliday;
     
     
     
@@ -279,6 +279,70 @@ abstract public class DBRequests {
         }
     }
     
+    public static Overtime getOvertime() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_overtime WHERE status = 'Pending' ORDER BY date ASC";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+
+            rs.next();
+            int id = rs.getInt("employee_id");
+            
+            return new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), id, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(id), getLastName(id));
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ArrayList getOvertimeList() throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_overtime ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Overtime> overtime = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                int ID = rs.getInt("employee_id");
+                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("eveningHours"), getFirstName(ID), getLastName(ID)));
+            }
+            
+            return overtime;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ArrayList getOvertimeList(int ID) throws ClassNotFoundException {
+        String query = "SELECT * FROM employee_overtime WHERE employee_id = '" + ID + "' ORDER BY status";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        ArrayList<Overtime> overtime = new ArrayList();
+
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(query)) {
+            
+            while(rs.next()) {
+                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("eveningHours"), getFirstName(ID), getLastName(ID)));
+            }
+            
+            return overtime;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     
     
     /******************** UPDATE DATA ********************/
@@ -439,19 +503,6 @@ abstract public class DBRequests {
         st.close();
     }
     
-    public static void addHoliday(String startYear, String startMonth, String startDay, String endYear, String endMonth, String endDay) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO employee_holidays VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + endYear + "-" + endMonth + "-" + endDay + "','Pending');";
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
-        Statement st = con.createStatement();
-        st.executeUpdate(query);
-        
-        con.close();
-        st.close();
-    }
-    
     public static void acceptHoliday(int holidayID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_holidays SET status = 'Accepted' WHERE holiday_id = " + holidayID + ";";
 
@@ -467,19 +518,6 @@ abstract public class DBRequests {
     
     public static void declineHoliday(int holidayID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_holidays SET status = 'Declined' WHERE holiday_id = " + holidayID + ";";
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
-        Statement st = con.createStatement();
-        st.executeUpdate(query);
-        
-        con.close();
-        st.close();
-    }
-    
-    public static void addMeeting(String startYear, String startMonth, String startDay, String startHour, String startMin, String endHour, String endMin) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO employee_meetings VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + startHour + ":" + startMin + "','" + endHour + ":" + endMin + "','Pending');";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -517,9 +555,31 @@ abstract public class DBRequests {
         st.close();
     }
     
+    public static void acceptOvertime(int overtimeID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_overtime SET status = 'Accepted' WHERE overtime_id = " + overtimeID + ";";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
     
-    
-    
+    public static void declineOvertime(int overtimeID) throws ClassNotFoundException, SQLException {
+        String query = "UPDATE employee_overtime SET status = 'Declined' WHERE overtime_id = " + overtimeID + ";";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
     
     
     
@@ -560,6 +620,32 @@ abstract public class DBRequests {
         st.executeUpdate(query3);
         count++;
         
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void addMeeting(String startYear, String startMonth, String startDay, String startHour, String startMin, String endHour, String endMin) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO employee_meetings VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + startHour + ":" + startMin + "','" + endHour + ":" + endMin + "','Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        
+        con.close();
+        st.close();
+    }
+    
+    public static void addHoliday(String startYear, String startMonth, String startDay, String endYear, String endMonth, String endDay) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO employee_holidays VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + endYear + "-" + endMonth + "-" + endDay + "','Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
         
         con.close();
         st.close();

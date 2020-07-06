@@ -83,6 +83,9 @@ public class HROvertimeHomeMenu {
         
         accept.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeActions");
+            try {
+                HROvertimeActions.overtimeRefresh();
+            } catch (ClassNotFoundException ex) {}
         });
         
         
