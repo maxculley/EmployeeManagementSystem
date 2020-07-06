@@ -2,6 +2,7 @@ package GUI.NonHR.Overtime;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import GUI.NonHR.Meetings.NonHRMeetingsView;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -79,6 +80,11 @@ public class NonHROvertimeHome {
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeView");
+            try {
+                SystemInfo.setOvertime();
+                System.out.println("Success");
+            } catch (Exception e) {}
+            NonHROvertimeView.NonHRViewOvertimeRefresh();
         });
        
        

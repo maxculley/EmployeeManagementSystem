@@ -2,17 +2,23 @@ package GUI.NonHR.Overtime;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
+import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
  
 public class NonHROvertimeView {
  
     private static JPanel menu;
     private static JPanel quickmenu, content;
-    private final JLabel welcome, title;
-    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime;
+    private final JLabel welcome, title, dateText, morningHoursText, eveningHoursText, statusText;
+    private final JButton changeInfo, holidays, switchType, logout, meetings, overtime, next, previous;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
+    private static JLabel date, morningHours, eveningHours, status;
+    private static boolean refresh = false;
+    private static int pageCount = 0;
+    private static Overtime currentOvertime;
  
     public NonHROvertimeView() throws ClassNotFoundException {
        
@@ -43,6 +49,10 @@ public class NonHROvertimeView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
        
         logout = new JButton("Logout");
        
@@ -50,7 +60,19 @@ public class NonHROvertimeView {
        
         // Labels
         welcome = new JLabel("Non HR MENU", SwingConstants.CENTER);
-       
+        
+        
+        dateText = new JLabel("Date:");
+        morningHoursText = new JLabel("Morning Hours:");
+        eveningHoursText = new JLabel("Evening Hours:");
+        statusText = new JLabel("Status:");
+        
+        date = new JLabel();
+        morningHours = new JLabel();
+        eveningHours = new JLabel();
+        status = new JLabel();
+        
+        
         titleText = "<html><h2 align='center'>View Overtime<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
        
@@ -89,6 +111,27 @@ public class NonHROvertimeView {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeHome");
         });
+        
+        
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            NonHRViewOvertimeRefresh();
+            if (pageCount == SystemInfo.getOvertimes().size() - 1) {
+                next.setVisible(false);
+            }
+            
+        });
+        
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            NonHRViewOvertimeRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
        
        
        
@@ -119,6 +162,36 @@ public class NonHROvertimeView {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
+        
+        
+        dateText.setBounds(70, 97, 140, 25);
+        content.add(dateText);
+        
+        morningHoursText.setBounds(70, 157, 140, 25);
+        content.add(morningHoursText);
+        
+        eveningHoursText.setBounds(70, 217, 140, 25);
+        content.add(eveningHoursText);
+        
+        statusText.setBounds(70, 277, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(date);
+        
+        content.add(morningHours);
+        
+        content.add(eveningHours);
+        
+        content.add(status);
+        
+        
+        previous.setBounds(175, 350, 90, 25); 
+        content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 350, 90, 25);
+        content.add(next);
        
        
        
@@ -133,6 +206,33 @@ public class NonHROvertimeView {
         // Add content
         menu.add(content);
         menu.add(quickmenu);
+    }
+    
+    public static void NonHRViewOvertimeRefresh() {
+        currentOvertime = (Overtime) SystemInfo.getOvertimes().get(pageCount);
+        if (!refresh) {
+            date.setText(currentOvertime.getDate());
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 97, 235, 15);
+
+            morningHours.setText(currentOvertime.getMorningHours() + "");
+            morningHours.setHorizontalAlignment(SwingConstants.RIGHT);
+            morningHours.setBounds(250, 157, 235, 15);
+
+            eveningHours.setText(currentOvertime.getEveningHours() + "");
+            eveningHours.setHorizontalAlignment(SwingConstants.RIGHT);
+            eveningHours.setBounds(250, 217, 235, 15);
+
+            status.setText(currentOvertime.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 277, 235, 15);
+            refresh = true;
+        } else {
+            date.setText(currentOvertime.getDate());
+            morningHours.setText(currentOvertime.getMorningHours() + "");
+            eveningHours.setText(currentOvertime.getEveningHours() + "");
+            status.setText(currentOvertime.getStatus());
+        }
     }
    
     public static JPanel getPage() {

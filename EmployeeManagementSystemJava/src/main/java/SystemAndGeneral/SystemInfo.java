@@ -4,6 +4,7 @@ import Database.DBRequests;
 import Employee.Employee;
 import Holiday.Holiday;
 import Meeting.Meeting;
+import Overtime.Overtime;
 import java.util.ArrayList;
 
 public class SystemInfo {
@@ -11,6 +12,7 @@ public class SystemInfo {
     private static Employee user;
     private static ArrayList<Holiday> holidays;
     private static ArrayList<Meeting> meetings;
+    private static ArrayList<Overtime> overtimes;
 
     public static void setUser(Employee user) {
         SystemInfo.user = user;
@@ -102,6 +104,22 @@ public class SystemInfo {
     }
     public static ArrayList getMeetings() {
         return meetings;
+    }
+    
+    
+    public static void setOvertime() throws ClassNotFoundException {
+        overtimes = DBRequests.getOvertimeList(getID());
+    }
+    public static ArrayList getOvertime() {
+        return overtimes;
+    }
+    
+    
+    public static void setOvertimes() throws ClassNotFoundException {
+        overtimes = DBRequests.getOvertimeList();
+    }
+    public static ArrayList getOvertimes() {
+        return overtimes;
     }
 
 }

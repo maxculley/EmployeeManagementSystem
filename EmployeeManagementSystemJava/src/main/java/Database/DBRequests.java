@@ -311,7 +311,7 @@ abstract public class DBRequests {
             
             while(rs.next()) {
                 int ID = rs.getInt("employee_id");
-                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("eveningHours"), getFirstName(ID), getLastName(ID)));
+                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(ID), getLastName(ID)));
             }
             
             return overtime;
@@ -333,7 +333,7 @@ abstract public class DBRequests {
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
-                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("eveningHours"), getFirstName(ID), getLastName(ID)));
+                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(ID), getLastName(ID)));
             }
             
             return overtime;
