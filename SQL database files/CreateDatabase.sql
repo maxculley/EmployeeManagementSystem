@@ -69,3 +69,19 @@ CREATE TABLE `employee_meetings` (
   INSERT INTO `employee_meetings` VALUES (5,1003,'2021-07-22','15:45','17:00','Pending');
   INSERT INTO `employee_meetings` VALUES (6,1003,'2021-03-31','14:15','15:00','Pending');
   
+CREATE TABLE `employee_overtime` (
+  `overtime_id` int(6) AUTO_INCREMENT,
+  `employee_id` int(4) NOT NULL,
+  `date` date NOT NULL,
+  `morning_hours` int(1) NOT NULL,
+  `evening_hours` int(1) NOT NULL,
+  `status` varchar(8),
+  PRIMARY KEY (`overtime_id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INSERT INTO `employee_overtime` VALUES (1,1001,'2021-01-12',0,2,'Pending');
+  INSERT INTO `employee_overtime` VALUES (2,1001,'2021-02-04',1,0,'Pending');
+  INSERT INTO `employee_overtime` VALUES (3,1002,'2021-01-26',2,2,'Pending');
+  INSERT INTO `employee_overtime` VALUES (4,1002,'2021-04-01',3,0,'Pending');
+  INSERT INTO `employee_overtime` VALUES (5,1003,'2021-07-22',0,4,'Pending');
+  INSERT INTO `employee_overtime` VALUES (6,1003,'2021-03-31',1,1,'Pending');
+  
