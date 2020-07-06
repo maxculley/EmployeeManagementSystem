@@ -565,6 +565,22 @@ abstract public class DBRequests {
         st.close();
     }
     
+    public static void addOvertime(String date, int morning, int evening) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO employee_overtime VALUES (DEFAULT," + SystemInfo.getID() + ",'" + date + "'," + morning + "," + evening + ",'Pending');";
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Statement st = con.createStatement();
+        st.executeUpdate(query);
+        count++;
+        
+        
+        con.close();
+        st.close();
+        
+    }
+    
     
     
     /******************** GENERAL ********************/

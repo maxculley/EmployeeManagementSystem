@@ -72,9 +72,9 @@ public class NonHRMeetingsAdd {
        
         titleText = "<html><h2 align='center'>Add Meeting<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
-       
-       
-       
+        
+        
+        
         // Listeners
         logout.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "Login");
