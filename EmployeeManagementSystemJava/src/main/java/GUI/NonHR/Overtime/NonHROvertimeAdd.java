@@ -184,7 +184,7 @@ public class NonHROvertimeAdd {
             date = dateYear.getText() + "-" + dateMonth.getText() + "-" + dateDay.getText();
             try {
                 DBRequests.addOvertime(date, morningCount, eveningCount);
-                returnMessage.setText("Overtime requested");
+                returnMessage.setText("Overtime successfully requested");
             } catch (Exception e) {
                 returnMessage.setText("Invalid input data");
             }
