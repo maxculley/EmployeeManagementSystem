@@ -81,8 +81,7 @@ public class NonHROvertimeHome {
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHROvertimeView");
             try {
-                SystemInfo.setOvertime();
-                System.out.println("Success");
+                SystemInfo.setEmployeeOvertime();
             } catch (Exception e) {}
             NonHROvertimeView.NonHRViewOvertimeRefresh();
         });

@@ -75,14 +75,9 @@ public class SystemInfo {
     }
     
     
-    public static void setHoliday() throws ClassNotFoundException {
+    public static void setEmployeeHoliday() throws ClassNotFoundException {
         holidays = DBRequests.getHolidayList(getID());
     }
-    public static ArrayList getHoliday() {
-        return holidays;
-    }
-    
-    
     public static void setHolidays() throws ClassNotFoundException {
         holidays = DBRequests.getHolidayList();
     }
@@ -91,14 +86,9 @@ public class SystemInfo {
     }
     
     
-    public static void setMeeting() throws ClassNotFoundException {
+    public static void setEmployeeMeeting() throws ClassNotFoundException {
         meetings = DBRequests.getMeetingList(getID());
     }
-    public static ArrayList getMeeting() {
-        return meetings;
-    }
-    
-    
     public static void setMeetings() throws ClassNotFoundException {
         meetings = DBRequests.getMeetingList();
     }
@@ -107,14 +97,9 @@ public class SystemInfo {
     }
     
     
-    public static void setOvertime() throws ClassNotFoundException {
+    public static void setEmployeeOvertime() throws ClassNotFoundException {
         overtimes = DBRequests.getOvertimeList(getID());
     }
-    public static ArrayList getOvertime() {
-        return overtimes;
-    }
-    
-    
     public static void setOvertimes() throws ClassNotFoundException {
         overtimes = DBRequests.getOvertimeList();
     }

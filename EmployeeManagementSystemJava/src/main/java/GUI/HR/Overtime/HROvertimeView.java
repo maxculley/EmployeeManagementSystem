@@ -3,6 +3,7 @@ package GUI.HR.Overtime;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
+import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
@@ -11,9 +12,13 @@ public class HROvertimeView {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, next, previous;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
-    private final JLabel welcome, title;
+    private final JLabel welcome, title, employeeIDText, dateText, morningOvertimeText, eveningOvertimeText, firstNameText, lastNameText, statusText;
+    private static JLabel employeeID, date, morningOvertime, eveningOvertime, firstName, lastName, status;
+    private static Overtime currentOvertime;
+    private static boolean refresh = false;
+    private static int pageCount;
    
    
     public HROvertimeView() {
@@ -48,6 +53,10 @@ public class HROvertimeView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        next = new JButton("Next");
+        
+        previous = new JButton("Previous");
        
         logout = new JButton("Logout");
        
@@ -55,6 +64,24 @@ public class HROvertimeView {
        
         // Labels
         welcome = new JLabel("HR MENU", SwingConstants.CENTER);
+        
+        
+        employeeIDText = new JLabel("ID:");
+        dateText = new JLabel("Meeting date:");
+        morningOvertimeText = new JLabel("Morning hours:");
+        eveningOvertimeText = new JLabel("Evening hours:");
+        firstNameText = new JLabel("First name:");
+        lastNameText = new JLabel("Last name:");
+        statusText = new JLabel("Status:");
+        
+        employeeID = new JLabel();
+        date = new JLabel();
+        morningOvertime = new JLabel();
+        eveningOvertime = new JLabel();
+        firstName = new JLabel();
+        lastName = new JLabel();
+        status = new JLabel();
+        
        
         titleText = "<html><h2 align='center'>View Overtime<h2>";
         title = new JLabel(titleText, SwingConstants.CENTER);
@@ -99,6 +126,26 @@ public class HROvertimeView {
         overtime.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeHomeMenu");
         });
+        
+        
+        next.addActionListener(listener -> {
+            pageCount++;
+            previous.setVisible(true);
+            HRViewOvertimeRefresh();
+            if (pageCount == SystemInfo.getOvertimes().size() - 1) {
+                next.setVisible(false);
+            }
+        });
+        
+        
+        previous.addActionListener(listener -> {
+            pageCount--;
+            next.setVisible(true);
+            HRViewOvertimeRefresh();
+            if (pageCount == 0) {
+                previous.setVisible(false);
+            }
+        });
        
        
        
@@ -132,7 +179,51 @@ public class HROvertimeView {
         // Content positioning & adding
         title.setBounds(0, 20, 570, 35);
         content.add(title);
-       
+        
+        
+        employeeIDText.setBounds(70, 87, 140, 25);
+        content.add(employeeIDText);
+        
+        firstNameText.setBounds(70, 127, 140, 25);
+        content.add(firstNameText);
+        
+        lastNameText.setBounds(70, 167, 140, 25);
+        content.add(lastNameText);
+        
+        dateText.setBounds(70, 207, 140, 25);
+        content.add(dateText);
+        
+        morningOvertimeText.setBounds(70, 247, 140, 25);
+        content.add(morningOvertimeText);
+        
+        eveningOvertimeText.setBounds(70, 287, 140, 25);
+        content.add(eveningOvertimeText);
+        
+        statusText.setBounds(70, 327, 140, 25);
+        content.add(statusText);
+        
+        
+        content.add(employeeID);
+        
+        content.add(firstName);
+        
+        content.add(lastName);
+        
+        content.add(date);
+        
+        content.add(morningOvertime);
+        
+        content.add(eveningOvertime);
+        
+        content.add(status);
+        
+        
+        previous.setBounds(175, 380, 90, 25);
+        content.add(previous);
+        previous.setVisible(false);
+        
+        next.setBounds(290, 380, 90, 25);
+        content.add(next);
        
        
        
@@ -149,6 +240,52 @@ public class HROvertimeView {
         menu.add(quickmenu);
        
  
+    }
+    
+    public static void HRViewOvertimeRefresh() {
+        currentOvertime = (Overtime) SystemInfo.getOvertimes().get(pageCount);
+        if (!refresh) {
+            employeeID.setText(currentOvertime.getEmployeeID() + "");
+            employeeID.setHorizontalAlignment(SwingConstants.RIGHT);
+            employeeID.setBounds(250, 87, 235, 15);
+            
+            firstName.setText(currentOvertime.getFirstName());
+            firstName.setHorizontalAlignment(SwingConstants.RIGHT);
+            firstName.setBounds(250, 127, 235, 15);
+            
+            lastName.setText(currentOvertime.getLastName());
+            lastName.setHorizontalAlignment(SwingConstants.RIGHT);
+            lastName.setBounds(250, 167, 235, 15);
+            
+            date.setText(currentOvertime.getDate());
+            date.setHorizontalAlignment(SwingConstants.RIGHT);
+            date.setBounds(250, 207, 235, 15);
+
+            morningOvertime.setText(currentOvertime.getMorningHours() + "");
+            morningOvertime.setHorizontalAlignment(SwingConstants.RIGHT);
+            morningOvertime.setBounds(250, 247, 235, 15);
+
+            eveningOvertime.setText(currentOvertime.getEveningHours() + "");
+            eveningOvertime.setHorizontalAlignment(SwingConstants.RIGHT);
+            eveningOvertime.setBounds(250, 287, 235, 15);
+
+            status.setText(currentOvertime.getStatus());
+            status.setHorizontalAlignment(SwingConstants.RIGHT);
+            status.setBounds(250, 327, 235, 15);
+            refresh = true;
+        } else {
+            employeeID.setText(currentOvertime.getEmployeeID() + "");
+            firstName.setText(currentOvertime.getFirstName());
+            lastName.setText(currentOvertime.getLastName());
+            date.setText(currentOvertime.getDate());
+            morningOvertime.setText(currentOvertime.getMorningHours() + "");
+            eveningOvertime.setText(currentOvertime.getEveningHours() + "");
+            status.setText(currentOvertime.getStatus());
+        }
+    }
+    
+    public static void setCount() {
+        pageCount = 0;
     }
  
     public static JPanel getPage() {

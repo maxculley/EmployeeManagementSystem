@@ -116,7 +116,7 @@ public class NonHRMeetingsView {
             pageCount++;
             previous.setVisible(true);
             NonHRViewMeetingRefresh();
-            if (pageCount == SystemInfo.getMeeting().size() - 1) {
+            if (pageCount == SystemInfo.getMeetings().size() - 1) {
                 next.setVisible(false);
             }
             

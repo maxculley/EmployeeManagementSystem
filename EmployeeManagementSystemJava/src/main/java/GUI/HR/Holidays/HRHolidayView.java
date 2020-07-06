@@ -117,7 +117,7 @@ public class HRHolidayView {
             pageCount++;
             previous.setVisible(true);
             HRViewHolRefresh();
-            if (pageCount == SystemInfo.getHoliday().size() - 1) {
+            if (pageCount == SystemInfo.getHolidays().size() - 1) {
                 next.setVisible(false);
             }
         });
@@ -234,7 +234,7 @@ public class HRHolidayView {
     }
     
     public static void HRViewHolRefresh() {
-        currentHol = (Holiday) SystemInfo.getHoliday().get(pageCount);
+        currentHol = (Holiday) SystemInfo.getHolidays().get(pageCount);
         if (!refresh) {
             id.setText(currentHol.getEmployeeID() + "");
             id.setHorizontalAlignment(SwingConstants.RIGHT);

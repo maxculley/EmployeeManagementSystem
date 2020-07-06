@@ -107,7 +107,7 @@ public class NonHRHolidaysView {
             pageCount++;
             previous.setVisible(true);
             NonHRViewHolRefresh();
-            if (pageCount == SystemInfo.getHoliday().size() - 1) {
+            if (pageCount == SystemInfo.getHolidays().size() - 1) {
                 next.setVisible(false);
             }
             

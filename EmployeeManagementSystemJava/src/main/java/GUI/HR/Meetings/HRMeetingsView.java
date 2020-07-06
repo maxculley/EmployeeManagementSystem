@@ -14,8 +14,8 @@ public class HRMeetingsView {
     private final JPanel quickmenu, content;
     private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, next, previous;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
-    private static JLabel employeeID, date, startTime, endTime, firstName, lastName, status;
     private final JLabel welcome, title, employeeIDText, dateText, startTimeText, endTimeText, firstNameText, lastNameText, statusText;
+    private static JLabel employeeID, date, startTime, endTime, firstName, lastName, status;
     private static Meeting currentMeeting;
     private static boolean refresh = false;
     private static int pageCount;
@@ -132,7 +132,7 @@ public class HRMeetingsView {
             pageCount++;
             previous.setVisible(true);
             HRViewMeetingRefresh();
-            if (pageCount == SystemInfo.getMeeting().size() - 1) {
+            if (pageCount == SystemInfo.getMeetings().size() - 1) {
                 next.setVisible(false);
             }
         });
@@ -227,7 +227,6 @@ public class HRMeetingsView {
        
        
        
-       
         // Panel positioning & styling and adding
         quickmenu.setBounds(0, 0, 230, 500);
         quickmenu.setBackground(Color.GRAY);
@@ -244,7 +243,7 @@ public class HRMeetingsView {
     }
     
     public static void HRViewMeetingRefresh() {
-        currentMeeting = (Meeting) SystemInfo.getMeeting().get(pageCount);
+        currentMeeting = (Meeting) SystemInfo.getMeetings().get(pageCount);
         if (!refresh) {
             employeeID.setText(currentMeeting.getEmployeeID() + "");
             employeeID.setHorizontalAlignment(SwingConstants.RIGHT);

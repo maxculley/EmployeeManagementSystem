@@ -91,6 +91,10 @@ public class HROvertimeHomeMenu {
         
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HROvertimeView");
+            try {
+                SystemInfo.setOvertimes();
+            } catch (Exception ex) {}
+            HROvertimeView.HRViewOvertimeRefresh();
         });
  
            

@@ -80,7 +80,7 @@ public class NonHRMeetingsHome {
         view.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "NonHRMeetingsView");
             try {
-                SystemInfo.setMeeting();
+                SystemInfo.setEmployeeMeeting();
             } catch (Exception e) {}
             NonHRMeetingsView.NonHRViewMeetingRefresh();
         });
