@@ -1070,6 +1070,14 @@ public final class DBRequests {
     
     /******************** DELETE DATA ********************/
     
+    /**
+     * This method <b>deleteEmployee</b> removes all data in the database for a
+     * specified employee.
+     * 
+     * @param ID Employee's ID
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void deleteEmployee(int ID) throws ClassNotFoundException, SQLException {
         String query1 = "DELETE FROM employee_info WHERE employee_id = '" + ID + "'";
         String query2 = "DELETE FROM employee_passwords WHERE employee_id = '" + ID + "'";
@@ -1093,6 +1101,21 @@ public final class DBRequests {
     
     /******************** INSERT DATA ********************/
     
+    /**
+     * This method <b>addEmployee</b> adds an employee to the database.
+     * 
+     * @param firstName Value of the employee's First Name
+     * @param lastName Value of the employee's Last Name
+     * @param address Value of the employee's Address
+     * @param age Value of the employee's Age
+     * @param gender Value of the employee's Gender
+     * @param employeeType Value of the employee's account type
+     * @param baseSalary Value of the employee's base salary
+     * @param employeeSalary Value of the employee's salary
+     * @param password Value of the employee's password
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void addEmployee(String firstName,
             String lastName,
             String address,
@@ -1122,6 +1145,19 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>addMeeting</b> adds a new meeting to the database.
+     * 
+     * @param startYear Meeting start Year value
+     * @param startMonth Meeting start Month value
+     * @param startDay Meeting start Day value
+     * @param startHour Meeting start Hour value
+     * @param startMin Meeting start Minute value
+     * @param endHour Meeting end Hour value
+     * @param endMin Meeting end Minute value
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void addMeeting(String startYear,
             String startMonth,
             String startDay,
@@ -1144,6 +1180,18 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>addHoliday</b> adds a new holiday to the database.
+     * 
+     * @param startYear Holiday start Year
+     * @param startMonth Holiday start Month
+     * @param startDay Holiday start Day
+     * @param endYear Holiday end Year
+     * @param endMonth Holiday end Month
+     * @param endDay Holiday end Day
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void addHoliday(String startYear,
             String startMonth,
             String startDay,
@@ -1165,6 +1213,15 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>addOvertime</b> adds a new overtime to the database.
+     * 
+     * @param date Overtime date
+     * @param morning Overtime morning hours
+     * @param evening Overtime evening hours
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void addOvertime(String date,
             int morning,
             int evening) throws ClassNotFoundException, SQLException {
