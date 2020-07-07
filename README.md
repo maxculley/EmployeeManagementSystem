@@ -17,6 +17,9 @@ Whilst doing this project I have taught myself some new skills, these are:
 ## Features
 > This project has two sides, an `HR` side and a `Non HR`.
 
+### Login Page
+* Login to your account on the `HR side` or the `Non HR` side based on your account access level
+
 ### The HR features includes:
 #### Employee Details
 * Employee detail `search` and `edit`
