@@ -13,6 +13,7 @@ Whilst doing this project I have taught myself some new skills, these are:
 * Enhanced my `OOP` knowledge
 * Understood the importance of `planning a project`
 * Gained understanding and insight into the `software development process`
+* How to create and use a `Javadoc`
 
 ## Features
 > This project has two sides, an `HR` side and a `Non HR`.
