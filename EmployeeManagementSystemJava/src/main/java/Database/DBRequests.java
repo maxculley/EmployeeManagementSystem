@@ -652,7 +652,7 @@ public final class DBRequests {
      * This method <b>changeAddress</b> changes the value of the address in the 
      * database of the employee currently using the system.
      * 
-     * @param newAddress The value of the new address
+     * @param newAddress The value of the New Address
      * @throws ClassNotFoundException - if the JDBC Driver is not found
      * @throws SQLException - if there is an issue connecting to the database
      */
@@ -675,8 +675,8 @@ public final class DBRequests {
      * This method <b>changeAddress</b> changes the value of the address in the
      * database of a specified employee.
      * 
-     * @param newAddress The value of the new address
-     * @param ID Employee ID
+     * @param newAddress The value of the New Address
+     * @param ID Employee's ID
      * @throws ClassNotFoundException - if the JDBC Driver is not found
      * @throws SQLException - if there is an issue connecting to the database
      */
@@ -699,7 +699,7 @@ public final class DBRequests {
      * This method <b>changeFirstName</b> changes the value of the first name
      * in the database of the employee using the system.
      * 
-     * @param firstName The value of the new first name
+     * @param firstName The value of the new First Name
      * @throws ClassNotFoundException - if the JDBC Driver is not found
      * @throws SQLException - if there is an issue connecting to the database
      */
@@ -719,10 +719,11 @@ public final class DBRequests {
     }
     
     /**
+     * This method <b>changeFirstName</b> changes the value of the first name 
+     * in the database of a specified employee.
      * 
-     * 
-     * @param firstName
-     * @param ID
+     * @param firstName Value of the new First Name
+     * @param ID Employee's ID
      * @throws ClassNotFoundException - if the JDBC Driver is not found
      * @throws SQLException - if there is an issue connecting to the database
      */
@@ -741,6 +742,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeLastName</b> changes the value of the last name
+     * in the database of the employee using the system.
+     * 
+     * @param lastName Value of the new Last Name
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeLastName(String lastName) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET last_name = '" + lastName + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
 
@@ -756,6 +765,15 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeLastName</b> changes the value of the last name
+     * in the database of a specified employee.
+     * 
+     * @param lastName Value of the new Last Name
+     * @param ID Employee's ID
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeLastName(String lastName, int ID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET last_name = '" + lastName + "' WHERE employee_id = '" + ID + "'";
 
@@ -771,6 +789,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeGender</b> changes the value of the Gender in the
+     * database of the employee using the system.
+     * 
+     * @param gender Value of the new Gender
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeGender(String gender) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET gender = '" + gender + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
 
@@ -786,6 +812,15 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeGender</b> changes the value of the Gender in the
+     * database of a specified employee.
+     * 
+     * @param gender Value of the new Gender
+     * @param ID Employee's ID
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeGender(String gender, int ID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE personal_info SET gender = '" + gender + "' WHERE employee_id = '" + ID + "'";
 
@@ -801,6 +836,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changePassword</b> changes the value of the password in the
+     * database of the employee using the system.
+     * 
+     * @param newPassword Value of the new password
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changePassword(String newPassword) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_passwords SET password = '" + newPassword + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
 
@@ -816,6 +859,15 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changePassword</b> changes the value of the password in the
+     * database of a specified employee.
+     * 
+     * @param newPassword Value of the new password
+     * @param ID Employee's ID
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changePassword(String newPassword, int ID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_passwords SET password = '" + newPassword + "' WHERE employee_id = '" + ID + "'";
 
@@ -831,6 +883,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeSalary</b> changes the value of the salary in the
+     * database for the employee using the system.
+     * 
+     * @param salary Value of the new salary
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeSalary(int salary) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_info SET employee_salary = '" + salary + "' WHERE employee_id = '" + SystemInfo.getID() + "'";
 
@@ -844,6 +904,15 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>changeSalary</b> changes the value of the salary in the
+     * database for a specified employee.
+     * 
+     * @param salary Value of the new salary
+     * @param ID Employee's ID
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void changeSalary(int salary, int ID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_info SET employee_salary = '" + salary + "' WHERE employee_id = '" + ID + "'";
 
@@ -859,6 +928,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>acceptHoliday</b> changes the status of a 'Pending' holiday
+     * request to 'Accepted' in the database.
+     * 
+     * @param holidayID Value of a specific holiday
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void acceptHoliday(int holidayID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_holidays SET status = 'Accepted' WHERE holiday_id = " + holidayID + ";";
 
@@ -874,6 +951,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>declineHoliday</b> changes the status of a 'Pending' holiday
+     * request to 'Declined' in the database.
+     * 
+     * @param holidayID Value of a specific holiday
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void declineHoliday(int holidayID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_holidays SET status = 'Declined' WHERE holiday_id = " + holidayID + ";";
 
@@ -889,6 +974,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>acceptMeeting</b> changes the status of a 'Pending' meeting
+     * request to 'Accepted' in the database.
+     * 
+     * @param meetingID Value of a specific meeting
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void acceptMeeting(int meetingID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_meetings SET status = 'Accepted' WHERE meeting_id = " + meetingID + ";";
 
@@ -904,6 +997,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>declineMeetin</b> changes the status of a 'Pending' meeting
+     * request to 'Declined' in the database.
+     * 
+     * @param meetingID Value of a specific meeting
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void declineMeeting(int meetingID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_meetings SET status = 'Declined' WHERE meeting_id = " + meetingID + ";";
 
@@ -919,6 +1020,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>acceptOvertime</b> changes the status of a 'Pending' overtime
+     * request to 'Accepted' in the database.
+     * 
+     * @param overtimeID Value of a specific overtime
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void acceptOvertime(int overtimeID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_overtime SET status = 'Accepted' WHERE overtime_id = " + overtimeID + ";";
 
@@ -934,6 +1043,14 @@ public final class DBRequests {
         st.close();
     }
     
+    /**
+     * This method <b>declineOvertime</b> changes the status of a 'Pending' overtime
+     * request to 'Declined' in the database.
+     * 
+     * @param overtimeID Value of a specific overtime
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     * @throws SQLException - if there is an issue connecting to the database
+     */
     public static void declineOvertime(int overtimeID) throws ClassNotFoundException, SQLException {
         String query = "UPDATE employee_overtime SET status = 'Declined' WHERE overtime_id = " + overtimeID + ";";
 
