@@ -43,7 +43,7 @@ public final class DBRequests {
      * 
      * @param ID Employee's ID 
      * @return Employee type or error return comment
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
      */
     public static String isEmployee(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_type FROM personal_info WHERE employee_id = '" + ID + "'";
@@ -68,12 +68,12 @@ public final class DBRequests {
      * This method <b>getPassword</b> returns the user's password based off
      * their employee ID.
      * 
-     * If the employee ID is valid then the method returns the password of that user,
-     * if the employee ID is invalid the method returns an error message.
+     * If the employee ID is valid then the method returns the password of that
+     * user. If the employee ID is invalid the method returns an error message.
      * 
      * @param ID Employee's ID
      * @return Employee's password or error return comment
-     * @throws ClassNotFoundException 
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
      */
     public static String getPassword(int ID) throws ClassNotFoundException {
         String query = "SELECT password FROM employee_passwords WHERE employee_id = '" + ID + "'";
@@ -93,7 +93,19 @@ public final class DBRequests {
             return "Incorrect Password";
         }
     }
-
+    
+    /**
+     * This method <b>getFirstName</b> returns the user's first name based off
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the first name
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's first name or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getFirstName(int ID) throws ClassNotFoundException {
         String query = "SELECT first_name FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -109,10 +121,22 @@ public final class DBRequests {
             return rs.getString("first_name");
 
         } catch (Exception e) {
-            return "Input is invalid";
+            return "Input for is invalid";
         }
     }
-
+    
+    /**
+     * This method <b>getLastName</b> returns the user's last name based off 
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the last name
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's last name or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getLastName(int ID) throws ClassNotFoundException {
         String query = "SELECT last_name FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -131,7 +155,19 @@ public final class DBRequests {
             return "Input is invalid";
         }
     }
-
+    
+    /**
+     * This method <b>getGender</b> returns the user's gender based off 
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the gender
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's gender or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getGender(int ID) throws ClassNotFoundException {
         String query = "SELECT gender FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -151,6 +187,18 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getAge</b> returns the user's age based off 
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the age
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's age or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getAge(int ID) throws ClassNotFoundException {
         String query = "SELECT age FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -170,6 +218,18 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getAddess</b> returns the user's address based off 
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the address
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's address or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getAddress(int ID) throws ClassNotFoundException {
         String query = "SELECT address FROM personal_info WHERE employee_id = '" + ID + "'";
 
@@ -189,6 +249,18 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getSalary</b> returns the user's salary based off 
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the salary
+     * of that user. If The employee ID is invalid, the method returns an error
+     * message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's salary or error return comment
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static String getSalary(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_salary FROM employee_info WHERE employee_id = '" + ID + "'";
 
@@ -208,6 +280,22 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getHoliday</b> returns a Holiday object from the database
+     * sorted from the start date in ascending order.
+     * 
+     * This object takes in the following fields:
+     * <b>Holiday ID</b>
+     * <b>Employee ID</b>
+     * <b>First Name</b>
+     * <b>Last Name</b>
+     * <b>Start Date</b>
+     * <b>End Date</b>
+     * <b>Status</b>
+     * 
+     * @return Holiday object with data
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static Holiday getHoliday() throws ClassNotFoundException {
         String query = "SELECT * FROM employee_holidays WHERE status = 'Pending' ORDER BY start_date ASC";
 
@@ -223,7 +311,9 @@ public final class DBRequests {
             int id = rs.getInt("employee_id");
             
             return new Holiday(rs.getInt("holiday_id"),
-                    id, getFirstName(id), getLastName(id),
+                    id,
+                    getFirstName(id),
+                    getLastName(id),
                     rs.getString("start_date"),
                     rs.getString("end_date"),
                     rs.getString("status"));
@@ -233,6 +323,13 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getHolidayList</b> returns an ArrayList of Holiday objects
+     * for every holiday that is in the database.
+     * 
+     * @return ArrayList of Holiday objects
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static ArrayList getHolidayList() throws ClassNotFoundException {
         String query = "SELECT * FROM employee_holidays ORDER BY status";
 
@@ -264,6 +361,14 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getHolidayList</b> takes an employee ID and returns an
+     * ArrayList of Holiday objects for the holidays of that specific employee.
+     * 
+     * @param ID Employee's ID
+     * @return ArrayList of Holiday objects for an specific employee
+     * @throws ClassNotFoundException 
+     */
     public static ArrayList getHolidayList(int ID) throws ClassNotFoundException {
         String query = "SELECT * FROM employee_holidays WHERE employee_id = '" + ID + "' ORDER BY status";
 
@@ -294,6 +399,22 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getMeeting</b> returns a Meeting object from the database.
+     * 
+     * This object takes in the following fields:
+     * <b>Meeting ID</b>
+     * <b>Employee ID</b>
+     * <b>First Name</b>
+     * <b>Last Name</b>
+     * <b>Date</b>
+     * <b>Start Time</b>
+     * <b>End Time</b>
+     * <b>Status</b>
+     * 
+     * @return Meeting object with data
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static Meeting getMeeting() throws ClassNotFoundException {
         String query = "SELECT * FROM employee_meetings WHERE status = 'Pending' ORDER BY date ASC";
 
@@ -322,6 +443,13 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getMeetingList</b> returns an ArrayList of Meeting objects
+     * for every meeting that is in the database.
+     * 
+     * @return ArrayList of Meeting objects
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static ArrayList getMeetingList() throws ClassNotFoundException {
         String query = "SELECT * FROM employee_meetings ORDER BY status";
 
@@ -354,6 +482,14 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * This method <b>getMeetingList</b> takes an employee ID and returns an
+     * ArrayList of Meeting objects for the meetings of that specific employee
+     * 
+     * @param ID Employee's ID
+     * @return ArrayList of Meeting objects for a specific employee
+     * @throws ClassNotFoundException - if the JDBC Driver is not found
+     */
     public static ArrayList getMeetingList(int ID) throws ClassNotFoundException {
         String query = "SELECT * FROM employee_meetings WHERE employee_id = '" + ID + "' ORDER BY status";
 
@@ -385,6 +521,12 @@ public final class DBRequests {
         }
     }
     
+    /**
+     * 
+     * 
+     * @return
+     * @throws ClassNotFoundException 
+     */
     public static Overtime getOvertime() throws ClassNotFoundException {
         String query = "SELECT * FROM employee_overtime WHERE status = 'Pending' ORDER BY date ASC";
 
