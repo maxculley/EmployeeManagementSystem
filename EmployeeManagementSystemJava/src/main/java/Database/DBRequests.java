@@ -7,20 +7,52 @@ import SystemAndGeneral.SystemInfo;
 import java.sql.*;
 import java.util.ArrayList;
 
-abstract public class DBRequests {
+
+/**
+ * This class <b>DBRequests</b> has all the methods which communicate with the
+ * database.
+ * 
+ * These methods include <b>Requests</b>, <b>Updates</b>, <b>Deletes</b> and <b>Inserts</b>.
+ * 
+ */
+public final class DBRequests {
     
+    /**
+     * Don't let anyone instantiate this class.
+     */
+    private DBRequests(){}
+    
+    
+    
+    /**
+     * The most recent employee added.
+     */
     private static int count = 1003;
     
     
     
     /******************** REQUEST DATA ********************/
     
+    /**
+     * This method <b>isEmployee</b> checks if the user ID is valid in the 
+     * database.
+     * 
+     * If the ID is valid then the method returns the type of the user, 
+     * either HR or Non HR. This then reflects what restrictions their account
+     * has.
+     * 
+     * @param ID Employee's ID 
+     * @return Employee type or error return comment
+     * @throws ClassNotFoundException 
+     */
     public static String isEmployee(int ID) throws ClassNotFoundException {
         String query = "SELECT employee_type FROM personal_info WHERE employee_id = '" + ID + "'";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -31,13 +63,26 @@ abstract public class DBRequests {
             return "User does not exist";
         }
     }
-
+    
+    /**
+     * This method <b>getPassword</b> returns the user's password based off
+     * their employee ID.
+     * 
+     * If the employee ID is valid then the method returns the password of that user,
+     * if the employee ID is invalid the method returns an error message.
+     * 
+     * @param ID Employee's ID
+     * @return Employee's password or error return comment
+     * @throws ClassNotFoundException 
+     */
     public static String getPassword(int ID) throws ClassNotFoundException {
         String query = "SELECT password FROM employee_passwords WHERE employee_id = '" + ID + "'";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -54,7 +99,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -71,7 +118,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -88,7 +137,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -105,7 +156,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -122,7 +175,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -139,7 +194,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
@@ -156,14 +213,20 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
             rs.next();
             int id = rs.getInt("employee_id");
             
-            return new Holiday(rs.getInt("holiday_id"), id, getFirstName(id), getLastName(id), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status"));
+            return new Holiday(rs.getInt("holiday_id"),
+                    id, getFirstName(id), getLastName(id),
+                    rs.getString("start_date"),
+                    rs.getString("end_date"),
+                    rs.getString("status"));
 
         } catch (Exception e) {
             return null;
@@ -177,13 +240,21 @@ abstract public class DBRequests {
         
         ArrayList<Holiday> holidays = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
                 int ID = rs.getInt("employee_id");
-                holidays.add(new Holiday(rs.getInt("holiday_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
+                holidays.add(new Holiday(rs.getInt("holiday_id"),
+                        ID,
+                        getFirstName(ID),
+                        getLastName(ID),
+                        rs.getString("start_date"),
+                        rs.getString("end_date"),
+                        rs.getString("status")));
             }
             
             return holidays;
@@ -200,12 +271,20 @@ abstract public class DBRequests {
         
         ArrayList<Holiday> holidays = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
-                holidays.add(new Holiday(rs.getInt("holiday_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("start_date"), rs.getString("end_date"), rs.getString("status")));
+                holidays.add(new Holiday(rs.getInt("holiday_id"),
+                        ID,
+                        getFirstName(ID),
+                        getLastName(ID),
+                        rs.getString("start_date"),
+                        rs.getString("end_date"),
+                        rs.getString("status")));
             }
             
             return holidays;
@@ -220,14 +299,23 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
             rs.next();
             int id = rs.getInt("employee_id");
             
-            return new Meeting(rs.getInt("meeting_id"), id, getFirstName(id), getLastName(id), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status"));
+            return new Meeting(rs.getInt("meeting_id"),
+                    id,
+                    getFirstName(id),
+                    getLastName(id),
+                    rs.getString("date"),
+                    rs.getString("start_time"),
+                    rs.getString("end_time"),
+                    rs.getString("status"));
 
         } catch (Exception e) {
             return null;
@@ -241,13 +329,22 @@ abstract public class DBRequests {
         
         ArrayList<Meeting> meetings = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
                 int ID = rs.getInt("employee_id");
-                meetings.add(new Meeting(rs.getInt("meeting_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status")));
+                meetings.add(new Meeting(rs.getInt("meeting_id"),
+                        ID,
+                        getFirstName(ID),
+                        getLastName(ID),
+                        rs.getString("date"),
+                        rs.getString("start_time"),
+                        rs.getString("end_time"),
+                        rs.getString("status")));
             }
             
             return meetings;
@@ -264,12 +361,21 @@ abstract public class DBRequests {
         
         ArrayList<Meeting> meetings = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
-                meetings.add(new Meeting(rs.getInt("meeting_id"), ID, getFirstName(ID), getLastName(ID), rs.getString("date"), rs.getString("start_time"), rs.getString("end_time"), rs.getString("status")));
+                meetings.add(new Meeting(rs.getInt("meeting_id"),
+                        ID,
+                        getFirstName(ID),
+                        getLastName(ID),
+                        rs.getString("date"),
+                        rs.getString("start_time"),
+                        rs.getString("end_time"),
+                        rs.getString("status")));
             }
             
             return meetings;
@@ -284,14 +390,23 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
 
             rs.next();
             int id = rs.getInt("employee_id");
             
-            return new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), id, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(id), getLastName(id));
+            return new Overtime(rs.getString("date"),
+                    rs.getString("status"),
+                    rs.getInt("overtime_id"),
+                    id,
+                    rs.getInt("morning_hours"),
+                    rs.getInt("evening_hours"),
+                    getFirstName(id),
+                    getLastName(id));
 
         } catch (Exception e) {
             return null;
@@ -305,13 +420,22 @@ abstract public class DBRequests {
         
         ArrayList<Overtime> overtime = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
                 int ID = rs.getInt("employee_id");
-                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(ID), getLastName(ID)));
+                overtime.add(new Overtime(rs.getString("date"),
+                        rs.getString("status"),
+                        rs.getInt("overtime_id"),
+                        ID,
+                        rs.getInt("morning_hours"),
+                        rs.getInt("evening_hours"),
+                        getFirstName(ID),
+                        getLastName(ID)));
             }
             
             return overtime;
@@ -328,12 +452,21 @@ abstract public class DBRequests {
         
         ArrayList<Overtime> overtime = new ArrayList();
 
-        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        try (Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query)) {
             
             while(rs.next()) {
-                overtime.add(new Overtime(rs.getString("date"), rs.getString("status"), rs.getInt("overtime_id"), ID, rs.getInt("morning_hours"), rs.getInt("evening_hours"), getFirstName(ID), getLastName(ID)));
+                overtime.add(new Overtime(rs.getString("date"),
+                        rs.getString("status"),
+                        rs.getInt("overtime_id"),
+                        ID,
+                        rs.getInt("morning_hours"),
+                        rs.getInt("evening_hours"),
+                        getFirstName(ID),
+                        getLastName(ID)));
             }
             
             return overtime;
@@ -352,7 +485,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -365,7 +500,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -378,7 +515,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -391,7 +530,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -404,7 +545,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -417,7 +560,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -430,7 +575,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -443,7 +590,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -456,7 +605,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -469,7 +620,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -495,7 +648,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -508,7 +663,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -521,7 +678,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -534,7 +693,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -547,7 +708,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -560,7 +723,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -573,7 +738,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query);
         
@@ -592,7 +759,9 @@ abstract public class DBRequests {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        Connection con = DriverManager.getConnection(LoginInformation.getURL(), LoginInformation.getUsername(), LoginInformation.getPassword());
+        Connection con = DriverManager.getConnection(LoginInformation.getURL(),
+                LoginInformation.getUsername(),
+                LoginInformation.getPassword());
         Statement st = con.createStatement();
         st.executeUpdate(query1);
         st.executeUpdate(query2);
@@ -606,7 +775,16 @@ abstract public class DBRequests {
     
     /******************** INSERT DATA ********************/
     
-    public static void addEmployee(String firstName, String lastName, String address, int age, String gender, int employeeType, int baseSalary, int employeeSalary, String password) throws ClassNotFoundException, SQLException {
+    public static void addEmployee(String firstName,
+            String lastName,
+            String address,
+            int age,
+            String gender,
+            int employeeType,
+            int baseSalary,
+            int employeeSalary,
+            String password) throws ClassNotFoundException, SQLException {
+        
         String query1 = "INSERT INTO personal_info VALUES (DEFAULT,'" + firstName + "','" + lastName + "','" + address + "'," + age + ",'" + gender + "'," + employeeType + ");";
         String query2 = "INSERT INTO `employee_info` VALUES (DEFAULT," + baseSalary + "," + employeeSalary + ");";
         String query3 = "INSERT INTO `employee_passwords` VALUES (DEFAULT,'" + password + "');";
@@ -625,7 +803,14 @@ abstract public class DBRequests {
         st.close();
     }
     
-    public static void addMeeting(String startYear, String startMonth, String startDay, String startHour, String startMin, String endHour, String endMin) throws ClassNotFoundException, SQLException {
+    public static void addMeeting(String startYear,
+            String startMonth,
+            String startDay,
+            String startHour,
+            String startMin,
+            String endHour,
+            String endMin) throws ClassNotFoundException, SQLException {
+        
         String query = "INSERT INTO employee_meetings VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + startHour + ":" + startMin + "','" + endHour + ":" + endMin + "','Pending');";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -638,7 +823,13 @@ abstract public class DBRequests {
         st.close();
     }
     
-    public static void addHoliday(String startYear, String startMonth, String startDay, String endYear, String endMonth, String endDay) throws ClassNotFoundException, SQLException {
+    public static void addHoliday(String startYear,
+            String startMonth,
+            String startDay,
+            String endYear,
+            String endMonth,
+            String endDay) throws ClassNotFoundException, SQLException {
+        
         String query = "INSERT INTO employee_holidays VALUES (DEFAULT," + SystemInfo.getID() + ",'" + startYear + "-" + startMonth + "-" + startDay + "','" + endYear + "-" + endMonth + "-" + endDay + "','Pending');";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -651,7 +842,10 @@ abstract public class DBRequests {
         st.close();
     }
     
-    public static void addOvertime(String date, int morning, int evening) throws ClassNotFoundException, SQLException {
+    public static void addOvertime(String date,
+            int morning,
+            int evening) throws ClassNotFoundException, SQLException {
+        
         String query = "INSERT INTO employee_overtime VALUES (DEFAULT," + SystemInfo.getID() + ",'" + date + "'," + morning + "," + evening + ",'Pending');";
 
         Class.forName("com.mysql.cj.jdbc.Driver");
