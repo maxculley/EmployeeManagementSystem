@@ -4,7 +4,7 @@ package Employee;
  * This class <b>HR</b> extends the class <b>Employee</b>.
  * 
  * No additional functionality yet but has potential to have methods which can
- * interact with all employees; unlike Non HR which can only interact with itself.
+ * interact with all employees; unlike <b>NonHR</b> which can only interact with itself.
  * 
  */
 public class HR extends Employee {
