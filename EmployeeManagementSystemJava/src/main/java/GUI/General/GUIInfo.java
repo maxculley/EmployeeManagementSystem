@@ -12,6 +12,11 @@ import GUI.NonHR.Overtime.*;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class <b>GUIInfo</b> has all the information about the GUI window,
+ * including all the layout options for the JFrame.
+ * 
+ */
 public class GUIInfo {
 
     private JFrame window;
@@ -23,6 +28,8 @@ public class GUIInfo {
         container = new JPanel();
         container.setLayout(cl);
 
+        
+        
         // Initalise pages
         new LoginPage();
         new NonHREmployeeInfo();
@@ -52,6 +59,7 @@ public class GUIInfo {
         new HROvertimeView();
         
 
+        
         // Add scenes to Frame
         container.add(LoginPage.getPage(), "Login");
         
@@ -83,9 +91,13 @@ public class GUIInfo {
         container.add(HROvertimeView.getPage(), "HROvertimeView");
         cl.show(container, "Login");
 
+        
+        
         // Add contianer to window
         window.add(container);
 
+        
+        
         // JFrame window layout
         window.setVisible(true);
         window.setSize(800, 500);
@@ -94,13 +106,26 @@ public class GUIInfo {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("Employee Management System");
     }
+    
 
-    public static CardLayout getCL() {
-        return cl;
-    }
-
+    /**
+     * This class <b>getCont</b> returns the JPanel which is used as a container
+     * to hold all interactive JFrames in.
+     * 
+     * @return JFrame container for the JPanel
+     */
     public static JPanel getCont() {
         return container;
+    }
+    
+    /**
+     * This class <b>getCL</b> returns the CardLayout object used for adding
+     * different JFrames to the container.
+     * 
+     * @return Container's CardLayout
+     */
+    public static CardLayout getCL() {
+        return cl;
     }
 
 }
