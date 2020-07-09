@@ -8,6 +8,11 @@ import Employee.NonHR;
 import SystemAndGeneral.SystemInfo;
 import javax.swing.*;
 
+/**
+ * This class <b>LoginPage</b> hold all the components, styling and logic for
+ * the login page.
+ * 
+ */
 public class LoginPage {
 
     private static JPanel login;
@@ -17,10 +22,9 @@ public class LoginPage {
     private JLabel returnMessage, info;
     private String text;
 
-    public static JPanel getPage() {
-        return login;
-    }
-
+    /**
+     * Instantiates the code for the LoginPage.
+     */
     public LoginPage() {
         
         // Panels
@@ -106,6 +110,16 @@ public class LoginPage {
         
         returnMessage.setBounds(275, 310, 250, 27);
         login.add(returnMessage);
+    }
+    
+    
+    /**
+     * This class <b>getPage</b> returns the LoginPage JPanel.
+     * 
+     * @return LoginPage JPanel
+     */
+    public static JPanel getPage() {
+        return login;
     }
 
 }
