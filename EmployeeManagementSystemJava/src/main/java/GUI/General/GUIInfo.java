@@ -14,7 +14,7 @@ import javax.swing.*;
 
 /**
  * This class <b>GUIInfo</b> has all the information about the GUI window,
- * including all the layout options for the JFrame.
+ * including all the layout options for the JFrame. 
  * 
  */
 public class GUIInfo {
@@ -23,6 +23,11 @@ public class GUIInfo {
     private static JPanel container;
     private static CardLayout cl = new CardLayout();
 
+    /**
+     * Instantiates the GUIIfo class initialising the code for the window.
+     * 
+     * @throws ClassNotFoundException - if the JPanel classes are not found
+     */
     public GUIInfo() throws ClassNotFoundException {
         window = new JFrame();
         container = new JPanel();
