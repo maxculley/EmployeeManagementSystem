@@ -9,7 +9,7 @@ import SystemAndGeneral.SystemInfo;
 import javax.swing.*;
 
 /**
- * This class <b>LoginPage</b> hold all the components, styling and logic for
+ * This class <b>LoginPage</b> holds all the components, styling and logic for
  * the login page.
  * 
  */
@@ -114,7 +114,7 @@ public class LoginPage {
     
     
     /**
-     * This class <b>getPage</b> returns the LoginPage JPanel.
+     * This method <b>getPage</b> returns the LoginPage JPanel.
      * 
      * @return LoginPage JPanel
      */

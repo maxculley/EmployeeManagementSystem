@@ -6,7 +6,12 @@ import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRHolidayActions</b> holds all the components, styling and logic for
+ * the HR holiday add/view selector page.
+ * 
+ */
 public class HRHolidayActions {
  
     private static JPanel menu;
@@ -18,7 +23,9 @@ public class HRHolidayActions {
     private static boolean refresh = false;
     private static Holiday currentHoliday;
    
-   
+    /**
+     * Initialises the code for the HRHolidayActions page.
+     */
     public HRHolidayActions() {
        
         // Panels
@@ -221,7 +228,16 @@ public class HRHolidayActions {
        
  
     }
-    
+    /**
+     * This class <b>holidayRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     * 
+     * @throws ClassNotFoundException - if the <b>DBRequests</b> class is
+     * not found
+     */
     public static void holidayRefresh() throws ClassNotFoundException {
         loadData();
         
@@ -276,10 +292,24 @@ public class HRHolidayActions {
         
     }
     
+    /**
+     * This method <b>loadData</b> loads and stored a Holiday Object from ascending
+     * date order.
+     * 
+     * If called twice will move onto the next one to store, not store the same one.
+     * 
+     * @throws ClassNotFoundException - if the <b>DBRequests</b> class is not 
+     * found
+     */
     public static void loadData() throws ClassNotFoundException {
         currentHoliday = DBRequests.getHoliday();
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRHolidayActions</b> JPanel.
+     * 
+     * @return HRHolidayActions JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

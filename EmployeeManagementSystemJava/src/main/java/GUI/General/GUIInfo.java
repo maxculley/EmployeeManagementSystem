@@ -114,7 +114,7 @@ public class GUIInfo {
     
 
     /**
-     * This class <b>getCont</b> returns the JPanel which is used as a container
+     * This method <b>getCont</b> returns the JPanel which is used as a container
      * to hold all interactive JFrames in.
      * 
      * @return JFrame container for the JPanel
@@ -124,7 +124,7 @@ public class GUIInfo {
     }
     
     /**
-     * This class <b>getCL</b> returns the CardLayout object used for adding
+     * This method <b>getCL</b> returns the CardLayout object used for adding
      * different JFrames to the container.
      * 
      * @return Container's CardLayout

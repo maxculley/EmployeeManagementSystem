@@ -329,7 +329,7 @@ public class HREmployeeInfoSearch {
     
    
     /**
-     * This class <b>getPage</b> returns the <b>HREmployeeInfoSearch</b> JPanel.
+     * This method <b>getPage</b> returns the <b>HREmployeeInfoSearch</b> JPanel.
      * 
      * @return HREmployeeInfoSearch JPanel
      */
@@ -338,7 +338,7 @@ public class HREmployeeInfoSearch {
     }
     
     /**
-     * This class <b>HRrefresh</b> sets the position of the data if the page has
+     * This method <b>HRrefresh</b> sets the position of the data if the page has
      * not yet been accessed and sets it blank as default. Otherwise it will just
      * set the fields blank.
      * 
