@@ -7,7 +7,11 @@ import Database.DBRequests;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 
-
+/**
+ * This class <b>HREmployeeInfoSearch</b> holds all the components, styling and logic for
+ * the HR employee search page.
+ * 
+ */
 public class HREmployeeInfoSearch {
 
     private static JPanel menu;
@@ -21,7 +25,12 @@ public class HREmployeeInfoSearch {
     private int inputResult;
     private static boolean refresh = false;
 
-    public HREmployeeInfoSearch() throws ClassNotFoundException {
+    
+    /**
+     * Initialises the code for the HR search page
+     * 
+     */
+    public HREmployeeInfoSearch() {
         
         // Panels
         menu = new JPanel();
@@ -204,8 +213,7 @@ public class HREmployeeInfoSearch {
                         idInfo.setText("Employee does not exist");
                     }
 
-                } catch (Exception e) {
-                }
+                } catch (Exception e) {}
             } catch (Exception e) {
                 HRrefresh();
                 idInfo.setText("Invalid input");
@@ -320,11 +328,22 @@ public class HREmployeeInfoSearch {
     }
     
    
-
+    /**
+     * This class <b>getPage</b> returns the <b>HREmployeeInfoSearch</b> JPanel.
+     * 
+     * @return HREmployeeInfoSearch JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
     
+    /**
+     * This class <b>HRrefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void HRrefresh() {
         if (!refresh) {
             idInfo.setText("");

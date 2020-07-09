@@ -19,9 +19,9 @@ import javax.swing.*;
  */
 public class GUIInfo {
 
-    private JFrame window;
+    private final JFrame window;
     private static JPanel container;
-    private static CardLayout cl = new CardLayout();
+    private static final CardLayout cl = new CardLayout();
 
     /**
      * Instantiates the GUIIfo class initialising the code for the window.
