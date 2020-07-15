@@ -6,6 +6,11 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class <b>HRRemoveEmployee</b> holds all the components, styling and logic for
+ * the HR remove employee page.
+ * 
+ */
 public class HRRemoveEmployee {
  
     private static JPanel menu;
@@ -19,7 +24,9 @@ public class HRRemoveEmployee {
     private static JTextField infoInput;
     private static boolean refresh = false;
    
-   
+    /**
+    * Initialises the code for the HR remove employee page
+    */
     public HRRemoveEmployee() {
        
         // Panels
@@ -265,10 +272,13 @@ public class HRRemoveEmployee {
         // Add content
         menu.add(content);
         menu.add(quickmenu);
-       
- 
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRRemoveEmployee</b> JPanel.
+     * 
+     * @return HRRemoveEmployee JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

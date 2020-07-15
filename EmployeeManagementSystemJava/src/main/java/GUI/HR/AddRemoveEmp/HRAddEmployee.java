@@ -6,6 +6,11 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class <b>HRAddEmployee</b> holds all the components, styling and logic for
+ * the HR add employee page.
+ * 
+ */
 public class HRAddEmployee {
  
     private static JPanel menu;
@@ -16,7 +21,9 @@ public class HRAddEmployee {
     private static JTextField firstName, lastName, address, age, baseSalary, salary, password;
     private final JRadioButton male, female, other, hr, nonhr;
    
-   
+   /**
+    * Initialises the code for the HR add employee page
+    */
     public HRAddEmployee() {
        
         // Panels
@@ -287,6 +294,11 @@ public class HRAddEmployee {
  
     }
     
+    /**
+     * This method <b>HRAddRefresh</b> sets the fields blank when called.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void HRAddRefresh() {
         firstName.setText("");
 
@@ -302,7 +314,12 @@ public class HRAddEmployee {
         
         password.setText("");
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HREmployeeAdd</b> JPanel.
+     * 
+     * @return HREmployeeAdd JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

@@ -6,6 +6,11 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * This class <b>HRAddRemoveHome</b> holds all the components, styling and logic for
+ * the HR employee add/remove landing page.
+ * 
+ */
 public class HRAddRemoveHome {
 
     private static JPanel menu;
@@ -14,7 +19,9 @@ public class HRAddRemoveHome {
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private final JLabel welcome, title;
     
-    
+    /**
+     * Initialises the code for the HR  add/remove landing page
+     */
     public HRAddRemoveHome() {
         
         // Panels
@@ -172,7 +179,12 @@ public class HRAddRemoveHome {
         
 
     }
-
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRAddRemoveHome</b> JPanel.
+     * 
+     * @return HRAddRemoveHome JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
