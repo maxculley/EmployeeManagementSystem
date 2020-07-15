@@ -8,7 +8,11 @@ import SystemAndGeneral.General;
 import SystemAndGeneral.SystemInfo;
 import java.awt.Choice;
 
-
+/**
+ * This class <b>NonHREmployeeInfo</b> holds all the components, styling and logic for
+ * the NonHR employee info page.
+ * 
+ */
 public class NonHREmployeeInfo {
 
     private static JPanel menu;
@@ -21,11 +25,10 @@ public class NonHREmployeeInfo {
     private Choice selection;
     private static boolean refresh = false;
 
-    public static JPanel getPage() {
-        return menu;
-    }
-
-    public NonHREmployeeInfo() throws ClassNotFoundException {
+    /**
+    * Initialises the code for the NonHR employee info page
+    */
+    public NonHREmployeeInfo() {
         
         // Panels
         menu = new JPanel();
@@ -283,6 +286,13 @@ public class NonHREmployeeInfo {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>NonHRrefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void NonHRrefresh() {
         if (!refresh) {
             idInfo.setText("" + SystemInfo.getID());
@@ -327,6 +337,15 @@ public class NonHREmployeeInfo {
             } catch (ClassNotFoundException ex) {
             }
         }
+    }
+    
+    /**
+     * This method <b>getPage</b> returns the <b>NonHREmployeeInfo</b> JPanel.
+     * 
+     * @return NonHREmployeeInfo JPanel
+     */
+    public static JPanel getPage() {
+        return menu;
     }
 
 
