@@ -275,14 +275,12 @@ public class HRRemoveEmployee {
     }
     
     /**
-     * This method <b>getPage</b> returns the <b>HRRemoveEmployee</b> JPanel.
+     * This method <b>HRrefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
      * 
-     * @return HRRemoveEmployee JPanel
+     * This is used for clearing data off the screen when you exit a page.
      */
-    public static JPanel getPage() {
-        return menu;
-    }
-    
     public static void HRRemoveRefresh() {
         if (!refresh) {
             idInfo.setText("");
@@ -324,6 +322,20 @@ public class HRRemoveEmployee {
         }
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>HRRemoveEmployee</b> JPanel.
+     * 
+     * @return HRRemoveEmployee JPanel
+     */
+    public static JPanel getPage() {
+        return menu;
+    }
+    
+    /**
+     * This method <b>clearEntry</b> is used to clear the JTextField after leaving
+     * this page
+     * 
+     */
     public static void clearEntry() {
         infoInput.setText("");
     }

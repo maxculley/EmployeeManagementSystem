@@ -6,7 +6,12 @@ import Holiday.Holiday;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRHolidayView</b> holds all the components, styling and logic for
+ * the HR Holiday view page.
+ * 
+ */
 public class HRHolidayView {
  
     private static JPanel menu;
@@ -19,7 +24,9 @@ public class HRHolidayView {
     private static boolean refresh = false;
     private static Holiday currentHol;
    
-   
+    /**
+    * Initialises the code for the HR holiday view page
+    */
     public HRHolidayView() {
        
         // Panels
@@ -233,6 +240,13 @@ public class HRHolidayView {
  
     }
     
+    /**
+     * This method <b>HRViewHolRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void HRViewHolRefresh() {
         currentHol = (Holiday) SystemInfo.getHolidays().get(pageCount);
         if (!refresh) {
@@ -270,10 +284,23 @@ public class HRHolidayView {
         }
     }
     
+    /**
+     * This method <b>setCount</b> sets the page count to 0.
+     * 
+     * This is used when leaving the page to set the count to the start of the
+     * ArrayList of holidays so that you don't go back onto the page and view the
+     * previous holiday you looked at.
+     * 
+     */
     public static void setCount() {
         pageCount = 0;
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRHolidayView</b> JPanel.
+     * 
+     * @return HRHolidayView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

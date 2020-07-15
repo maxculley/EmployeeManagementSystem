@@ -5,7 +5,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRHolidayHomeMenu</b> holds all the components, styling and logic for
+ * the HR holiday landing page.
+ * 
+ */
 public class HRHolidayHomeMenu {
 
     private static JPanel menu;
@@ -13,8 +18,11 @@ public class HRHolidayHomeMenu {
     private final JLabel welcome, title;
     private final JButton holidays, switchType, logout, accept, view, userSearch, addRemoveEmployee, meetings, overtime;
     private final String userSearchText, switchTypeText, titleText, holidaysText, addRemoveEmployeeText, acceptText, meetingsText, overtimeText;
-
-    public HRHolidayHomeMenu() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the HR holiday landing page
+    */
+    public HRHolidayHomeMenu() {
         
         // Panels
         menu = new JPanel();
@@ -174,6 +182,11 @@ public class HRHolidayHomeMenu {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>HRHolidayHomeMenu</b> JPanel.
+     * 
+     * @return HRHolidayHomeMenu JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
