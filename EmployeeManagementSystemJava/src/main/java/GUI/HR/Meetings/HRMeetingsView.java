@@ -7,7 +7,12 @@ import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRMeetingsView</b> holds all the components, styling and logic for
+ * the HR view meetings page.
+ * 
+ */
 public class HRMeetingsView {
  
     private static JPanel menu;
@@ -20,7 +25,9 @@ public class HRMeetingsView {
     private static boolean refresh = false;
     private static int pageCount;
    
-   
+    /**
+    * Initialises the code for the HR view meetings page
+    */
     public HRMeetingsView() {
        
         // Panels
@@ -238,10 +245,15 @@ public class HRMeetingsView {
         // Add content
         menu.add(content);
         menu.add(quickmenu);
-       
- 
     }
     
+    /**
+     * This method <b>HRViewMeetingRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void HRViewMeetingRefresh() {
         currentMeeting = (Meeting) SystemInfo.getMeetings().get(pageCount);
         if (!refresh) {
@@ -284,10 +296,23 @@ public class HRMeetingsView {
         }
     }
     
+    /**
+     * This method <b>setCount</b> sets the page count to 0.
+     * 
+     * This is used when leaving the page to set the count to the start of the
+     * ArrayList of holidays so that you don't go back onto the page and view the
+     * previous holiday you looked at.
+     * 
+     */
     public static void setCount() {
         pageCount = 0;
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRMeetingsView</b> JPanel.
+     * 
+     * @return HRMeetingsView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

@@ -8,7 +8,12 @@ import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRMeetingsActions</b> holds all the components, styling and logic for
+ * the HR meetings actions page.
+ * 
+ */
 public class HRMeetingsActions {
  
     private static JPanel menu;
@@ -20,7 +25,9 @@ public class HRMeetingsActions {
     private static Meeting currentMeeting;
     private static boolean refresh = false;
    
-   
+    /**
+    * Initialises the code for the HR meetings actions page
+    */
     public HRMeetingsActions() {
        
         // Panels
@@ -232,6 +239,15 @@ public class HRMeetingsActions {
  
     }
     
+    /**
+     * This method <b>meetingRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank if the page has been previously accessed, or set the
+     * position of the fields and inform the user that there are no meetings requested
+     * if the ArrayList is null.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void meetingRefresh() throws ClassNotFoundException {
         loadData();
         
@@ -295,10 +311,22 @@ public class HRMeetingsActions {
         
     }
     
+    /**
+     * This method <b>loadData</b> loads the meetings from the database into an
+     * ArrayList for display to the user
+     * 
+     * @throws ClassNotFoundException - if there is a problem locating the DBRequests
+     * class.
+     */
     public static void loadData() throws ClassNotFoundException {
         currentMeeting = DBRequests.getMeeting();
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRMeetingsActions</b> JPanel.
+     * 
+     * @return HRMeetingsActions JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

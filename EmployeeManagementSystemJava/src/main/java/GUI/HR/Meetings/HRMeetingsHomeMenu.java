@@ -6,7 +6,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HRMeetingsHomeMenu</b> holds all the components, styling and logic for
+ * the HR meetings landing page.
+ * 
+ */
 public class HRMeetingsHomeMenu {
  
     private static JPanel menu;
@@ -15,7 +20,9 @@ public class HRMeetingsHomeMenu {
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText, acceptText;
     private final JLabel welcome, title;
    
-   
+    /**
+    * Initialises the code for the HR meetings landing page
+    */
     public HRMeetingsHomeMenu() {
        
         // Panels
@@ -178,7 +185,12 @@ public class HRMeetingsHomeMenu {
        
  
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HRMeetingsHomeMenu</b> JPanel.
+     * 
+     * @return HRMeetingsHomeMenu JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
