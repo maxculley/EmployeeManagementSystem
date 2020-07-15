@@ -6,7 +6,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHRHolidaysAdd</b> holds all the components, styling and logic for
+ * the NonHR holiday add page.
+ * 
+ */
 public class NonHRHolidaysAdd {
 
     private static JPanel menu;
@@ -16,8 +21,11 @@ public class NonHRHolidaysAdd {
     private final JButton changeInfo, holidays, switchType, logout, submit, meetings, overtime;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText;
     private JTextField startDateYear, startDateMonth, startDateDay, endDateYear, endDateMonth, endDateDay;
-
-    public NonHRHolidaysAdd() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR holiday add page
+    */
+    public NonHRHolidaysAdd() {
         
         // Panels
         menu = new JPanel();
@@ -196,6 +204,11 @@ public class NonHRHolidaysAdd {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>NonHRHolidaysAdd</b> JPanel.
+     * 
+     * @return NonHRHolidaysAdd JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

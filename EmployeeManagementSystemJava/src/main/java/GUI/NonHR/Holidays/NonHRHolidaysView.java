@@ -7,7 +7,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHRHolidaysView</b> holds all the components, styling and logic for
+ * the NonHR holiday view page.
+ * 
+ */
 public class NonHRHolidaysView {
 
     private static JPanel menu;
@@ -20,8 +25,11 @@ public class NonHRHolidaysView {
     private static boolean refresh = false;
     private static int pageCount = 0;
     private static Holiday currentHol;
-
-    public NonHRHolidaysView() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR holiday view page
+    */
+    public NonHRHolidaysView() {
         
         // Panels
         menu = new JPanel();
@@ -202,6 +210,13 @@ public class NonHRHolidaysView {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>NonHRViewHolRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void NonHRViewHolRefresh() {
         currentHol = (Holiday) SystemInfo.getHolidays().get(pageCount);
         if (!refresh) {
@@ -224,6 +239,11 @@ public class NonHRHolidaysView {
         }
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>NonHRHolidaysView</b> JPanel.
+     * 
+     * @return NonHRHolidaysView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
