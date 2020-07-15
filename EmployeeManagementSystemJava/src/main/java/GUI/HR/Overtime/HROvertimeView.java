@@ -7,7 +7,12 @@ import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HROvertimeView</b> holds all the components, styling and logic for
+ * the HR overtime view page.
+ * 
+ */
 public class HROvertimeView {
  
     private static JPanel menu;
@@ -20,7 +25,9 @@ public class HROvertimeView {
     private static boolean refresh = false;
     private static int pageCount;
    
-   
+    /**
+    * Initialises the code for the HR overtime view page
+    */
     public HROvertimeView() {
        
         // Panels
@@ -242,6 +249,13 @@ public class HROvertimeView {
  
     }
     
+    /**
+     * This method <b>HRViewOvertimeRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void HRViewOvertimeRefresh() {
         currentOvertime = (Overtime) SystemInfo.getOvertimes().get(pageCount);
         if (!refresh) {
@@ -284,10 +298,23 @@ public class HROvertimeView {
         }
     }
     
+    /**
+     * This method <b>setCount</b> sets the page count to 0.
+     * 
+     * This is used when leaving the page to set the count to the start of the
+     * ArrayList of holidays so that you don't go back onto the page and view the
+     * previous holiday you looked at.
+     * 
+     */
     public static void setCount() {
         pageCount = 0;
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HROvertimeView</b> JPanel.
+     * 
+     * @return HROvertimeView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

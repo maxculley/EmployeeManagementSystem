@@ -6,7 +6,6 @@ import GUI.General.GUIInfo;
 import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
 
 /**

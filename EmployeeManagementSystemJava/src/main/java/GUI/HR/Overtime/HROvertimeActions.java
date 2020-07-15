@@ -6,9 +6,13 @@ import GUI.General.GUIInfo;
 import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HROvertimeActions</b> holds all the components, styling and logic for
+ * the HR overtime actions page.
+ * 
+ */
 public class HROvertimeActions {
  
     private static JPanel menu;
@@ -20,7 +24,9 @@ public class HROvertimeActions {
     private static Overtime currentOvertime;
     private static boolean refresh = false;
    
-   
+    /**
+    * Initialises the code for the HR overtime actions page
+    */
     public HROvertimeActions() {
        
         // Panels
@@ -233,7 +239,15 @@ public class HROvertimeActions {
     }
  
     
-    
+    /**
+     * This method <b>overtimeRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank if the page has been previously accessed, or set the
+     * position of the fields and inform the user that there are no meetings requested
+     * if the ArrayList is null.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void overtimeRefresh() throws ClassNotFoundException {
         loadData();
         
@@ -297,10 +311,22 @@ public class HROvertimeActions {
         
     }
     
+    /**
+     * This method <b>loadData</b> loads the meetings from the database into an
+     * ArrayList for display to the user
+     * 
+     * @throws ClassNotFoundException - if there is a problem locating the DBRequests
+     * class.
+     */
     public static void loadData() throws ClassNotFoundException {
         currentOvertime = DBRequests.getOvertime();
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HROvertimeActions</b> JPanel.
+     * 
+     * @return HROvertimeActions JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

@@ -6,7 +6,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>HROvertimeHomeMenu</b> holds all the components, styling and logic for
+ * the HR overtime landing page.
+ * 
+ */
 public class HROvertimeHomeMenu {
  
     private static JPanel menu;
@@ -15,7 +20,9 @@ public class HROvertimeHomeMenu {
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText, acceptText;
     private final JLabel welcome, title;
    
-   
+    /**
+    * Initialises the code for the HR overtime landing page
+    */
     public HROvertimeHomeMenu() {
        
         // Panels
@@ -178,7 +185,12 @@ public class HROvertimeHomeMenu {
        
  
     }
- 
+    
+    /**
+     * This method <b>getPage</b> returns the <b>HROvertimeHomeMenu</b> JPanel.
+     * 
+     * @return HROvertimeHomeMenu JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
