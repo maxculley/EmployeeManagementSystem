@@ -6,7 +6,12 @@ import Meeting.Meeting;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHRMeetingsView</b> holds all the components, styling and logic for
+ * the NonHR meetings view page.
+ * 
+ */
 public class NonHRMeetingsView {
  
     private static JPanel menu;
@@ -18,8 +23,11 @@ public class NonHRMeetingsView {
     private static boolean refresh = false;
     private static int pageCount = 0;
     private static Meeting currentMeeting;
- 
-    public NonHRMeetingsView() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR meetings view page
+    */
+    public NonHRMeetingsView() {
        
         // Panels
         menu = new JPanel();
@@ -207,6 +215,13 @@ public class NonHRMeetingsView {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>NonHRViewMeetingRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void NonHRViewMeetingRefresh() {
         currentMeeting = (Meeting) SystemInfo.getMeetings().get(pageCount);
         if (!refresh) {
@@ -234,6 +249,11 @@ public class NonHRMeetingsView {
         }
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>NonHRMeetingsView</b> JPanel.
+     * 
+     * @return NonHRMeetingsView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

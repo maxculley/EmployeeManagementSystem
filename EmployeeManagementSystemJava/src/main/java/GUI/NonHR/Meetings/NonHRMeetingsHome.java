@@ -5,7 +5,12 @@ import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHRMeetingsHome</b> holds all the components, styling and logic for
+ * the NonHR meetings landing page.
+ * 
+ */
 public class NonHRMeetingsHome {
  
     private static JPanel menu;
@@ -13,8 +18,11 @@ public class NonHRMeetingsHome {
     private final JLabel welcome, title;
     private final JButton changeInfo, holidays, switchType, logout, meetings, overtime, add, view;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText, addText;
- 
-    public NonHRMeetingsHome() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR meetings landing page
+    */
+    public NonHRMeetingsHome() {
        
         // Panels
         menu = new JPanel();
@@ -159,7 +167,12 @@ public class NonHRMeetingsHome {
         menu.add(content);
         menu.add(quickmenu);
     }
-   
+    
+    /**
+     * This method <b>getPage</b> returns the <b>NonHRMeetingsHome</b> JPanel.
+     * 
+     * @return NonHRMeetingsHome JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
