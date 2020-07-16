@@ -22,7 +22,7 @@ public class NonHRHolidaysHome {
     /**
     * Initialises the code for the NonHR holiday landing page
     */
-    public NonHRHolidaysHome() throws ClassNotFoundException {
+    public NonHRHolidaysHome() {
         
         // Panels
         menu = new JPanel();

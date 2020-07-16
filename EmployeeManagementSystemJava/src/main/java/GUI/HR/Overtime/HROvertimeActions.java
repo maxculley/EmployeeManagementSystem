@@ -315,8 +315,7 @@ public class HROvertimeActions {
      * This method <b>loadData</b> loads the meetings from the database into an
      * ArrayList for display to the user
      * 
-     * @throws ClassNotFoundException - if there is a problem locating the DBRequests
-     * class.
+     * @throws ClassNotFoundException - if the JDBC Class is not found
      */
     public static void loadData() throws ClassNotFoundException {
         currentOvertime = DBRequests.getOvertime();

@@ -298,8 +298,7 @@ public class HRHolidayActions {
      * 
      * If called twice will move onto the next one to store, not store the same one.
      * 
-     * @throws ClassNotFoundException - if the <b>DBRequests</b> class is not 
-     * found
+     * @throws ClassNotFoundException - if the JDBC Class is not found
      */
     public static void loadData() throws ClassNotFoundException {
         currentHoliday = DBRequests.getHoliday();
