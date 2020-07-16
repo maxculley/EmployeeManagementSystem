@@ -30,17 +30,19 @@ Whilst doing this project I have taught myself some new skills, these are:
 * `Remove employee` so their details are removed and can no longer access the system
 
 #### Holidays
-
 * `Accept/Decline` holiday requests made by a `Non HR member`
-* `View all` Accepted, Declined and Pending holidays, or search for a `specific employee`
+* `View all` Accepted, Declined and Pending holidays
+* `Search` for a specific employee's requested holidays
 
 #### Overtime
 * `Accept/Decline` overtime request, reflects automatically in the employees salary
 * `View` overtime requests made by `individuals`, or for the `whole system`
+* `Search` for a specific employee's requested overtimes
 
 #### Meetings
 * `Accept/Decline` requests for a meeting
 * `View` meetings made by `all employees` or view a `single employee`
+* `Search` for a specific employee's requested meetings
 ***
 ### The Non HR features includes:
 #### Employee Details
