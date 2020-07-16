@@ -12,6 +12,7 @@ public class Holiday {
     private String firstName, lastName, startDate, endDate, status;
     
     /**
+     * Creates a Holiday object with data.
      * 
      * @param holidayID Holiday's ID
      * @param employeeID Employee's ID
@@ -52,7 +53,7 @@ public class Holiday {
      * This method <b>getEmployeeID</b> returns the Employee's ID that belongs to
      * a holiday.
      * 
-     * @return employee ID
+     * @return Employee ID
      */
     public int getEmployeeID(){
         return employeeID;
