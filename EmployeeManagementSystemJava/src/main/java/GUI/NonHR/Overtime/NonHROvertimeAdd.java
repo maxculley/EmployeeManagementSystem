@@ -4,11 +4,13 @@ import Database.DBRequests;
 import GUI.General.GUIInfo;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
+/**
+ * This class <b>NonHROvertimeAdd</b> holds all the components, styling and logic for
+ * the NonHR overtime add page.
+ * 
+ */
 public class NonHROvertimeAdd {
 
     private static JPanel menu;
@@ -20,9 +22,12 @@ public class NonHROvertimeAdd {
     private static JLabel returnMessage;
     private final Choice morningDropdown, eveningDropdown;
     private String morningString, eveningString, date;
-    private int morningCount, eveningCount, overtimePay;
-
-    public NonHROvertimeAdd() throws ClassNotFoundException {
+    private int morningCount, eveningCount;
+    
+    /**
+    * Initialises the code for the NonHR overtime add page
+    */
+    public NonHROvertimeAdd() {
         
         // Panels
         menu = new JPanel();
@@ -268,6 +273,11 @@ public class NonHROvertimeAdd {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>NonHROvertimeAdd</b> JPanel.
+     * 
+     * @return NonHROvertimeAdd JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

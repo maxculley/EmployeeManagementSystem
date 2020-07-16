@@ -5,9 +5,13 @@ import GUI.General.GUIInfo;
 import Overtime.Overtime;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
-import static java.time.zone.ZoneRulesProvider.refresh;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHROvertimeView</b> holds all the components, styling and logic for
+ * the NonHR overtime view page.
+ * 
+ */
 public class NonHROvertimeView {
  
     private static JPanel menu;
@@ -19,8 +23,11 @@ public class NonHROvertimeView {
     private static boolean refresh = false;
     private static int pageCount = 0;
     private static Overtime currentOvertime;
- 
-    public NonHROvertimeView() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR overtime view page
+    */
+    public NonHROvertimeView() {
        
         // Panels
         menu = new JPanel();
@@ -208,6 +215,13 @@ public class NonHROvertimeView {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>NonHRViewOvertimeRefresh</b> sets the position of the data if the page has
+     * not yet been accessed and sets it blank as default. Otherwise it will just
+     * set the fields blank.
+     * 
+     * This is used for clearing data off the screen when you exit a page.
+     */
     public static void NonHRViewOvertimeRefresh() {
         currentOvertime = (Overtime) SystemInfo.getOvertimes().get(pageCount);
         if (!refresh) {
@@ -234,7 +248,12 @@ public class NonHROvertimeView {
             status.setText(currentOvertime.getStatus());
         }
     }
-   
+    
+    /**
+     * This method <b>getPage</b> returns the <b>NonHROvertimeView</b> JPanel.
+     * 
+     * @return NonHROvertimeView JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }

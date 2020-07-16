@@ -2,11 +2,15 @@ package GUI.NonHR.Overtime;
 
 import Database.DBRequests;
 import GUI.General.GUIInfo;
-import GUI.NonHR.Meetings.NonHRMeetingsView;
 import SystemAndGeneral.SystemInfo;
 import java.awt.*;
 import javax.swing.*;
- 
+
+/**
+ * This class <b>NonHROvertimeHome</b> holds all the components, styling and logic for
+ * the NonHR overtime landing page.
+ * 
+ */
 public class NonHROvertimeHome {
  
     private static JPanel menu;
@@ -14,8 +18,11 @@ public class NonHROvertimeHome {
     private final JLabel welcome, title;
     private final JButton changeInfo, holidays, switchType, logout, meetings, overtime, add, view;
     private final String changeInfoText, changeHolidaysText, switchTypeText, titleText, meetingsText, overtimeText, addText;
- 
-    public NonHROvertimeHome() throws ClassNotFoundException {
+    
+    /**
+    * Initialises the code for the NonHR overtime landing page
+    */
+    public NonHROvertimeHome() {
        
         // Panels
         menu = new JPanel();
@@ -161,6 +168,11 @@ public class NonHROvertimeHome {
         menu.add(quickmenu);
     }
     
+    /**
+     * This method <b>getPage</b> returns the <b>NonHROvertimeHome</b> JPanel.
+     * 
+     * @return NonHROvertimeHome JPanel
+     */
     public static JPanel getPage() {
         return menu;
     }
