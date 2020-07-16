@@ -16,9 +16,10 @@ public class HRHolidayView {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, next, previous, meetings, overtime;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, next, previous, meetings, overtime, clear, search;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private final JLabel welcome, title, startDateText, endDateText, statusText, idText, firstNameText, lastNameText;
+    private static JTextField idInput;
     private static JLabel startDate, endDate, status, id, firstName, lastName;
     private static int pageCount;
     private static boolean refresh = false;
@@ -38,9 +39,14 @@ public class HRHolidayView {
        
         content = new JPanel();
         content.setLayout(null);
-       
-       
-       
+        
+        
+        
+        // JTextFields
+        idInput = new JTextField("Enter ID");
+        
+        
+        
         // Buttons
         switchTypeText = "Switch to \npersonal";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
@@ -59,6 +65,10 @@ public class HRHolidayView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        clear = new JButton("Clear");
+        
+        search = new JButton("Search");
         
         next = new JButton("Next");
         
@@ -139,6 +149,37 @@ public class HRHolidayView {
             }
         });
         
+        search.addActionListener(listener -> {
+            try {
+                int searchId = Integer.parseInt(idInput.getText());
+                try {
+                    SystemInfo.setHolidays(searchId);
+                    HRViewHolRefresh();
+                } catch (Exception e) {
+                id.setText("Invalid ID");
+                firstName.setText("");
+                lastName.setText("");
+                startDate.setText("");
+                endDate.setText("");
+                status.setText("");
+                }
+            } catch (Exception e) {
+                id.setText("Invalid ID");
+                firstName.setText("");
+                lastName.setText("");
+                startDate.setText("");
+                endDate.setText("");
+                status.setText("");
+            }
+        });
+        
+        clear.addActionListener(listener ->{
+            try {
+                SystemInfo.setHolidays();
+                HRViewHolRefresh();
+            } catch (ClassNotFoundException ex) {}
+        });
+        
         
         meetings.addActionListener(listener -> {
             GUIInfo.getCL().show(GUIInfo.getCont(), "HRMeetingsHomeMenu");
@@ -182,6 +223,15 @@ public class HRHolidayView {
         title.setBounds(0, 20, 570, 35);
         content.add(title);
         
+        
+        clear.setBounds(140, 56, 100, 25);
+        content.add(clear);
+        
+        search.setBounds(330, 56, 100, 25);
+        content.add(search);
+        
+        idInput.setBounds(235, 56, 100, 25);
+        content.add(idInput);
         
         idText.setBounds(70, 87, 140, 25);
         content.add(idText);

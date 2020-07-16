@@ -191,6 +191,14 @@ public class SystemInfo {
      */
     public static void setHolidays() throws ClassNotFoundException {
         holidays = DBRequests.getHolidayList();
+    }/**
+     * This method <b>setHolidays</b> loads all the holidays from the database
+     * into the holidays ArrayList from a specific employee ID.
+     * 
+     * @throws ClassNotFoundException  - if the JDBC Class is not found
+     */
+    public static void setHolidays(int ID) throws ClassNotFoundException {
+        holidays = DBRequests.getHolidayList(ID);
     }
     /**
      * This method <b>getHolidays</b> returns the holidays ArrayList.
@@ -220,6 +228,16 @@ public class SystemInfo {
         meetings = DBRequests.getMeetingList();
     }
     /**
+     * This method <b>setMeetings</b> loads all the meetings from the database
+     * into the meetings ArrayList from a specific user ID
+     * 
+     * @param ID Employee ID
+     * @throws ClassNotFoundException - if the JDBC Class is not found
+     */
+    public static void setMeetings(int ID) throws ClassNotFoundException {
+        meetings = DBRequests.getMeetingList(ID);
+    }
+    /**
      * This method <b>getMeetings</b> returns the meetings ArrayList.
      * 
      * @return meetings ArrayList
@@ -245,6 +263,15 @@ public class SystemInfo {
      */
     public static void setOvertimes() throws ClassNotFoundException {
         overtimes = DBRequests.getOvertimeList();
+    }
+    /**
+     * This method <b>setOvertimes</b> loads all the overtimes from the database
+     * into the overtimes ArrayList from a specific employee ID.
+     * 
+     * @throws ClassNotFoundException - if the JDBC Class is not found
+     */
+    public static void setOvertimes(int ID) throws ClassNotFoundException {
+        overtimes = DBRequests.getOvertimeList(ID);
     }
     /**
      * This method <b>getOvertimes</b> returns the overtimes ArrayList.

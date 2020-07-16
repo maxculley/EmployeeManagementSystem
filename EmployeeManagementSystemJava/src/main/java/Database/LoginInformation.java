@@ -26,7 +26,7 @@ public final class LoginInformation {
     /**
      * Password of SQL root account for database connection.
      */
-    private final static String PASSWORD = "";
+    private final static String PASSWORD = "Culley1max1";
     
     
     

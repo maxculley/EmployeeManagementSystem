@@ -17,9 +17,10 @@ public class HRMeetingsView {
  
     private static JPanel menu;
     private final JPanel quickmenu, content;
-    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, next, previous;
+    private final JButton switchType, logout, userSearch, addRemoveEmployee, holidays, meetings, overtime, next, previous, clear, search;
     private final String switchTypeText, titleText, userSearchText, addRemoveEmployeeText, holidaysText, meetingsText, overtimeText;
     private final JLabel welcome, title, employeeIDText, dateText, startTimeText, endTimeText, firstNameText, lastNameText, statusText;
+    private static JTextField idInput;
     private static JLabel employeeID, date, startTime, endTime, firstName, lastName, status;
     private static Meeting currentMeeting;
     private static boolean refresh = false;
@@ -39,9 +40,14 @@ public class HRMeetingsView {
        
         content = new JPanel();
         content.setLayout(null);
-       
-       
-       
+        
+        
+        
+        // JTextFields
+        idInput = new JTextField("Enter ID");
+        
+        
+        
         // Buttons
         switchTypeText = "Switch to \npersonal";
         switchType = new JButton("<html><style>p {text-align: center;}</style> <p>" + switchTypeText.replaceAll("\\n", "<br>") + "</p></html>");
@@ -60,6 +66,10 @@ public class HRMeetingsView {
        
         overtimeText = "View/Change\nOvertime";
         overtime = new JButton("<html><style>p {text-align: center;}</style> <p>" + overtimeText.replaceAll("\\n", "<br>") + "</p></html>");
+        
+        clear = new JButton("Clear");
+        
+        search = new JButton("Search");
         
         next = new JButton("Next");
         
@@ -153,6 +163,39 @@ public class HRMeetingsView {
                 previous.setVisible(false);
             }
         });
+        
+        search.addActionListener(listener -> {
+            try {
+                int searchId = Integer.parseInt(idInput.getText());
+                try {
+                    SystemInfo.setMeetings(searchId);
+                    HRViewMeetingRefresh();
+                } catch (Exception e) {
+                employeeID.setText("Invalid ID");
+                firstName.setText("");
+                lastName.setText("");
+                date.setText("");
+                startTime.setText("");
+                endTime.setText("");
+                status.setText("");
+                }
+            } catch (Exception e) {
+                employeeID.setText("Invalid ID");
+                firstName.setText("");
+                lastName.setText("");
+                date.setText("");
+                startTime.setText("");
+                endTime.setText("");
+                status.setText("");
+            }
+        });
+        
+        clear.addActionListener(listener ->{
+            try {
+                SystemInfo.setMeetings();
+                HRViewMeetingRefresh();
+            } catch (ClassNotFoundException ex) {}
+        });
        
        
        
@@ -187,6 +230,15 @@ public class HRMeetingsView {
         title.setBounds(0, 20, 570, 35);
         content.add(title);
         
+        
+        clear.setBounds(140, 56, 100, 25);
+        content.add(clear);
+        
+        search.setBounds(330, 56, 100, 25);
+        content.add(search);
+        
+        idInput.setBounds(235, 56, 100, 25);
+        content.add(idInput);
         
         employeeIDText.setBounds(70, 87, 140, 25);
         content.add(employeeIDText);
